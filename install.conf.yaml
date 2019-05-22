@@ -1,0 +1,9 @@
+- link:
+    ~/.vimrc:
+      relink: true
+    ~/.zshrc:
+      force: true
+    ~/.config/:
+      glob: true
+      path: config/*
+      relink: true
