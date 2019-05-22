@@ -1,0 +1,29 @@
+set visualbell
+set noerrorbells
+set showcmd
+set display=lastline
+set clipboard=unnamed
+
+noremap =g  :action ReformatCode<CR>
+
+noremap ,a ^
+noremap ,e $
+noremap ,ss :action Switcher<CR>
+
+noremap ,rr :action RenameElement<CR>
+noremap ,rm :action Move<CR>
+noremap ,ri :action Inline<CR>
+noremap ,sg :action Generate<CR>
+noremap ,iu :action FindUsages<CR>
+noremap ,ip :action ParameterInfo<CR>
+noremap ,gs :action GotoSuperMethod<CR>
+noremap ,gi :action GotoImplementation<CR>
+
+noremap ,R :action Run<CR>
+noremap ,D :action Debug<CR>
+
+
+noremap ,ww :action NextSplitter<CR>
+noremap ,wd :action CloseEditor<CR>
+noremap ,w/ :action SplitVertically<CR>
+noremap ,0 :action ActivateProjectToolWindow<CR>

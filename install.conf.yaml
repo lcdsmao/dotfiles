@@ -1,9 +1,28 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
 - link:
-    ~/.vimrc:
-      relink: true
+    ~/.ideavimrc: ideavimrc
+    ~/.vimrc: vimrc
     ~/.zshrc:
+      path: zshrc
       force: true
-    ~/.config/:
+    ~/.config/karabiner:
+      path: config/karabiner
+      create: true
+      force: true
+    ~/.oh-my-zsh/custom/:
       glob: true
-      path: config/*
-      relink: true
+      path: oh-my-zsh/custom/*
+    ~/.oh-my-zsh/custom/themes/:
+      glob: true
+      path: oh-my-zsh/custom-themes/*
+    ~/.oh-my-zsh/custom/plugins:
+      glob: true
+      path: oh-my-zsh/custom-plugins/*
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
