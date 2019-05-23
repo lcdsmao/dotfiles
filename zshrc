@@ -74,7 +74,15 @@ plugins=(
   zsh-syntax-highlighting
 )
 
+# brew
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
 source $ZSH/oh-my-zsh.sh
+
+# for brew auto completion
+rm -f ~/.zcompdump; compinit
 
 # User configuration
 

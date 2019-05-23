@@ -1,3 +1,6 @@
+- shell:
+  - [./mac-check.sh, Checking Mac]
+
 - defaults:
     link:
       relink: true
