@@ -2,6 +2,7 @@ export appId='<Replace with ApplicationId like com.abc.def>'
 export mainActivityName='<Replace with MainActivity of your app like com.abc.def.MainActivity>'
 export buildVariantTarget='iD'  # Default to installDebug (iD) ; Replace it with your default buildVariantType
 export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools:$HOME/Library/Android/sdk/tools
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 
 alias gn='./gradlew'
 alias latestapkname='ls -tr | grep '.apk' | tail -1 | pbcopy'  # copy latestApk file name in current folder to clipboard.
@@ -26,7 +27,7 @@ buildVariantTarget = $buildVariantTarget"; }
 alias ins='uns && adb install '   # Uninstall App then install with existing app path ;    ins <pathToApk.apk>
 alias upg='adb install -r '
 function upglatest() { latestapkname; upg $(pbpaste); sta; }  # Upgrade app with latest updated apk in current folder
-function test() { gn test connectedAndroidTest; } # execute all tests
+function atest() { gn test connectedAndroidTest; } # execute all tests
 
 alias gitrev='git reset --soft HEAD^'  # revert your last commit from your branch
 alias gitcurrent='git rev-parse --abbrev-ref HEAD | pbcopy'  # copy current branch name to clipboard , useful when giving PR's
