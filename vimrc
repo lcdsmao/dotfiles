@@ -2,6 +2,7 @@ set number
 set showcmd
 set belloff=all
 set clipboard+=unnamed
+set encoding=utf-8
 
 syntax on
 
