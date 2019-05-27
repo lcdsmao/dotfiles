@@ -1,7 +1,8 @@
 export appId='<Replace with ApplicationId like com.abc.def>'
 export mainActivityName='<Replace with MainActivity of your app like com.abc.def.MainActivity>'
 export buildVariantTarget='iD'  # Default to installDebug (iD) ; Replace it with your default buildVariantType
-export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools:$HOME/Library/Android/sdk/tools
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 
 alias gn='./gradlew'
