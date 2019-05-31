@@ -9,6 +9,7 @@ alias gn='./gradlew'
 alias latestapkname='ls -tr | grep '.apk' | tail -1 | pbcopy'  # copy latestApk file name in current folder to clipboard.
 alias adbca="adb shell dumpsys window windows | grep -E 'mCurrentFocus'" # show current activity name
 alias adbrecord="$HOME/.oh-my-zsh/custom/adb-record.sh"
+alias adbshot="$HOME/.oh-my-zsh/custom/adb-screenshot.sh"
 
 function sta() { adb shell am start -n "$appId"/"$mainActivityName";}  # start app
 function stp() { adb shell am force-stop "$appId";} # force stop app
