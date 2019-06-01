@@ -26,6 +26,10 @@
     ~/.oh-my-zsh/custom/plugins:
       glob: true
       path: oh-my-zsh/custom-plugins/*
+    ~/.vim_runtime:
+      create: true
+      glob: true
+      path: vim_runtime/*
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
