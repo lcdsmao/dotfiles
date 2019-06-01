@@ -1,5 +1,5 @@
 - shell:
-  - [./mac-check.sh, Checking Mac]
+  - [./os-check.sh, Checking OS requirement]
 
 - defaults:
     link:
