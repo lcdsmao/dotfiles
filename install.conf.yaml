@@ -30,6 +30,9 @@
       create: true
       glob: true
       path: vim_runtime/*
+    ~/.vim_runtime/vimrcs/my_configs.vim:
+      path: my_configs.vim
+      force: true
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
