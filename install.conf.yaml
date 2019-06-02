@@ -9,7 +9,7 @@
 
 - link:
     ~/.ideavimrc: ideavimrc
-    ~/.vimrc: vimrc
+    # ~/.vimrc: vimrc
     ~/.zshrc:
       path: zshrc
       force: true
@@ -26,11 +26,7 @@
     ~/.oh-my-zsh/custom/plugins:
       glob: true
       path: oh-my-zsh/custom-plugins/*
-    ~/.vim_runtime:
-      create: true
-      glob: true
-      path: vim_runtime/*
-    ~/.vim_runtime/vimrcs/my_configs.vim:
+    ~/.vim_runtime/my_configs.vim:
       path: my_configs.vim
       force: true
 

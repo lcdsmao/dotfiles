@@ -29,3 +29,10 @@ else
     echo oh-my-zsh already installed
 fi
 
+# install vim-runtime
+if [[ ! -e ~/.vim_runtime  ]]; then
+    git clone --depth=1 https://github.com/lcdsmao/vimrc.git ~/.vim_runtime
+    sh ~/.vim_runtime/install_awesome_vimrc.sh
+else
+    echo vim_runtime already installed
+fi
