@@ -29,6 +29,10 @@
     ~/.vim_runtime/my_configs.vim:
       path: my_configs.vim
       force: true
+    ~/.config/nvim/:
+      glob: true
+      create: true
+      path: nvim/*
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
