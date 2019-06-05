@@ -1,7 +1,7 @@
 #!/bin/sh
 
 DATE=`date '+%y%m%d%H%M%S'`
-FILE_NAME=screenshot-${DATE}
+FILE_NAME=screenshot-${DATE}.png
 DIR_PATH=~/Desktop
 
 adb shell screencap -p /sdcard/screen.png
