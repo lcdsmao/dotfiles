@@ -3,14 +3,17 @@ set showcmd
 set clipboard+=unnamed
 set autoread
 
-noremap ,a ^
-noremap ,e $
-
 let mapleader = ","
+
+noremap <leader>a ^
+noremap <leader>e $
 
 " Split
 noremap <leader>ss :split<cr>
 noremap <leader>sv :vsplit<cr>
+
+" Copy
+nmap <c-p> :pu<CR>
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -152,3 +155,59 @@ endtry
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Markdown preview
+noremap <silent> <leader>om :call OpenMarkdownPreview()<cr>
+
+"*****************************************************************************
+"" Abbreviations
+"*****************************************************************************
+"" no one is really happy until you have this shortcuts
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qall! qall!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qall qall
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Helper functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Don't close window, when deleting a buffer
+command! Bclose call <SID>BufcloseCloseIt()
+function! <SID>BufcloseCloseIt()
+    let l:currentBufNum = bufnr("%")
+    let l:alternateBufNum = bufnr("#")
+
+    if buflisted(l:alternateBufNum)
+        buffer #
+    else
+        bnext
+    endif
+
+    if bufnr("%") == l:currentBufNum
+        new
+    endif
+
+    if buflisted(l:currentBufNum)
+        execute("bdelete! ".l:currentBufNum)
+    endif
+endfunction
+
+function! OpenMarkdownPreview() abort
+if exists('s:markdown_job_id') && s:markdown_job_id > 0
+  call jobstop(s:markdown_job_id)
+  unlet s:markdown_job_id
+endif
+let available_port = system(
+  \ "lsof -s tcp:listen -i :40500-40800 | awk -F ' *|:' '{ print $10 }' | sort -n | tail -n1"
+  \ ) + 1
+if available_port == 1 | let available_port = 40500 | endif
+let s:markdown_job_id = jobstart('grip ' . shellescape(expand('%:p')) . ' :' . available_port)
+if s:markdown_job_id <= 0 | return | endif
+call system('open http://localhost:' . available_port)
+endfunction

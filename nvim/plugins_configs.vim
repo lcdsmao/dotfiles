@@ -19,6 +19,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'mileszs/ack.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
+Plug 'godlygeek/tabular'
+Plug 'Raimondi/delimitMate'
 
 call plug#end()
 
@@ -126,6 +128,9 @@ map <leader>nf :NERDTreeFind<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
 let g:airline_theme='base16'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
