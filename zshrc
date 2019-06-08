@@ -92,11 +92,11 @@ rm -f ~/.zcompdump; compinit
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -112,6 +112,7 @@ rm -f ~/.zcompdump; compinit
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vi=nvim
 alias copypath='pwd | pbcopy'  # copy current path to clipboard
 alias o='open .'   # open Finder window from current path , very useful
 alias c='clear'
@@ -119,4 +120,6 @@ alias c='clear'
 fun killsophos(){
     while : ; do sh -c 'pgrep -if sophos | xargs -n 1 sudo kill -9' && sleep 0.5 && echo "loop: `date`" ; done
 }
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
