@@ -13,7 +13,7 @@
       path: zshrc
       force: true
     ~/.config/karabiner:
-      path: config/karabiner
+      path: karabiner
       create: true
       force: true
     ~/.oh-my-zsh/custom/:
