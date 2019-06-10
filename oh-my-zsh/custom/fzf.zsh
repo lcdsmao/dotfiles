@@ -72,14 +72,23 @@ function fbr() {
         git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
     }
 
-# fga - view diff
-function fgd() {
+# fga - view status
+function fga() {
     modified_files=$(git status --short | awk '{print $2}') &&
         selected_files=$(echo "$modified_files" | 
         fzf -m --preview 'git diff head {} |
         (bat --style=numbers --color=always || 
         cat {}) 2> /dev/null') &&
         git add $selected_files
+    }
+
+# fga - view status
+function fgd() {
+    modified_files=$(git diff $1 --name-only) &&
+        echo "$modified_files" | 
+        fzf -m --preview "git diff $1 {} |
+        (bat --style=numbers --color=always || 
+        cat {}) 2> /dev/null"
     }
 
 ###################################################
