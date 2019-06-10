@@ -15,7 +15,8 @@ source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 # ------------
 # Begin custom functions
 
-## Preview
+###################################################
+# Preview
 function fp() {
     fzf --preview '[[ $(file --mime {}) =~ binary ]] &&
         echo {} is a binary file ||
@@ -26,7 +27,8 @@ function fp() {
         cat {}) 2> /dev/null | head -500'
     }
 
-## Change directory
+###################################################
+# Change directory
 # fdr - cd to selected parent directory
 function fdr() {
     local declare dirs=()
@@ -42,6 +44,7 @@ local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
 cd "$DIR"
 }
 
+###################################################
 # fd - cd to selected directory
 function fd() {
     local dir
@@ -70,9 +73,12 @@ function fbr() {
     }
 
 # fga - view diff
-function fga() {
+function fgd() {
     modified_files=$(git status --short | awk '{print $2}') &&
-        selected_files=$(echo "$modified_files" | fzf -m --preview 'git diff {}') &&
+        selected_files=$(echo "$modified_files" | 
+        fzf -m --preview 'git diff head {} |
+        (bat --style=numbers --color=always || 
+        cat {}) 2> /dev/null') &&
         git add $selected_files
     }
 
