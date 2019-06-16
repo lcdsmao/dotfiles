@@ -1,4 +1,3 @@
-set number
 set showcmd
 set clipboard+=unnamed
 set autoread
@@ -7,6 +6,15 @@ let mapleader = " "
 
 noremap <leader>a ^
 noremap <leader>e $
+
+" Automatic toggling between line number modes
+set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 " Split
 noremap <leader>ss :split<cr>
@@ -162,6 +170,13 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 " Markdown preview
 noremap <silent> <leader>om :call OpenMarkdownPreview()<cr>
+
+" Centering automatically with autocmds
+augroup VCenterCursor
+  au!
+  au BufEnter,WinEnter,WinNew,VimResized *,*.*
+        \ let &scrolloff=winheight(win_getid())/2
+augroup END
 
 "*****************************************************************************
 "" Abbreviations
