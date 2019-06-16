@@ -3,7 +3,7 @@ set showcmd
 set clipboard+=unnamed
 set autoread
 
-let mapleader = ","
+let mapleader = " "
 
 noremap <leader>a ^
 noremap <leader>e $
@@ -12,7 +12,7 @@ noremap <leader>e $
 noremap <leader>ss :split<cr>
 noremap <leader>sv :vsplit<cr>
 
-" Copy
+" Paste
 nmap <c-p> :pu<CR>
 
 " Fast saving
@@ -20,6 +20,10 @@ nmap <leader>w :w!<cr>
 
 " :W sudo saves file
 command W w !sudo tee %% > /dev/null
+
+" Turn to all caps
+nnoremap <leader>T m1gUiw`1
+inoremap <C-S-T> <ESC>gUiwgi
 
 " Avoid garbled characters in Chinese language windows OS
 let $LANG='en' 

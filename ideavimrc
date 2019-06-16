@@ -4,26 +4,34 @@ set showcmd
 set display=lastline
 set clipboard=unnamed
 
-noremap =g  :action ReformatCode<CR>
+let mapleader = " "
 
-noremap ,a ^
-noremap ,e $
-noremap ,ss :action Switcher<CR>
+noremap =g :action ReformatCode<CR>
 
-noremap ,rr :action RenameElement<CR>
-noremap ,rm :action Move<CR>
-noremap ,ri :action Inline<CR>
-noremap ,sg :action Generate<CR>
-noremap ,iu :action FindUsages<CR>
-noremap ,ip :action ParameterInfo<CR>
-noremap ,gs :action GotoSuperMethod<CR>
-noremap ,gi :action GotoImplementation<CR>
+noremap <leader>a ^
+noremap <leader>e $
+noremap <leader>ss :action Switcher<CR>
 
-noremap ,R :action Run<CR>
-noremap ,D :action Debug<CR>
+" Turn to all caps
+nnoremap <leader>T m1gUiw`1
+inoremap <C-S-T> <ESC>gUiwgi
 
+" Paste
+nmap <c-p> :pu<CR>
 
-noremap ,ww :action NextSplitter<CR>
-noremap ,wd :action CloseEditor<CR>
-noremap ,w/ :action SplitVertically<CR>
-noremap ,0 :action ActivateProjectToolWindow<CR>
+noremap <leader>rr :action RenameElement<CR>
+noremap <leader>rm :action Move<CR>
+noremap <leader>ri :action Inline<CR>
+noremap <leader>sg :action Generate<CR>
+noremap <leader>iu :action FindUsages<CR>
+noremap <leader>ip :action ParameterInfo<CR>
+noremap <leader>gs :action GotoSuperMethod<CR>
+noremap <leader>gi :action GotoImplementation<CR>
+
+noremap <leader>R :action Run<CR>
+noremap <leader>D :action Debug<CR>
+
+noremap <leader>ww :action NextSplitter<CR>
+noremap <leader>wd :action CloseEditor<CR>
+noremap <leader>w/ :action SplitVertically<CR>
+noremap <leader>0 :action ActivateProjectToolWindow<CR>
