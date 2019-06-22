@@ -182,6 +182,12 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_theme='base16'
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => delimitMate
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:delimitMate_expand_cr = 2
+imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => color theme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
