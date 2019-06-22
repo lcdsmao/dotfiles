@@ -73,6 +73,8 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   ripgrep
+  gitignore
+  cargo
 )
 
 # brew
