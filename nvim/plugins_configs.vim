@@ -122,7 +122,7 @@ map <leader>ff :Files<cr>
 map <leader>fg :GFiles<cr>
 map <leader>fs :GFiles?<cr>
 map <leader>fb :Buffers<cr>
-map <leader>g :Ag<cr>
+map <leader>g :Rg<cr>
 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -147,6 +147,14 @@ command! -bang -nargs=* Ag
   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
+
+" Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 
 " Likewise, Files command with preview window
 command! -bang -nargs=? -complete=dir Files

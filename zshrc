@@ -72,6 +72,7 @@ plugins=(
   adb
   zsh-autosuggestions
   zsh-syntax-highlighting
+  ripgrep
 )
 
 # brew
