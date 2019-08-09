@@ -3,6 +3,8 @@ set noerrorbells
 set showcmd
 set display=lastline
 set clipboard=unnamed
+set ignorecase
+set ideajoin
 set surround
 set multiple-cursors
 
