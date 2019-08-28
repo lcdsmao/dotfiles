@@ -15,6 +15,7 @@ function sta() { adb shell am start -n "$appId"/"$mainActivityName";}  # start a
 function stp() { adb shell am force-stop "$appId";} # force stop app
 function clr() { adb shell pm clear "$appId";}  # clear data of app
 function uns() { adb uninstall "$appId";}   # uninstall app
+function iturl() { adb shell am start -a android.intent.action.VIEW -c android.intent.category.BROWSABLE -d "$1" }
 
 function bld() { if [ "$1" == "c" ];then gn clean ;fi; gn "$buildVariantTarget" ; sta ;}  # Build with buildVariantTarget flavor then install App  then start it
 function bldu() { uns; gn "$buildVariantTarget"; sta; }  # Uninstall App then Build with buildVariantTarget flavor then install App & then start it
@@ -30,10 +31,6 @@ alias ins='uns && adb install '   # Uninstall App then install with existing app
 alias upg='adb install -r '
 function upglatest() { latestapkname; upg $(pbpaste); sta; }  # Upgrade app with latest updated apk in current folder
 function atest() { gn test connectedAndroidTest; } # execute all tests
-
-alias gitrev='git reset --soft HEAD^'  # revert your last commit from your branch
-alias gitcurrent='git rev-parse --abbrev-ref HEAD | pbcopy'  # copy current branch name to clipboard , useful when giving PR's
-alias gitdelbranch='git branch | grep "<branchpattern>" | xargs git branch -D' # deletes git local branches matching pattern, to reduce clutter of branches.
 
 alias logs='adb logcat AndroidRuntime:E *:S'   # prints only Crash logs, if AndroidStudio is not working use this command.
 alias text='adb shell input text '   # to enter text input to your device
