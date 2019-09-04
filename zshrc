@@ -77,6 +77,12 @@ plugins=(
   cargo
 )
 
+# Due to the following issue:
+# https://github.com/zsh-users/zsh-syntax-highlighting/issues/295
+# Syntax highlighting is really slow when pasting long text. This speeds it
+# up to just a slight delay
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+
 # brew
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
