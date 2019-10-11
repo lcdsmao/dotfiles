@@ -36,3 +36,9 @@ alias logs='adb logcat AndroidRuntime:E *:S'   # prints only Crash logs, if Andr
 alias text='adb shell input text '   # to enter text input to your device
 
 function ktg() { git diff --name-only --cached --relative | grep '\.kt[s"]\?$' | xargs ktlint --relative . } # check lint of modified/new kotlin files
+function adbanim() {
+    factor=${1:-1}
+    adb shell settings put global window_animation_scale $factor
+    adb shell settings put global transition_animation_scale $factor
+    adb shell settings put global animator_duration_scale $factor
+}
