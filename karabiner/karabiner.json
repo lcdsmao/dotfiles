@@ -2312,7 +2312,7 @@
                                     {
                                         "key_code": "spacebar",
                                         "modifiers": [
-                                            "left_control"
+                                            "left_option"
                                         ]
                                     }
                                 ],
@@ -2363,6 +2363,14 @@
                     "simple_modifications": [
                         {
                             "from": {
+                                "key_code": "application"
+                            },
+                            "to": {
+                                "key_code": "fn"
+                            }
+                        },
+                        {
+                            "from": {
                                 "key_code": "left_alt"
                             },
                             "to": {
@@ -2391,14 +2399,6 @@
                             },
                             "to": {
                                 "key_code": "right_option"
-                            }
-                        },
-                        {
-                            "from": {
-                                "key_code": "application"
-                            },
-                            "to": {
-                                "key_code": "fn"
                             }
                         }
                     ]
@@ -2503,6 +2503,9 @@
                 }
             ],
             "name": "Mine",
+            "parameters": {
+                "delay_milliseconds_before_open_device": 1000
+            },
             "selected": true,
             "simple_modifications": [],
             "virtual_hid_keyboard": {
