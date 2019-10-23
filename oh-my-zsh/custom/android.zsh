@@ -34,6 +34,8 @@ function atest() { gn test connectedAndroidTest; } # execute all tests
 
 alias logs='adb logcat AndroidRuntime:E *:S'   # prints only Crash logs, if AndroidStudio is not working use this command.
 alias text='adb shell input text '   # to enter text input to your device
+alias adblog='adb logcat -v color'
+function adbloge() { adblog | grep $@ }
 
 function ktg() { git diff --name-only --cached --relative | grep '\.kt[s"]\?$' | xargs ktlint --relative . } # check lint of modified/new kotlin files
 function adbanim() {
