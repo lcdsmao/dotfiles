@@ -99,8 +99,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rr <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -109,6 +109,8 @@ augroup mygroup
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
+
+nmap =g :Format<cr>
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
