@@ -121,6 +121,9 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+" Terminal
+tnoremap <silent> <ESC> <C-\><C-n>
+
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
