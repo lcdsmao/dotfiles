@@ -143,8 +143,9 @@ map <leader>h :bprevious<cr>
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-map <leader>t<leader> :tabnext 
+map <leader>tm :tabmove<cr>
+map <leader>tl :tabnext<cr>
+map <leader>th :tabprevious<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -160,8 +161,8 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers 
 try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
+    set switchbuf=useopen,usetab,newtab
+    set stal=2
 catch
 endtry
 
@@ -173,9 +174,9 @@ noremap <silent> <leader>om :call OpenMarkdownPreview()<cr>
 
 " Centering automatically with autocmds
 augroup VCenterCursor
-  au!
-  au BufEnter,WinEnter,WinNew,VimResized *,*.*
-        \ let &scrolloff=winheight(win_getid())/2
+    au!
+    au BufEnter,WinEnter,WinNew,VimResized *,*.*
+                \ let &scrolloff=winheight(win_getid())/2
 augroup END
 
 "*****************************************************************************
@@ -218,15 +219,15 @@ function! <SID>BufcloseCloseIt()
 endfunction
 
 function! OpenMarkdownPreview() abort
-if exists('s:markdown_job_id') && s:markdown_job_id > 0
-  call jobstop(s:markdown_job_id)
-  unlet s:markdown_job_id
-endif
-let available_port = system(
-  \ "lsof -s tcp:listen -i :40500-40800 | awk -F ' *|:' '{ print $10 }' | sort -n | tail -n1"
-  \ ) + 1
-if available_port == 1 | let available_port = 40500 | endif
-let s:markdown_job_id = jobstart('grip ' . shellescape(expand('%:p')) . ' :' . available_port)
-if s:markdown_job_id <= 0 | return | endif
-call system('open http://localhost:' . available_port)
+    if exists('s:markdown_job_id') && s:markdown_job_id > 0
+        call jobstop(s:markdown_job_id)
+        unlet s:markdown_job_id
+    endif
+    let available_port = system(
+                \ "lsof -s tcp:listen -i :40500-40800 | awk -F ' *|:' '{ print $10 }' | sort -n | tail -n1"
+                \ ) + 1
+    if available_port == 1 | let available_port = 40500 | endif
+    let s:markdown_job_id = jobstart('grip ' . shellescape(expand('%:p')) . ' :' . available_port)
+    if s:markdown_job_id <= 0 | return | endif
+    call system('open http://localhost:' . available_port)
 endfunction
