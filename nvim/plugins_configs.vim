@@ -71,9 +71,9 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -116,6 +116,9 @@ command! -nargs=0 Format :call CocAction('format')
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FZF
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -126,9 +129,9 @@ map <leader>fb :Buffers<cr>
 map <leader>g :Rg<cr>
 
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
 
 " You can set up fzf window using a Vim command (Neovim or latest Vim 8 required)
 let g:fzf_layout = { 'down': '~40%' }
@@ -144,22 +147,22 @@ let g:fzf_layout = { 'down': '~40%' }
 "   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
 "   :Ag! - Start fzf in fullscreen and display the preview window above
 command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
+            \ call fzf#vim#ag(<q-args>,
+            \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+            \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \                 <bang>0)
 
 " Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
 
 " Likewise, Files command with preview window
 command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
