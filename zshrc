@@ -12,8 +12,11 @@ export TERM="xterm-256color"
 #ZSH_THEME="powerlevel9k/powerlevel9k"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs time)
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs time)
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -132,4 +135,3 @@ fun killsophos(){
 }
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
