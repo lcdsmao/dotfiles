@@ -38,7 +38,6 @@ alias text='adb shell input text '   # to enter text input to your device
 alias adblog='adb logcat -v color'
 function adbloge() { adblog | grep $@ }
 
-function ktg() { git diff --name-only --cached --relative | grep '\.kt[s"]\?$' | xargs ktlint --relative . } # check lint of modified/new kotlin files
 function adbanim() {
     factor=${1:-1}
     adb shell settings put global window_animation_scale $factor
