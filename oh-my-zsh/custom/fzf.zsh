@@ -159,3 +159,10 @@ function j() {
     fi
     cd "$(autojump -s | sed -e :a -e '$d;N;2,7ba' -e 'P;D' | awk '{print $2}' | fzf --height 40% --reverse --inline-info)" 
 }
+
+###################################################
+# Android emulator
+function avdr() {
+    selected_avd=$(emulator -list-avds | fzf) &&
+        emulator @${selected_avd} > /dev/null &
+    }
