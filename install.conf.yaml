@@ -29,6 +29,9 @@
       glob: true
       create: true
       path: nvim/*
+    ~/.config/starship.toml:
+      path: starship.toml
+      force: true
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
