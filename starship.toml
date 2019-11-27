@@ -1,1 +1,11 @@
 add_newline = true
+
+[java]
+symbol = " "
+style = "red"
+
+[ruby]
+symbol = " "
+
+[nodejs]
+symbol = " "
