@@ -185,3 +185,15 @@ function avdr() {
     selected_avd=$(emulator -list-avds | fzf) &&
         emulator @${selected_avd} > /dev/null &
     }
+
+# adb
+function adb() {
+    orig_adb="$ANDROID_HOME/platform-tools/adb"
+    devs="$($orig_adb devices | awk 'NR > 1 { print $1 }')"
+    dev_cnt="$(echo $devs | wc -l)"
+    if [[ $dev_cnt -le 1 ]]; then
+        $orig_adb $@
+    else
+        selected_dev="$(echo $devs | fzf)" && $orig_adb -s $selected_dev $@
+    fi
+}
