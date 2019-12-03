@@ -23,12 +23,12 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-  fd --hidden --follow --exclude ".git" . "$1"
+    fd --hidden --follow --exclude ".git" . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd --type d --hidden --follow --exclude ".git" . "$1"
+    fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
 # ------------
@@ -37,14 +37,14 @@ _fzf_compgen_dir() {
 ###################################################
 # Preview
 function fp() {
-    fzf --preview '[[ $(file --mime {}) =~ binary ]] &&
-        echo {} is a binary file ||
-        (bat --style=numbers --color=always {} ||
-        highlight -O ansi -l {} ||
-        coderay {} ||
-        rougify {} ||
-        cat {}) 2> /dev/null | head -500'
-    }
+    fzf --preview '[[ $(file --mime {}) =~ binary ]] 
+    && echo {} is a binary file 
+    || (bat --style=numbers --color=always {} 
+    || highlight -O ansi -l {} 
+    || coderay {} 
+    || rougify {} 
+    || cat {}) 2> /dev/null | head -500'
+}
 
 ###################################################
 # Change directory
@@ -85,30 +85,28 @@ function cdf() {
 # fbr - checkout git branch (including remote branches)
 function fbr() {
     local branches branch
-    branches=$(git branch --all | grep -v HEAD) &&
-        branch=$(echo "$branches" |
-        fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-        git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-    }
+    branches=$(git branch --all | grep -v HEAD) 
+    && branch=$(echo "$branches" | fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) 
+    && git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
 
 # fga - view status
 function fga() {
-    modified_files=$(git status --short | awk '{print $2}') &&
-        selected_files=$(echo "$modified_files" | 
-        fzf -m --preview 'git diff head {} |
-        (bat --style=numbers --color=always || 
-        cat {}) 2> /dev/null') &&
-        git add $selected_files
-    }
+    modified_files=$(git status --short | awk '{print $2}') 
+    && selected_files=$(echo "$modified_files" 
+    | fzf -m --preview 'git diff head {} 
+    | (bat --style=numbers --color=always 
+    || cat {}) 2> /dev/null') 
+    && git add $selected_files
+}
 
 # fga - view status
 function fgd() {
-    modified_files=$(git diff $1 --name-only) &&
-        echo "$modified_files" | 
-        fzf -m --preview "git diff $1 {} |
-        (bat --style=numbers --color=always || 
-        cat {}) 2> /dev/null"
-    }
+    modified_files=$(git diff $1 --name-only) 
+    && echo "$modified_files" 
+    | fzf -m --preview "git diff $1 {} 
+    | (bat --style=numbers --color=always || cat {}) 2> /dev/null"
+}
 
 ###################################################
 # Homebrew
@@ -119,10 +117,11 @@ function bip() {
     local inst=$(brew search | fzf -m)
 
     if [[ $inst ]]; then
-        for prog in $(echo $inst);
-        do; brew install $prog; done;
-        fi
-    }
+        for prog in $(echo $inst); do
+            brew install $prog
+        done
+    fi
+}
 
 # Update (one or multiple) selected application(s)
 # mnemonic [B]rew [U]pdate [P]lugin
@@ -130,10 +129,11 @@ function bup() {
     local upd=$(brew leaves | fzf -m)
 
     if [[ $upd ]]; then
-        for prog in $(echo $upd);
-        do; brew upgrade $prog; done;
-        fi
-    }
+        for prog in $(echo $upd); do 
+            brew upgrade $prog
+        done
+    fi
+}
 
 # Delete (one or multiple) selected application(s)
 # mnemonic [B]rew [C]lean [P]lugin (e.g. uninstall)
@@ -141,10 +141,11 @@ function bcp() {
     local uninst=$(brew leaves | fzf -m)
 
     if [[ $uninst ]]; then
-        for prog in $(echo $uninst);
-        do; brew uninstall $prog; done;
-        fi
-    }
+        for prog in $(echo $uninst); do
+            brew uninstall $prog
+        done
+    fi
+}
 
 ###################################################
 # Interactive cd
@@ -156,18 +157,18 @@ function cd() {
     fi
     while true; do
         local lsd=$(echo ".." && ls -p | grep '/$' | sed 's;/$;;')
-        local dir="$(printf '%s\n' "${lsd[@]}" |
-            fzf --reverse --preview '
-                    __cd_nxt="$(echo {})";
-                    __cd_path="$(echo $(pwd)/${__cd_nxt} | sed "s;//;/;")";
-                    echo $__cd_path;
-                    echo;
-                    ls -p --color=always "${__cd_path}";
-                    ')"
-                    [[ ${#dir} != 0 ]] || return 0
-                    builtin cd "$dir" &> /dev/null
-                done
-            }
+        local dir="$(printf '%s\n' "${lsd[@]}" 
+        | fzf --reverse --preview '
+        __cd_nxt="$(echo {})";
+        __cd_path="$(echo $(pwd)/${__cd_nxt} | sed "s;//;/;")";
+        echo $__cd_path;
+        echo;
+        ls -p --color=always "${__cd_path}";
+        ')"
+        [[ ${#dir} != 0 ]] || return 0
+        builtin cd "$dir" &> /dev/null
+    done
+}
 
 ###################################################
 # Autojump
@@ -182,15 +183,15 @@ function j() {
 ###################################################
 # Android emulator
 function avdr() {
-    selected_avd=$(emulator -list-avds | fzf) &&
-        emulator @${selected_avd} > /dev/null &
-    }
+    selected_avd="$(emulator -list-avds | fzf)" 
+    && emulator @"$selected_avd" > /dev/null &
+}
 
 # adb
 function adb() {
-    orig_adb="$ANDROID_HOME/platform-tools/adb"
-    devs="$($orig_adb devices | awk 'NR > 1 { print $1 }')"
-    dev_cnt="$(echo $devs | wc -l)"
+    local orig_adb="$ANDROID_HOME/platform-tools/adb"
+    local devs="$($orig_adb devices | awk 'NR > 1 { print $1 }')"
+    local dev_cnt="$(echo $devs | wc -l)"
     if [[ $dev_cnt -le 1 ]]; then
         $orig_adb $@
     else
