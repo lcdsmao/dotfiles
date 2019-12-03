@@ -37,12 +37,12 @@ _fzf_compgen_dir() {
 ###################################################
 # Preview
 function fp() {
-    fzf --preview '[[ $(file --mime {}) =~ binary ]] 
-    && echo {} is a binary file 
-    || (bat --style=numbers --color=always {} 
-    || highlight -O ansi -l {} 
-    || coderay {} 
-    || rougify {} 
+    fzf --preview '[[ $(file --mime {}) =~ binary ]] \
+    && echo {} is a binary file \
+    || (bat --style=numbers --color=always {} \
+    || highlight -O ansi -l {} \
+    || coderay {} \
+    || rougify {} \
     || cat {}) 2> /dev/null | head -500'
 }
 
@@ -85,26 +85,26 @@ function cdf() {
 # fbr - checkout git branch (including remote branches)
 function fbr() {
     local branches branch
-    branches=$(git branch --all | grep -v HEAD) 
-    && branch=$(echo "$branches" | fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) 
+    branches=$(git branch --all | grep -v HEAD) \
+    && branch=$(echo "$branches" | fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) \
     && git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
 # fga - view status
 function fga() {
-    modified_files=$(git status --short | awk '{print $2}') 
-    && selected_files=$(echo "$modified_files" 
-    | fzf -m --preview 'git diff head {} 
-    | (bat --style=numbers --color=always 
-    || cat {}) 2> /dev/null') 
+    modified_files=$(git status --short | awk '{print $2}') \
+    && selected_files=$(echo "$modified_files" \
+    | fzf -m --preview 'git diff head {} \
+    | (bat --style=numbers --color=always \
+    || cat {}) 2> /dev/null') \
     && git add $selected_files
 }
 
 # fga - view status
 function fgd() {
-    modified_files=$(git diff $1 --name-only) 
-    && echo "$modified_files" 
-    | fzf -m --preview "git diff $1 {} 
+    modified_files=$(git diff $1 --name-only) \
+    && echo "$modified_files" \
+    | fzf -m --preview "git diff $1 {} \
     | (bat --style=numbers --color=always || cat {}) 2> /dev/null"
 }
 
@@ -157,13 +157,13 @@ function cd() {
     fi
     while true; do
         local lsd=$(echo ".." && ls -p | grep '/$' | sed 's;/$;;')
-        local dir="$(printf '%s\n' "${lsd[@]}" 
-        | fzf --reverse --preview '
-        __cd_nxt="$(echo {})";
-        __cd_path="$(echo $(pwd)/${__cd_nxt} | sed "s;//;/;")";
-        echo $__cd_path;
-        echo;
-        ls -p --color=always "${__cd_path}";
+        local dir="$(printf '%s\n' "${lsd[@]}" \
+        | fzf --reverse --preview ' \
+        __cd_nxt="$(echo {})"; \
+        __cd_path="$(echo $(pwd)/${__cd_nxt} | sed "s;//;/;")"; \
+        echo $__cd_path; \
+        echo; \
+        ls -p --color=always "${__cd_path}"; \
         ')"
         [[ ${#dir} != 0 ]] || return 0
         builtin cd "$dir" &> /dev/null
@@ -183,7 +183,7 @@ function j() {
 ###################################################
 # Android emulator
 function avdr() {
-    selected_avd="$(emulator -list-avds | fzf)" 
+    selected_avd="$(emulator -list-avds | fzf)" \
     && emulator @"$selected_avd" > /dev/null &
 }
 
