@@ -122,7 +122,7 @@ set si "Smart indent
 set wrap "Wrap lines
 
 " Terminal
-tnoremap <silent> <ESC> <C-\><C-n>
+tnoremap <silent> <C-j><C-j> <C-\><C-n>
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
