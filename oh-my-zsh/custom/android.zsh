@@ -44,3 +44,39 @@ function adbanim() {
     adb shell settings put global transition_animation_scale $factor
     adb shell settings put global animator_duration_scale $factor
 }
+
+function adbt() {
+    case "$1" in
+        -a )
+            export _adb_type="ALL"
+            ;;
+        -f )
+            export _adb_type="FZF"
+            ;;
+        *)
+            unset _adb_type
+            ;;
+    esac
+}
+
+function adb() {
+    case "$_adb_type" in
+        "ALL" )
+            adb_all $@
+            ;;
+        "FZF" )
+            adb_fzf $@
+            ;;
+        *)
+            "$ANDROID_HOME/platform-tools/adb" $@
+            ;;
+    esac
+}
+
+function adb_all() {
+    local org_adb="$ANDROID_HOME/platform-tools/adb"
+    local ds=($($org_adb devices | awk 'NR > 1 { print $1 }'))
+    for i in $ds; do
+        $org_adb -s $i $@
+    done
+}

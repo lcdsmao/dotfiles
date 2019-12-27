@@ -188,7 +188,7 @@ function avdr() {
 }
 
 # adb
-function adb() {
+function adb_fzf() {
     local orig_adb="$ANDROID_HOME/platform-tools/adb"
     local devs="$($orig_adb devices | awk 'NR > 1 { print $1 }')"
     local dev_cnt="$(echo $devs | wc -l)"
