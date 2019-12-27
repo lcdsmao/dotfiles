@@ -26,6 +26,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'AndrewRadev/splitjoin.vim'
 
 call plug#end()
 
