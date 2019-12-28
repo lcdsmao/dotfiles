@@ -203,6 +203,8 @@ let g:airline_theme='base16'
 let g:delimitMate_expand_cr = 2
 imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 
+let delimitMate_matchpairs = "(:),[:],{:}"
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => color theme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
