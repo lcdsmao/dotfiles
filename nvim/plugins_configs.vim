@@ -122,6 +122,11 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+augroup runner
+  autocmd!
+  autocmd FileType rust nnoremap <silent> <leader>;; :call CocAction('runCommand', 'rust-analyzer.run')<CR>
+augroup end
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FZF
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
