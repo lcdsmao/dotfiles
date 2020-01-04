@@ -134,6 +134,8 @@ fun killsophos(){
     while : ; do sh -c 'pgrep -if sophos | xargs -n 1 sudo kill -9' && sleep 0.5 && echo "loop: `date`" ; done
 }
 
+# Path
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$PATH:$HOME/flutter/bin"
 
 eval "$(starship init zsh)"
