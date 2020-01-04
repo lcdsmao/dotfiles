@@ -50,17 +50,18 @@ function fp() {
 # Change directory
 # fdr - cd to selected parent directory
 function fdr() {
-    local declare dirs=()
+    local dirs=()
     get_parent_dirs() {
         if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
         if [[ "${1}" == '/' ]]; then
-            for _dir in "${dirs[@]}"; do echo $_dir; done
+            for _dir in "${dirs[@]}"; do echo "$_dir"; done
         else
-            get_parent_dirs $(dirname "$1")
+            get_parent_dirs "$(dirname "$1")"
         fi
     }
-local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
-cd "$DIR"
+    local DIR
+    DIR=$(get_parent_dirs "$(realpath "${1:-$PWD}")" | fzf-tmux --tac)
+    cd "$DIR" || exit
 }
 
 ###################################################
@@ -76,9 +77,8 @@ cd "$DIR"
 function cdf() {
     local file
     local dir
-    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir" || exit
 }
-
 
 ###################################################
 # Git
@@ -86,25 +86,23 @@ function cdf() {
 function fbr() {
     local branches branch
     branches=$(git branch --all | grep -v HEAD) \
-    && branch=$(echo "$branches" | fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) \
-    && git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+        && branch=$(echo "$branches" | fzf-tmux -d $((2 + $(wc -l <<< "$branches"))) +m) \
+        && git checkout "$(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")"
 }
 
 # fga - view status
 function fga() {
     modified_files=$(git status --short | awk '{print $2}') \
-    && selected_files=$(echo "$modified_files" \
-    | fzf -m --preview 'git diff head {} \
-    | (bat --style=numbers --color=always \
-    || cat {}) 2> /dev/null') \
-    && git add $selected_files
+        && selected_files=$(echo "$modified_files" \
+            | fzf -m --preview 'git diff head {} | (bat --style=numbers --color=always || cat {}) 2> /dev/null') \
+        && git add "$selected_files"
 }
 
 # fga - view status
 function fgd() {
-    modified_files=$(git diff $1 --name-only) \
-    && echo "$modified_files" \
-    | fzf -m --preview "git diff $1 {} \
+    modified_files=$(git diff "$1" --name-only) \
+        && echo "$modified_files" \
+        | fzf -m --preview "git diff $1 {} \
     | (bat --style=numbers --color=always || cat {}) 2> /dev/null"
 }
 
@@ -114,11 +112,12 @@ function fgd() {
 # using "brew search" as source input
 # mnemonic [B]rew [I]nstall [P]lugin
 function bip() {
-    local inst=$(brew search | fzf -m)
+    local inst
+    inst=$(brew search | fzf -m)
 
     if [[ $inst ]]; then
         for prog in $(echo $inst); do
-            brew install $prog
+            brew install "$prog"
         done
     fi
 }
@@ -126,10 +125,11 @@ function bip() {
 # Update (one or multiple) selected application(s)
 # mnemonic [B]rew [U]pdate [P]lugin
 function bup() {
-    local upd=$(brew leaves | fzf -m)
+    local upd
+    upd=$(brew leaves | fzf -m)
 
     if [[ $upd ]]; then
-        for prog in $(echo $upd); do 
+        for prog in $(echo $upd); do
             brew upgrade $prog
         done
     fi
@@ -138,11 +138,12 @@ function bup() {
 # Delete (one or multiple) selected application(s)
 # mnemonic [B]rew [C]lean [P]lugin (e.g. uninstall)
 function bcp() {
-    local uninst=$(brew leaves | fzf -m)
+    local uninst
+    uninst=$(brew leaves | fzf -m)
 
     if [[ $uninst ]]; then
         for prog in $(echo $uninst); do
-            brew uninstall $prog
+            brew uninstall "$prog"
         done
     fi
 }
@@ -152,13 +153,13 @@ function bcp() {
 # Suggested by @mgild Like normal cd but opens an interactive navigation window when called with no arguments. For ls, use -FG instead of --color=always on osx.
 function cd() {
     if [[ "$#" != 0 ]]; then
-        builtin cd "$@";
+        builtin cd "$@" || exit
         return
     fi
     while true; do
         local lsd=$(echo ".." && ls -p | grep '/$' | sed 's;/$;;')
         local dir="$(printf '%s\n' "${lsd[@]}" \
-        | fzf --reverse --preview ' \
+            | fzf --reverse --preview ' \
         __cd_nxt="$(echo {})"; \
         __cd_path="$(echo $(pwd)/${__cd_nxt} | sed "s;//;/;")"; \
         echo $__cd_path; \
@@ -174,17 +175,17 @@ function cd() {
 # Autojump
 function j() {
     if [[ "$#" -ne 0 ]]; then
-        cd $(autojump $@)
+        cd "$(autojump $@)" || exit
         return
     fi
-    cd "$(autojump -s | sed -e :a -e '$d;N;2,7ba' -e 'P;D' | awk '{print $2}' | fzf --height 40% --reverse --inline-info)" 
+    cd "$(autojump -s | sed -e :a -e '$d;N;2,7ba' -e 'P;D' | awk '{print $2}' | fzf --height 40% --reverse --inline-info)" || exit
 }
 
 ###################################################
 # Android emulator
 function avdr() {
     selected_avd="$(emulator -list-avds | fzf)" \
-    && emulator @"$selected_avd" > /dev/null &
+        && emulator @"$selected_avd" > /dev/null &
 }
 
 # adb
