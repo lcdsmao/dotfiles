@@ -19,9 +19,7 @@ function iturl() { adb shell am start -a android.intent.action.VIEW -c android.i
 
 # Build with buildVariantTarget flavor then install App  then start it
 function bld() {
-    if [[ "$1" == "c" ]]; then
-        gn clean
-    fi
+    [[ $1 == "c" ]] && gn clean
     gn "$buildVariantTarget" && sta
 }
 
@@ -32,9 +30,7 @@ function bldu() {
 
 # use updateAppId com.random.otherapp to change it for that tab.
 function updateappid() {
-    if [[ -n "$1" ]]; then
-        appId="$1"
-    fi
+    [[ -n $1 ]] && appId="$1"
 }
 
 function updatemainactivity() { if [[ -n $1 ]]; then mainActivityName="$1"; fi; }
@@ -66,12 +62,15 @@ function adbt() {
     case "$1" in
         -a)
             export _adb_type="ALL"
+            echo "adb type: ALL"
             ;;
         -f)
             export _adb_type="FZF"
+            echo "adb type: FZF"
             ;;
         *)
             unset _adb_type
+            echo "adb type: Normal"
             ;;
     esac
 }
