@@ -61,7 +61,7 @@ function fdr() {
     }
     local DIR
     DIR=$(get_parent_dirs "$(realpath "${1:-$PWD}")" | fzf-tmux --tac)
-    cd "$DIR" || exit
+    cd "$DIR" || return
 }
 
 ###################################################
@@ -77,7 +77,7 @@ function fdr() {
 function cdf() {
     local file
     local dir
-    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir" || exit
+    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir" || return
 }
 
 ###################################################
@@ -153,7 +153,7 @@ function bcp() {
 # Suggested by @mgild Like normal cd but opens an interactive navigation window when called with no arguments. For ls, use -FG instead of --color=always on osx.
 function cd() {
     if [[ "$#" != 0 ]]; then
-        builtin cd "$@" || exit
+        builtin cd "$@"
         return
     fi
     while true; do
@@ -175,10 +175,10 @@ function cd() {
 # Autojump
 function j() {
     if [[ "$#" -ne 0 ]]; then
-        cd "$(autojump $@)" || exit
+        cd "$(autojump $@)"
         return
     fi
-    cd "$(autojump -s | sed -e :a -e '$d;N;2,7ba' -e 'P;D' | awk '{print $2}' | fzf --height 40% --reverse --inline-info)" || exit
+    cd "$(autojump -s | sed -e :a -e '$d;N;2,7ba' -e 'P;D' | awk '{print $2}' | fzf --height 40% --reverse --inline-info)"
 }
 
 ###################################################
