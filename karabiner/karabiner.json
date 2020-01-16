@@ -16,6 +16,44 @@
                 },
                 "rules": [
                     {
+                        "description": "Disable Command-Shift-Option-Control-Period (.)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "shift",
+                                            "option",
+                                            "control"
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Disable Command-Shift-Option-Control-Comma (,)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "shift",
+                                            "option",
+                                            "control"
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
                         "description": "コマンドキー（右）を単体で押したときに、英数・かなをトグルで切り替える。",
                         "manipulators": [
                             {
