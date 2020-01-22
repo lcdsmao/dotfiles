@@ -92,8 +92,8 @@ function adb() {
 function adb_all() {
     local org_adb="$ANDROID_HOME/platform-tools/adb"
     local ds=()
-    while IFS='' read -r line; do array+=("$line"); done < <($org_adb devices | awk 'NR > 1 {print $1 }')
+    while IFS='' read -r line; do ds+=("$line"); done < <($org_adb devices | awk 'NR > 1 {print $1 }')
     for i in "${ds[@]}"; do
-        $org_adb -s "$i" "$@"
+        [[ -n $i ]] && $org_adb -s "$i" "$@"
     done
 }
