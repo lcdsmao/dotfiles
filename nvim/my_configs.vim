@@ -150,6 +150,9 @@ map <leader>tm :tabmove<cr>
 map <leader>tl :tabnext<cr>
 map <leader>th :tabprevious<cr>
 
+" Yank a region in VIM without the cursor moving to the top of the block
+vmap y ygv<ESC>
+
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
 nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
