@@ -18,7 +18,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'chriskempson/base16-vim'
-" Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'godlygeek/tabular'
@@ -143,7 +144,6 @@ nnoremap <silent> ,p  :<C-u>CocListResume<CR>
 let g:coc_global_extensions = [
     \ 'coc-json',
     \ 'coc-rust-analyzer',
-    \ 'coc-git',
     \ 'coc-xml',
     \ 'coc-flutter',
     \ 'coc-diagnostic'
@@ -157,17 +157,23 @@ augroup end
 
 " git
 " navigate chunks of current buffer
-nmap [g <Plug>(coc-git-prevchunk)
-nmap ]g <Plug>(coc-git-nextchunk)
+" nmap [g <Plug>(coc-git-prevchunk)
+" nmap ]g <Plug>(coc-git-nextchunk)
 " show chunk diff at current position
-nmap gsi <Plug>(coc-git-chunkinfo)
+" nmap gsi <Plug>(coc-git-chunkinfo)
 " show commit contains current position
-nmap gci <Plug>(coc-git-commit)
+" nmap gci <Plug>(coc-git-commit)
 " create text object for git chunks
-omap ig <Plug>(coc-git-chunk-inner)
-xmap ig <Plug>(coc-git-chunk-inner)
-omap ag <Plug>(coc-git-chunk-outer)
-xmap ag <Plug>(coc-git-chunk-outer)
+" omap ig <Plug>(coc-git-chunk-inner)
+" xmap ig <Plug>(coc-git-chunk-inner)
+" omap ag <Plug>(coc-git-chunk-outer)
+" xmap ag <Plug>(coc-git-chunk-outer)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => gitgutter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FZF
