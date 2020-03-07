@@ -277,3 +277,4 @@ let delimitMate_matchpairs = "(:),[:],{:}"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
 colorscheme dogrun
+set termguicolors
