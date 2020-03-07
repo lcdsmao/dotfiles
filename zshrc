@@ -7,11 +7,7 @@ if type brew &> /dev/null; then
     compinit
 fi
 
-# install antigen
-if [[ ! -e "$HOME/.antigen.zsh" ]]; then
-    curl -L git.io/antigen > "$HOME/.antigen.zsh"
-fi
-source "$HOME/.antigen.zsh"
+source "$HOME/.zshconfig/antigen/antigen.zsh"
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -31,7 +27,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 
 # Local plugins.
-antigen bundle "$HOME/dotfiles/zsh-plugins"
+antigen bundle "$HOME/.zshconfig/plugins"
 
 # Load the theme.
 # antigen theme robbyrussell
@@ -67,14 +63,6 @@ fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vi=nvim
 alias copypath='pwd | pbcopy' # copy current path to clipboard
 alias o='open .'              # open Finder window from current path , very useful

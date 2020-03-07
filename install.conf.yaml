@@ -1,11 +1,15 @@
 - shell:
-  - [./os-check.sh, Checking OS requirement]
+    - [./os-check.sh, Checking OS requirement]
 
 - defaults:
     link:
       relink: true
 
 - clean: ['~']
+
+- create:
+    - ~/.config
+    - ~/.zshconfig
 
 - link:
     ~/.ideavimrc: ideavimrc
@@ -14,11 +18,9 @@
       force: true
     ~/.config/karabiner:
       path: karabiner
-      create: true
       force: true
     ~/.config/nvim/:
       glob: true
-      create: true
       path: nvim/*
     ~/.tmux.conf:
       path: tmux.conf
@@ -26,6 +28,15 @@
     ~/.config/starship.toml:
       path: starship.toml
       force: true
+    ~/.zshconfig/plugins:
+      glob: true
+      create: true
+      path: zshplugins/*
 
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
+    - command: 'git submodule update --init --recursive'
+      description: Installing submodules
+      stdout: true
+    - command: '[ ! -e ~/.zshconfig/antigen ] && git clone https://github.com/zsh-users/antigen.git ~/.zshconfig/antigen || true'
+      description: Installing antigen
+      stdout: true
