@@ -2529,6 +2529,8 @@
 	<string>81EB5217-1DE7-4C82-A9ED-B5BD68A034AD</string>
 	<key>DimBackgroundWindows</key>
 	<false/>
+	<key>DimInactiveSplitPanes</key>
+	<true/>
 	<key>DimOnlyText</key>
 	<false/>
 	<key>EnableDivisionView</key>
@@ -2610,6 +2612,8 @@
 	</dict>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
+	<key>HideActivityIndicator</key>
+	<false/>
 	<key>HideFromDockAndAppSwitcher</key>
 	<true/>
 	<key>HideMenuBarInFullscreen</key>
@@ -2617,7 +2621,7 @@
 	<key>HideScrollbar</key>
 	<true/>
 	<key>HideTab</key>
-	<false/>
+	<true/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
 	<key>LoadPrefsFromCustomFolder</key>
@@ -2682,7 +2686,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>413 430 796 486 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1879 609 0 0 1920 1057 </string>
+	<string>0 0 1920 609 0 0 1920 1057 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -3049,6 +3053,8 @@
 			<true/>
 			<key>HotKey Window Reopens On Activation</key>
 			<false/>
+			<key>Icon</key>
+			<integer>0</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Jobs to Ignore</key>
@@ -3441,7 +3447,7 @@
 						<real>0.14901961386203766</real>
 					</dict>
 					<key>font</key>
-					<string>.AppleSystemUIFont 12</string>
+					<string>Roboto-Regular 12</string>
 					<key>separator color 2</key>
 					<dict>
 						<key>Alpha Component</key>
@@ -3507,7 +3513,7 @@
 									<real>0.14901961386203766</real>
 								</dict>
 								<key>font</key>
-								<string>.AppleSystemUIFont 12</string>
+								<string>Roboto-Regular 12</string>
 								<key>separator color 2</key>
 								<dict>
 									<key>Alpha Component</key>
@@ -3571,7 +3577,7 @@
 									<real>0.14901961386203766</real>
 								</dict>
 								<key>font</key>
-								<string>.AppleSystemUIFont 12</string>
+								<string>Roboto-Regular 12</string>
 								<key>separator color 2</key>
 								<dict>
 									<key>Alpha Component</key>
@@ -3631,7 +3637,7 @@
 									<real>0.14901961386203766</real>
 								</dict>
 								<key>font</key>
-								<string>.AppleSystemUIFont 12</string>
+								<string>Roboto-Regular 12</string>
 								<key>separator color 2</key>
 								<dict>
 									<key>Alpha Component</key>
@@ -3691,7 +3697,7 @@
 									<real>0.14901961386203766</real>
 								</dict>
 								<key>font</key>
-								<string>.AppleSystemUIFont 12</string>
+								<string>Roboto-Regular 12</string>
 								<key>separator color 2</key>
 								<dict>
 									<key>Alpha Component</key>
@@ -3751,7 +3757,7 @@
 									<real>0.14901961386203766</real>
 								</dict>
 								<key>font</key>
-								<string>.AppleSystemUIFont 12</string>
+								<string>Roboto-Regular 12</string>
 								<key>separator color 2</key>
 								<dict>
 									<key>Alpha Component</key>
@@ -4582,20 +4588,26 @@
 	<false/>
 	<key>ShowPaneTitles</key>
 	<false/>
+	<key>SmartPlacement</key>
+	<false/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
-	<real>0.20388408687943266</real>
+	<real>0.20335771276595749</real>
 	<key>StatusBarPosition</key>
 	<integer>0</integer>
 	<key>StretchTabsToFillBar</key>
 	<false/>
 	<key>SwitchPaneModifier</key>
 	<integer>5</integer>
+	<key>TabStyleWithAutomaticOption</key>
+	<integer>5</integer>
 	<key>TabViewType</key>
 	<integer>0</integer>
 	<key>UseBorder</key>
 	<false/>
+	<key>UseLionStyleFullscreen</key>
+	<true/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 	<key>WindowNumber</key>
