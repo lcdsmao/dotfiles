@@ -18,5 +18,7 @@
                 "-sr"
             ]
         }
-    }
+    },
+    "yaml.format.enable": true,
+    "yaml.format.singleQuote": true
 }
