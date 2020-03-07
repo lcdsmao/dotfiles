@@ -65,8 +65,9 @@ fi
 
 alias vi=nvim
 alias copypath='pwd | pbcopy' # copy current path to clipboard
-alias o='open .'              # open Finder window from current path , very useful
+alias o='open .'
 alias c='clear'
+alias ls='exa'
 
 # Path
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
