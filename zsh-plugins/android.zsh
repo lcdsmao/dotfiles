@@ -8,8 +8,6 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/H
 alias gn='./gradlew'
 alias latestapkname='ls -tr | grep '.apk' | tail -1 | pbcopy'            # copy latestApk file name in current folder to clipboard.
 alias adbca="adb shell dumpsys window windows | grep -E 'mCurrentFocus'" # show current activity name
-alias adbrecord='$HOME/.oh-my-zsh/custom/adb-record.sh'
-alias adbshot='$HOME/.oh-my-zsh/custom/adb-screenshot.sh'
 
 function sta() { adb shell am start -n "$appId"/"$mainActivityName"; } # start app
 function stp() { adb shell am force-stop "$appId"; }                   # force stop app
@@ -96,4 +94,56 @@ function adb_all() {
     for i in "${ds[@]}"; do
         [[ -n $i ]] && $org_adb -s "$i" "$@"
     done
+}
+
+function adbshot() {
+    DATE=$(date '+%y%m%d%H%M%S')
+    FILE_NAME=screenshot-${DATE}.png
+    DIR_PATH=~/Desktop
+
+    adb shell screencap -p /sdcard/screen.png
+    adb pull /sdcard/screen.png "${DIR_PATH}/${FILE_NAME}"
+    adb shell rm /sdcard/screen.png
+    copyfile "${DIR_PATH}/${FILE_NAME}"
+}
+
+function adbrecord() {
+    DATE=$(date '+%y%m%d%H%M%S')
+    FILE_NAME=record-${DATE}
+    YOUR_PATH=~/Desktop
+
+    adb shell screenrecord /sdcard/"$FILE_NAME".mp4 &
+    pid=$(ps x | grep -v grep | grep "adb shell screenrecord" | awk '{ print $1 }')
+
+    if [ -z "$pid" ]; then
+        printf "Not running a screenrecord."
+        return 1
+    fi
+
+    printf "Recording, finish? [y]"
+    while read -r isFinished; do
+        case "$isFinished" in
+            "y" | "Y") break ;;
+            *) printf "Incorrect value." ;;
+        esac
+    done
+
+    kill -9 "$pid" # Finished the process of adb screenrecord
+    while :; do
+        alive=$(adb shell ps | grep screenrecord | grep -v grep | awk '{ print $9 }')
+        if [ -z "$alive" ]; then
+            break
+        fi
+    done
+
+    printf "Finished the recording process : %s\nSending to %s...\n" "$pid" "$YOUR_PATH"
+    adb pull /sdcard/"${FILE_NAME}".mp4 $YOUR_PATH
+    adb shell rm /sdcard/"${FILE_NAME}".mp4
+
+    echo "Converts to GIF? [y]"
+    read -r convertGif
+    case $convertGif in
+        "y" | "Y") ffmpeg -i "${YOUR_PATH}/${FILE_NAME}.mp4" -an -r 15 -pix_fmt rgb24 -f gif "${YOUR_PATH}/${FILE_NAME}.gif" ;; # creating gif
+        *) ;;
+    esac
 }

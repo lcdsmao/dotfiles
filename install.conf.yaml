@@ -16,15 +16,6 @@
       path: karabiner
       create: true
       force: true
-    ~/.oh-my-zsh/custom/:
-      glob: true
-      path: oh-my-zsh/custom/*
-    ~/.oh-my-zsh/custom/themes/:
-      glob: true
-      path: oh-my-zsh/custom-themes/*
-    ~/.oh-my-zsh/custom/plugins:
-      glob: true
-      path: oh-my-zsh/custom-plugins/*
     ~/.config/nvim/:
       glob: true
       create: true
