@@ -124,6 +124,9 @@ set wrap "Wrap lines
 " Terminal
 tnoremap <silent> <C-j><C-j> <C-\><C-n>
 
+" Prompt for a command to run
+map <leader>vp :VimuxPromptCommand<CR>
+
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
