@@ -29,6 +29,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
@@ -223,6 +224,14 @@ command! -bang -nargs=? -complete=dir Files
 
 command! -bang -nargs=? -complete=dir GFiles
             \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim tmux navigator
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Write all buffers before navigating from Vim to tmux pane
+let g:tmux_navigator_save_on_switch = 2
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree

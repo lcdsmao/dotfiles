@@ -29,6 +29,9 @@
       glob: true
       create: true
       path: nvim/*
+    ~/.tmux.conf:
+      path: tmux.conf
+      force: true
     ~/.config/starship.toml:
       path: starship.toml
       force: true
