@@ -130,12 +130,12 @@ alias copypath='pwd | pbcopy'  # copy current path to clipboard
 alias o='open .'   # open Finder window from current path , very useful
 alias c='clear'
 
-fun killsophos(){
-    while : ; do sh -c 'pgrep -if sophos | xargs -n 1 sudo kill -9' && sleep 0.5 && echo "loop: `date`" ; done
-}
-
 # Path
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:$HOME/flutter/bin"
 
 eval "$(starship init zsh)"
+
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
