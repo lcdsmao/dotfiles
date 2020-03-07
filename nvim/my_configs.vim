@@ -90,7 +90,7 @@ if $COLORTERM == 'gnome-terminal'
     set t_Co=256
 endif
 
-set background=dark
+" set background=dark
 
 " set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8

@@ -18,6 +18,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'chriskempson/base16-vim'
+Plug 'wadackel/vim-dogrun'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -264,7 +265,5 @@ let delimitMate_matchpairs = "(:),[:],{:}"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => color theme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set background=dark
-set termguicolors
 syntax on
-colorscheme base16-material
+colorscheme dogrun
