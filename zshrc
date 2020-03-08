@@ -76,6 +76,9 @@ export PATH="$PATH:$HOME/flutter/bin"
 # startship
 eval "$(starship init zsh)"
 
+# ignore ctrl + d
+setopt ignoreeof
+
 # start tmux automatically
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
     exec tmux
