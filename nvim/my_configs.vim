@@ -178,9 +178,6 @@ endtry
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" Markdown preview
-noremap <silent> <leader>om :call OpenMarkdownPreview()<cr>
-
 " Centering automatically with autocmds
 augroup VCenterCursor
     au!
@@ -225,18 +222,4 @@ function! <SID>BufcloseCloseIt()
     if buflisted(l:currentBufNum)
         execute("bdelete! ".l:currentBufNum)
     endif
-endfunction
-
-function! OpenMarkdownPreview() abort
-    if exists('s:markdown_job_id') && s:markdown_job_id > 0
-        call jobstop(s:markdown_job_id)
-        unlet s:markdown_job_id
-    endif
-    let available_port = system(
-                \ "lsof -s tcp:listen -i :40500-40800 | awk -F ' *|:' '{ print $10 }' | sort -n | tail -n1"
-                \ ) + 1
-    if available_port == 1 | let available_port = 40500 | endif
-    let s:markdown_job_id = jobstart('grip ' . shellescape(expand('%:p')) . ' :' . available_port)
-    if s:markdown_job_id <= 0 | return | endif
-    call system('open http://localhost:' . available_port)
 endfunction
