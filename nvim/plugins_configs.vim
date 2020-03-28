@@ -150,7 +150,8 @@ let g:coc_global_extensions = [
     \ 'coc-rust-analyzer',
     \ 'coc-xml',
     \ 'coc-flutter',
-    \ 'coc-diagnostic'
+    \ 'coc-diagnostic',
+    \ 'coc-spell-checker'
     \ ]
 
 " rust-analyzer
