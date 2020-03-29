@@ -116,7 +116,7 @@ nmap <leader>rr <Plug>(coc-rename)
 "   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 " augroup end
 
-nmap =g :Format<cr>
+nmap =f :Format<cr>
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
