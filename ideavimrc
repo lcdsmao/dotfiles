@@ -11,7 +11,7 @@ set nu rnu
 
 let mapleader = " "
 
-noremap =g :action ReformatCode<CR>
+noremap =f :action ReformatCode<CR>
 
 noremap <leader>a ^
 noremap <leader>e $
