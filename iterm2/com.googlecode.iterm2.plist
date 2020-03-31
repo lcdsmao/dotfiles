@@ -2627,9 +2627,9 @@
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/dotfiles/iterm2</string>
+	<string>~/Documents</string>
 	<key>NSNavLastUserSetHideExtensionButtonState</key>
-	<true/>
+	<false/>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{799, 448}</string>
 	<key>NSNavPanelExpandedSizeForSaveMode</key>
@@ -2678,7 +2678,7 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
-	<string>540 456 799 448 0 0 1920 1057 </string>
+	<string>766 657 347 181 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>1332 504 400 129 0 0 2560 1417 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
@@ -3743,14 +3743,14 @@
 	<array>
 		<string>3.3.6</string>
 		<string>3.3.8</string>
-		<string>3.3.4</string>
+		<string>3.3.2</string>
 		<string>3.3.1</string>
 		<string>3.3.3</string>
 		<string>3.3.7</string>
 		<string>3.3.9</string>
-		<string>3.3.0</string>
 		<string>3.2.9</string>
-		<string>3.3.2</string>
+		<string>3.3.0</string>
+		<string>3.3.4</string>
 	</array>
 	<key>NoSyncBFPFavorites</key>
 	<array>
@@ -3777,7 +3777,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>AB0FB206-303D-4928-9BD4-9CE0E3A7C5FB</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>30</integer>
+	<integer>35</integer>
 	<key>NoSyncNextAnnoyanceTime</key>
 	<real>586572880.31309998</real>
 	<key>NoSyncOnboardingWindowHasBeenShown</key>
@@ -4458,6 +4458,8 @@
 			</dict>
 		</array>
 	</dict>
+	<key>NoSyncSaveDocumentAsPathSet_saveDocumentAs:</key>
+	<true/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>578759310.67026198</real>
 	<key>OpenArrangementAtStartup</key>
@@ -4514,7 +4516,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-03-07T12:27:51Z</date>
+	<date>2020-03-30T12:28:27Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
