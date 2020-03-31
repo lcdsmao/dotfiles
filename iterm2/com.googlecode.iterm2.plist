@@ -18,6 +18,8 @@
 	<string>manual</string>
 	<key>AutoHideTmuxClientSession</key>
 	<false/>
+	<key>Command</key>
+	<string></string>
 	<key>Control</key>
 	<integer>1</integer>
 	<key>Coprocess MRU</key>
@@ -3057,6 +3059,8 @@
 			<integer>0</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
+			<key>Initial Text</key>
+			<string>if command -v tmux &amp;&gt; /dev/null &amp;&amp; [ -z "$TMUX" ]; then exec tmux new-session -A -s main; fi</string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
