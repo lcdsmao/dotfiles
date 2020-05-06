@@ -139,6 +139,9 @@ map <C-l> <C-W>l
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
 
+" Fix NERDTree exit vim with :bd
+noremap <leader>x :bp<cr>:bd #<cr>
+
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
 
