@@ -129,22 +129,15 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " Using CocList
-" Show all diagnostics
-nnoremap <silent> ,a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
+nnoremap <silent> ,d  :<C-u>CocList diagnostics<cr>
 nnoremap <silent> ,e  :<C-u>CocList extensions<cr>
-" Show commands
 nnoremap <silent> ,c  :<C-u>CocList commands<cr>
-" Find symbol of current document
 nnoremap <silent> ,o  :<C-u>CocList outline<cr>
-" Search workspace symbols
 nnoremap <silent> ,s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
 nnoremap <silent> ,j  :<C-u>CocNext<CR>
-" Do default action for previous item.
 nnoremap <silent> ,k  :<C-u>CocPrev<CR>
-" Resume latest coc list
 nnoremap <silent> ,p  :<C-u>CocListResume<CR>
+nnoremap <silent> ,a  :<C-u>CocAction<CR>
 
 let g:coc_global_extensions = [
     \ 'coc-json',
