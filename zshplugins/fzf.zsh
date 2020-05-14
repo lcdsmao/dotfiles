@@ -185,7 +185,7 @@ function j() {
 # Android emulator
 function avdr() {
     selected_avd="$(emulator -list-avds | fzf)" \
-        && emulator @"$selected_avd" > /dev/null &
+        && (emulator @"$selected_avd" > /dev/null &)
 }
 
 # adb
