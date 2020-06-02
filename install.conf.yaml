@@ -9,6 +9,7 @@
 
 - create:
     - ~/.config
+    - ~/.config/bat
     - ~/.zshconfig
 
 - link:
@@ -19,6 +20,9 @@
     ~/.config/karabiner:
       path: karabiner
       force: true
+    ~/.config/bat:
+      glob: true
+      path: bat/*
     ~/.config/nvim/:
       glob: true
       path: nvim/*
