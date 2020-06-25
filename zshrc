@@ -63,15 +63,13 @@ fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-alias vi=nvim
-alias copypath='pwd | pbcopy' # copy current path to clipboard
-alias o='open .'
-alias c='clear'
-alias ls='exa'
-
 # Path
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:$HOME/flutter/bin"
+
+# Ruby
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
 
 # startship
 eval "$(starship init zsh)"
@@ -83,3 +81,11 @@ setopt ignoreeof
 # if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 #     exec tmux new-session -A -s main
 # fi
+
+# Alias
+alias vi=nvim
+alias copypath='pwd | pbcopy' # copy current path to clipboard
+alias o='open .'
+alias c='clear'
+alias ls='exa'
+
