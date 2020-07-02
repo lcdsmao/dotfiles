@@ -123,9 +123,6 @@
                         ]
                     },
                     {
-                        "description": "ultimate macOS (version: 1556140182)"
-                    },
-                    {
                         "description": "KBD: BluetoothConverter、IKBC_C87、XD60: Swap Win/CMD and Alt/Opt",
                         "manipulators": [
                             {
