@@ -141,6 +141,7 @@ nnoremap <silent> ,a  :<C-u>CocAction<CR>
 
 let g:coc_global_extensions = [
     \ 'coc-json',
+    \ 'coc-marketplace',
     \ 'coc-rust-analyzer',
     \ 'coc-xml',
     \ 'coc-flutter',
