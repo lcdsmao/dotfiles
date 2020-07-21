@@ -21,5 +21,10 @@
     },
     "yaml.format.enable": true,
     "yaml.format.singleQuote": true,
-    "html.autoClosingTags": true
+    "html.autoClosingTags": true,
+    "emmet.includeLanguages": {
+      "vue-html": "html",
+      "javascript": "javascriptreact",
+      "typescript": "typescriptreact"
+    }
 }

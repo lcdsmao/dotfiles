@@ -33,6 +33,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 Plug 'rhysd/vim-grammarous'
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 
@@ -145,6 +146,7 @@ let g:coc_global_extensions = [
     \ 'coc-rust-analyzer',
     \ 'coc-xml',
     \ 'coc-flutter',
+    \ 'coc-emmet',
     \ 'coc-diagnostic'
     \ ]
 
