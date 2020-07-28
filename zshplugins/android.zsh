@@ -147,3 +147,10 @@ function adbrecord() {
         *) ;;
     esac
 }
+
+function adbwifi() {
+    adb tcpip 5555 \
+        && sleep 1 \
+        && ip=$(adb shell "ip addr show wlan0 | grep -e wlan0$ | cut -d\" \" -f 6 | cut -d/ -f 1") \
+        && adb connect "$ip":5555
+}
