@@ -44,10 +44,11 @@ alias upg='adb install -r '
 function upglatest() { latestapkname && upg "$(pbpaste)" && sta; } # Upgrade app with latest updated apk in current folder
 function atest() { gn test connectedAndroidTest; }                 # execute all tests
 
-alias logs='adb logcat AndroidRuntime:E *:S' # prints only Crash logs, if AndroidStudio is not working use this command.
-alias text='adb shell input text '           # to enter text input to your device
-alias adblog='adb logcat -v color'
-function adbloge() { adblog | grep "$@"; }
+alias text='adb shell input text ' # to enter text input to your device
+
+alias lcr="adb logcat -v color AndroidRuntime:E '*:S'" # prints only Crash logs, if AndroidStudio is not working use this command.
+function lctag() { adb logcat -v color "$1":V '*:S'; }
+function lcapp() { adb logcat -v color --pid="$(adb shell pidof -s "$appId")"; }
 
 function adbanim() {
     local factor=${1:-1}
