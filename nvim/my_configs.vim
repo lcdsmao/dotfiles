@@ -33,12 +33,6 @@ command W w !sudo tee %% > /dev/null
 nnoremap <leader>T m1gUiw`1
 inoremap <C-S-T> <ESC>gUiwgi
 
-" Avoid garbled characters in Chinese language windows OS
-let $LANG='en' 
-set langmenu=en
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
-
 " Turn on the Wild menu
 set wildmenu
 
