@@ -1,3 +1,6 @@
+# Unalias ls in case if we already alias ls to exa
+unalias ls > /dev/null 2>&1
+
 #  Brew auto completion.
 #  Need to call before oh-my-zsh.
 if type brew &> /dev/null; then
@@ -71,6 +74,12 @@ export PATH="$PATH:$HOME/flutter/bin"
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 
+# node
+mkdir -p ~/.nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"                                       # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+
 # startship
 eval "$(starship init zsh)"
 
@@ -88,4 +97,3 @@ alias copypath='pwd | pbcopy' # copy current path to clipboard
 alias o='open .'
 alias c='clear'
 alias ls='exa'
-
