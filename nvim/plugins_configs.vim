@@ -24,7 +24,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'godlygeek/tabular'
-Plug 'Raimondi/delimitMate'
+Plug 'jiangmiao/auto-pairs'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'
@@ -263,14 +263,6 @@ let g:airline_theme='base16_nord'
 
 " coc integration
 let g:airline#extensions#coc#enabled = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => delimitMate
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:delimitMate_expand_cr = 2
-imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
-
-let delimitMate_matchpairs = "(:),[:],{:}"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => color theme
