@@ -75,10 +75,24 @@ source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 
 # node
-mkdir -p ~/.nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"                                       # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+# Defer initialization of nvm until nvm, node or a node-dependent command is
+# run. Ensure this block is only run once if .bashrc gets sourced multiple times
+# by checking whether __init_nvm is a function.
+if [ -s "/usr/local/opt/nvm/nvm.sh" ] && [ ! "$(/usr/bin/type -t __init_nvm)" = function ]; then
+    mkdir -p "$HOME/.nvm"
+    export NVM_DIR="$HOME/.nvm"
+    # This loads nvm bash_completion
+    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+    declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack')
+    function __init_nvm() {
+        for i in "${__node_commands[@]}"; do unalias $i; done
+        # This loads nvm
+        . "/usr/local/opt/nvm/nvm.sh"
+        unset __node_commands
+        unset -f __init_nvm
+    }
+    for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
+fi
 
 # startship
 eval "$(starship init zsh)"
