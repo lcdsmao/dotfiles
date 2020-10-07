@@ -9,3 +9,8 @@ symbol = " "
 
 [nodejs]
 symbol = " "
+
+[gcloud]
+disabled = true
+symbol = " "
+style = "bold blue"
