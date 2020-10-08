@@ -24,6 +24,7 @@ antigen bundle gitignore
 antigen bundle cargo
 antigen bundle pip
 antigen bundle command-not-found
+antigen bundle chruby
 
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -69,10 +70,6 @@ fi
 # Path
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:$HOME/flutter/bin"
-
-# Ruby
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
 
 # node
 # Defer initialization of nvm until nvm, node or a node-dependent command is
