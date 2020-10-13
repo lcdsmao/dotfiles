@@ -16,6 +16,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 Plug 'chriskempson/base16-vim'
 Plug 'wadackel/vim-dogrun'
 Plug 'airblade/vim-gitgutter'
@@ -183,6 +184,7 @@ nmap ghp <Plug>(GitGutterPreviewHunk)
 " => fzf Preview
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:fzf_preview_command = 'bat --color=always --plain {-1}' " Installed bat
+let g:fzf_preview_use_dev_icons = 1
 
 nmap <Leader>f [fzf-p]
 xmap <Leader>f [fzf-p]
