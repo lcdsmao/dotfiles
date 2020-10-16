@@ -238,7 +238,7 @@ map <leader>nf :NERDTreeFind<cr>
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
-let g:airline_theme='base16_nord'
+let g:airline_theme='dogrun'
 
 " coc integration
 let g:airline#extensions#coc#enabled = 1
