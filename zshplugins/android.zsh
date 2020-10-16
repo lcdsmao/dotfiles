@@ -8,6 +8,7 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/H
 alias gn='./gradlew'
 alias latestapkname='ls -tr | grep '.apk' | tail -1 | pbcopy'            # copy latestApk file name in current folder to clipboard.
 alias adbca="adb shell dumpsys window windows | grep -E 'mCurrentFocus'" # show current activity name
+alias gkill='pkill -9 -l -f gradle-launcher'
 
 function sta() { adb shell am start -n "$appId"/"$mainActivityName"; } # start app
 function stp() { adb shell am force-stop "$appId"; }                   # force stop app
