@@ -8,12 +8,6 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => polyglot
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Disable autoindent, must set before load polyglot
-let g:polyglot_disabled = ['autoindent']
-
 " required:
 call plug#begin(expand('~/.config/nvim/plugged'))
 
