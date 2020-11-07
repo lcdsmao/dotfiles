@@ -26,5 +26,8 @@
       "vue-html": "html",
       "javascript": "javascriptreact",
       "typescript": "typescriptreact"
-    }
+    },
+    "cSpell.userWords": [
+      "Jetpack"
+    ]
 }
