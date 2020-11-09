@@ -4,7 +4,6 @@ export buildVariantTarget='iD' # Default to installDebug (iD) ; Replace it with 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export ANDROID_SDK=$ANDROID_HOME
 export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/tools
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 alias gn='./gradlew'
 alias latestapkname='ls -tr | grep '.apk' | tail -1 | pbcopy'            # copy latestApk file name in current folder to clipboard.
 alias adbca="adb shell dumpsys window windows | grep -E 'mCurrentFocus'" # show current activity name
