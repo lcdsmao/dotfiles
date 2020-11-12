@@ -1,5 +1,6 @@
 {
   "explorer.icon.enableNerdfont": true,
+  "explorer.file.column.indent.indentLine": true,
   "diagnostic-languageserver.filetypes": {
     "zsh": "shellcheck",
     "sh": "shellcheck"
