@@ -1,34 +1,26 @@
 {
-    "diagnostic-languageserver.filetypes": {
-        "zsh": "shellcheck",
-        "sh": "shellcheck"
-    },
-    "diagnostic-languageserver.formatFiletypes": {
-        "zsh": "shfmt",
-        "sh": "shfmt"
-    },
-    "diagnostic-languageserver.formatters": {
-        "shfmt": {
-            "command": "shfmt",
-            "args": [
-                "-i",
-                "4",
-                "-bn",
-                "-ci",
-                "-sr"
-            ]
-        }
-    },
-    "yaml.format.enable": true,
-    "yaml.format.singleQuote": true,
-    "html.autoClosingTags": true,
-    "emmet.includeLanguages": {
-      "vue-html": "html",
-      "javascript": "javascriptreact",
-      "typescript": "typescriptreact"
-    },
-    "cSpell.userWords": [
-      "Jetpack",
-      "frontmatter"
-    ]
+  "explorer.icon.enableNerdfont": true,
+  "diagnostic-languageserver.filetypes": {
+    "zsh": "shellcheck",
+    "sh": "shellcheck"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "zsh": "shfmt",
+    "sh": "shfmt"
+  },
+  "diagnostic-languageserver.formatters": {
+    "shfmt": {
+      "command": "shfmt",
+      "args": ["-i", "4", "-bn", "-ci", "-sr"]
+    }
+  },
+  "yaml.format.enable": true,
+  "yaml.format.singleQuote": true,
+  "html.autoClosingTags": true,
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
+  "cSpell.userWords": ["Jetpack", "frontmatter"]
 }

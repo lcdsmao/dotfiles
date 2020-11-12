@@ -15,7 +15,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'chriskempson/base16-vim'
 Plug 'wadackel/vim-dogrun'
@@ -150,6 +149,7 @@ let g:coc_global_extensions = [
     \ 'coc-emmet',
     \ 'coc-fzf-preview',
     \ 'coc-diagnostic',
+    \ 'coc-explorer',
     \ 'coc-pairs'
     \ ]
 
@@ -172,6 +172,26 @@ augroup end
 " xmap ig <Plug>(coc-git-chunk-inner)
 " omap ag <Plug>(coc-git-chunk-outer)
 " xmap ag <Plug>(coc-git-chunk-outer)
+
+" explorer
+let g:coc_explorer_global_presets = {
+\   '.dot': {
+\     'position': 'floating', 
+\     'root-uri': '~/dotfiles',
+\   },
+\   'floating': {
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'simplify': {
+\     'position': 'right',
+\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+\   }
+\ }
+
+" Use preset argument to open it
+nmap <space>nn :CocCommand explorer --preset floating<CR>
+nmap <space>nd :CocCommand explorer --preset .dot<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => gitgutter
@@ -215,24 +235,6 @@ nnoremap <silent> [fzf-p]d     :<C-u>CocCommand fzf-preview.CocDiagnostics<CR>
 let g:tmux_navigator_save_on_switch = 2
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Nerd Tree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" open a NERDTree automatically when vim starts up if no files were specified
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-let g:NERDTreeWinPos = "right"
-let NERDTreeShowHidden=0
-let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-let g:NERDTreeWinSize=35
-map <leader>nn :NERDTreeToggle<cr>
-map <leader>nb :NERDTreeFromBookmark<Space>
-map <leader>nf :NERDTreeFind<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => airline
