@@ -23,5 +23,6 @@
     "javascript": "javascriptreact",
     "typescript": "typescriptreact"
   },
+  "imselect.defaultInput": "com.apple.keylayout.ABC",
   "cSpell.userWords": ["Jetpack", "frontmatter"]
 }
