@@ -67,9 +67,13 @@ function adbt() {
             export _adb_type="FZF"
             echo "adb type: FZF"
             ;;
-        *)
+        -d)
             unset _adb_type
-            echo "adb type: Normal"
+            echo "adb type: DEFAULT"
+            ;;
+        *)
+            export _adb_type="ONE"
+            echo "adb type: ONE"
             ;;
     esac
 }
@@ -82,18 +86,37 @@ function adb() {
         "FZF")
             adb_fzf "$@"
             ;;
-        *)
-            "$ANDROID_HOME/platform-tools/adb" "$@"
+        "ONE")
+            adb_one "$@"
             ;;
+        *)
+            adb_origin "$@"
+            ;;
+
     esac
 }
 
+function adb_origin {
+    "$ANDROID_HOME/platform-tools/adb" "$@"
+}
+
 function adb_all() {
-    local org_adb="$ANDROID_HOME/platform-tools/adb"
     local ds=()
-    while IFS='' read -r line; do ds+=("$line"); done < <($org_adb devices | awk 'NR > 1 {print $1 }')
+    while IFS='' read -r line; do ds+=("$line"); done < <(adb_origin devices | awk 'NR > 1 {print $1 }')
     for i in "${ds[@]}"; do
-        [[ -n $i ]] && $org_adb -s "$i" "$@"
+        [[ -n $i ]] && adb_origin -s "$i" "$@"
+    done
+}
+
+function adb_one() {
+    local ds=()
+    while IFS='' read -r line; do ds+=("$line"); done < <(adb_origin devices | awk 'NR > 1')
+    for i in "${ds[@]}"; do
+        read -r device state <<< "$i"
+        if [[ $state = "device" ]]; then
+            adb_origin -s "$device" "$@"
+            break
+        fi
     done
 }
 
@@ -102,6 +125,11 @@ function adbshot() {
     FILE_NAME=screenshot-${DATE}.png
     DIR_PATH=~/Desktop
 
+    local selected_dev
+    selected_dev=$(adb_select_device)
+    adb() {
+        adb_origin -s "selected_dev" "$@"
+    }
     adb shell screencap -p /sdcard/screen.png
     adb pull /sdcard/screen.png "${DIR_PATH}/${FILE_NAME}"
     adb shell rm /sdcard/screen.png
@@ -112,6 +140,12 @@ function adbrecord() {
     DATE=$(date '+%y%m%d%H%M%S')
     FILE_NAME=record-${DATE}
     YOUR_PATH=~/Desktop
+
+    local selected_dev
+    selected_dev=$(adb_select_device)
+    adb() {
+        adb_origin -s "$selected_dev" "$@"
+    }
 
     adb shell screenrecord /sdcard/"$FILE_NAME".mp4 &
     pid=$(ps x | grep -v grep | grep "adb shell screenrecord" | awk '{ print $1 }')
