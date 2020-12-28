@@ -127,12 +127,9 @@ function adbshot() {
 
     local selected_dev
     selected_dev=$(adb_select_device)
-    adb() {
-        adb_origin -s "selected_dev" "$@"
-    }
-    adb shell screencap -p /sdcard/screen.png
-    adb pull /sdcard/screen.png "${DIR_PATH}/${FILE_NAME}"
-    adb shell rm /sdcard/screen.png
+    adb_origin -s "$selected_dev" shell screencap -p /sdcard/screen.png
+    adb_origin -s "$selected_dev" pull /sdcard/screen.png "${DIR_PATH}/${FILE_NAME}"
+    adb_origin -s "$selected_dev" shell rm /sdcard/screen.png
     copyfile "${DIR_PATH}/${FILE_NAME}"
 }
 
@@ -143,12 +140,9 @@ function adbrecord() {
 
     local selected_dev
     selected_dev=$(adb_select_device)
-    adb() {
-        adb_origin -s "$selected_dev" "$@"
-    }
 
-    adb shell screenrecord /sdcard/"$FILE_NAME".mp4 &
-    pid=$(ps x | grep -v grep | grep "adb shell screenrecord" | awk '{ print $1 }')
+    adb_origin -s "$selected_dev" shell screenrecord /sdcard/"$FILE_NAME".mp4 &
+    pid=$(ps x | grep -v grep | grep "shell screenrecord" | awk '{ print $1 }')
 
     if [ -z "$pid" ]; then
         printf "Not running a screenrecord."
@@ -165,15 +159,15 @@ function adbrecord() {
 
     kill -9 "$pid" # Finished the process of adb screenrecord
     while :; do
-        alive=$(adb shell ps | grep screenrecord | grep -v grep | awk '{ print $9 }')
+        alive=$(adb_origin -s "$selected_dev" shell ps | grep screenrecord | grep -v grep | awk '{ print $9 }')
         if [ -z "$alive" ]; then
             break
         fi
     done
 
     printf "Finished the recording process : %s\nSending to %s...\n" "$pid" "$YOUR_PATH"
-    adb pull /sdcard/"${FILE_NAME}".mp4 $YOUR_PATH
-    adb shell rm /sdcard/"${FILE_NAME}".mp4
+    adb_origin -s "$selected_dev" pull /sdcard/"${FILE_NAME}".mp4 $YOUR_PATH
+    adb_origin -s "$selected_dev" shell rm /sdcard/"${FILE_NAME}".mp4
 
     echo "Converts to GIF? [y]"
     read -r convertGif
