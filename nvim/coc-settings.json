@@ -1,4 +1,8 @@
 {
+  "prettier.trailingComma": "es5",
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  "typescript.format.semicolons": "remove",
   "explorer.icon.enableNerdfont": true,
   "explorer.file.column.indent.indentLine": true,
   "diagnostic-languageserver.filetypes": {
@@ -24,5 +28,10 @@
     "typescript": "typescriptreact"
   },
   "imselect.defaultInput": "com.apple.keylayout.ABC",
-  "cSpell.userWords": ["Jetpack", "frontmatter"]
+  "cSpell.userWords": [
+    "Jetpack",
+    "Mergeable",
+    "frontmatter",
+    "octokit"
+  ]
 }

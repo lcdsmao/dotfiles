@@ -14,3 +14,6 @@ symbol = " "
 disabled = true
 symbol = " "
 style = "bold blue"
+
+[kotlin]
+disabled = true
