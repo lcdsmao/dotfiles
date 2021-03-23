@@ -26,6 +26,10 @@
     ~/.config/nvim/:
       glob: true
       path: nvim/*
+    ~/.config/nvim/autoload/airline:
+      create: true
+      glob: true
+      path: nvim/autoload/airline/*
     ~/.tmux.conf:
       path: tmux.conf
       force: true
