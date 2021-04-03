@@ -33,6 +33,7 @@ Plug 'benmills/vimux'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 Plug 'rhysd/vim-grammarous'
 Plug 'mattn/emmet-vim'
+Plug 'bfredl/nvim-miniyank'
 
 call plug#end()
 
@@ -268,6 +269,12 @@ let g:airline_theme='dogrun'
 
 " coc integration
 let g:airline#extensions#coc#enabled = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => nvim miniyank
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => color theme
