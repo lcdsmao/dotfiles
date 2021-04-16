@@ -16,7 +16,7 @@
   "diagnostic-languageserver.formatters": {
     "shfmt": {
       "command": "shfmt",
-      "args": ["-i", "4", "-bn", "-ci", "-sr"]
+      "args": ["-i", "2", "-bn", "-ci", "-sr"]
     }
   },
   "yaml.format.enable": true,
