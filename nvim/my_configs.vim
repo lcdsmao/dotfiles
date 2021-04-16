@@ -176,12 +176,13 @@ endtry
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Centering automatically with autocmds
-" augroup VCenterCursor
-"     au!
-"     au BufEnter,WinEnter,WinNew,VimResized *,*.*
-"                 \ let &scrolloff=winheight(win_getid())/2
-" augroup END
-set scrolloff=10
+augroup VCenterCursor
+    au!
+    au BufEnter,WinEnter,WinNew,VimResized *,*.*
+                \ let &scrolloff=10
+                " \ let &scrolloff=winheight(win_getid())/2
+augroup END
+" set scrolloff=10
 
 "*****************************************************************************
 "" Abbreviations
