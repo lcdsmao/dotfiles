@@ -116,7 +116,7 @@ set si "Smart indent
 set wrap "Wrap lines
 
 " Terminal
-tnoremap <silent> <C-j><C-j> <C-\><C-n>
+" tnoremap <silent> <C-j><C-j> <C-\><C-n>
 
 " Prompt for a command to run
 map <leader>vp :VimuxPromptCommand<CR>

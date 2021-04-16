@@ -34,6 +34,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 Plug 'rhysd/vim-grammarous'
 Plug 'mattn/emmet-vim'
 Plug 'bfredl/nvim-miniyank'
+Plug 'voldikss/vim-floaterm'
 
 call plug#end()
 
@@ -214,6 +215,13 @@ nmap [h <Plug>(GitGutterPrevHunk)
 nmap ghs <Plug>(GitGutterStageHunk)
 nmap ghu <Plug>(GitGutterUndoHunk)
 nmap ghp <Plug>(GitGutterPreviewHunk)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => floaterm
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:floaterm_width=0.9
+let g:floaterm_height=0.9
+let g:floaterm_keymap_toggle = '<C-j><C-j>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => fzf
