@@ -7,6 +7,8 @@ gitD2w() {
 }
 
 gitdb() {
-  git branch -d "$(git branch --merged=master | grep -v master)"
+  local main_branch
+  main_branch=$(git_main_branch)
+  git branch --merged="$main_branch" | grep -v "$main_branch" | xargs git branch -d
   git fetch --prune
 }
