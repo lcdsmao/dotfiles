@@ -80,6 +80,9 @@ export PATH="/usr/local/sbin:$PATH"
 # startship
 eval "$(starship init zsh)"
 
+# fuck
+eval "$(thefuck --alias)"
+
 # ignore ctrl + d
 setopt ignoreeof
 
