@@ -36,8 +36,9 @@ antigen bundle "$HOME/.zshconfig/plugins"
 # Load the theme.
 # antigen theme robbyrussell
 
-# Check files
-export ANTIGEN_CHECK_FILES=("$HOME/.zshrc" "$HOME/.zshconfig/plugins"/*.zsh)
+# Antigen check files
+export ANTIGEN_AUTO_CONFIG=false
+export ANTIGEN_CHECK_FILES=("$HOME"/.zshrc "$HOME"/.zshconfig/plugins/*.zsh)
 
 # Tell Antigen that you're done.
 antigen apply
