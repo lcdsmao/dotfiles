@@ -153,7 +153,17 @@ nnoremap <silent> ,s  :<C-u>CocList -I symbols<cr>
 nnoremap <silent> ,j  :<C-u>CocNext<CR>
 nnoremap <silent> ,k  :<C-u>CocPrev<CR>
 nnoremap <silent> ,p  :<C-u>CocListResume<CR>
-nnoremap <silent> ,a  :<C-u>CocAction<CR>
+
+" " Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap ,a  <Plug>(coc-codeaction-selected)
+nmap ,a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap ,ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap ,qf  <Plug>(coc-fix-current)
+" nnoremap <silent> ,a  :<C-u>CocAction<CR>
 
 let g:coc_global_extensions = [
     \ 'coc-json',
