@@ -12,7 +12,8 @@ set nu rnu
 
 let mapleader = " "
 
-noremap =f :action ReformatCode<CR> :action Detekt.AutoCorrect<CR>
+noremap =f :action ReformatCode<CR>
+":action Detekt.AutoCorrect<CR>
 
 noremap <leader>a ^
 noremap <leader>e $
@@ -34,13 +35,13 @@ noremap <leader>ip :action ParameterInfo<CR>
 noremap <leader>gs :action GotoSuperMethod<CR>
 noremap <leader>gi :action GotoImplementation<CR>
 
-noremap <leader>R :action Run<CR>
-noremap <leader>D :action Debug<CR>
+" noremap <leader>R :action Run<CR>
+" noremap <leader>D :action Debug<CR>
 
-noremap <leader>ww :action NextSplitter<CR>
-noremap <leader>wd :action CloseEditor<CR>
-noremap <leader>w/ :action SplitVertically<CR>
+" noremap <leader>ww :action NextSplitter<CR>
+noremap <leader>sv :action SplitVertically<CR>
 noremap <leader>0 :action ActivateProjectToolWindow<CR>
+noremap <leader>x :action CloseEditor<CR>
 
 " Yank a region in VIM without the cursor moving to the top of the block
 vmap y ygv<ESC>
