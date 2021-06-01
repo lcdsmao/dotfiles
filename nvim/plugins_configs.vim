@@ -177,12 +177,6 @@ let g:coc_global_extensions = [
     \ 'coc-pairs'
     \ ]
 
-" rust-analyzer
-augroup runner
-  autocmd!
-  autocmd FileType rust nnoremap <silent> <leader>;; :call CocAction('runCommand', 'rust-analyzer.run')<CR>
-augroup end
-
 " git
 " navigate chunks of current buffer
 " nmap [g <Plug>(coc-git-prevchunk)
