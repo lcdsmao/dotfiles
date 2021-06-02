@@ -176,6 +176,8 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 "                 " \ let &scrolloff=winheight(win_getid())/2
 " augroup END
 " set scrolloff=10
+nnoremap <leader>k <c-u>
+nnoremap <leader>j <c-d>
 
 "*****************************************************************************
 "" Abbreviations
