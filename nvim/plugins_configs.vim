@@ -213,6 +213,9 @@ let g:coc_explorer_global_presets = {
 " Use preset argument to open it
 nmap <space>nn :CocCommand explorer --preset floating<CR>
 nmap <space>nd :CocCommand explorer --preset .dot<CR>
+autocmd ColorScheme *
+  \ hi CocExplorerNormalFloatBorder guifg=transparent guibg=transparent
+  \ | hi CocExplorerNormalFloat guibg=transparent
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => gitgutter

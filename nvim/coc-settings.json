@@ -5,6 +5,7 @@
   "typescript.format.semicolons": "remove",
   "explorer.icon.enableNerdfont": true,
   "explorer.file.column.indent.indentLine": true,
+  "explorer.floating.border.chars": ["─", "│", "─", "│", "╭", "╮", "╯", "╰"],
   "diagnostic-languageserver.filetypes": {
     "zsh": "shellcheck",
     "sh": "shellcheck"
@@ -28,10 +29,5 @@
     "typescript": "typescriptreact"
   },
   "imselect.defaultInput": "com.apple.keylayout.ABC",
-  "cSpell.userWords": [
-    "Jetpack",
-    "Mergeable",
-    "frontmatter",
-    "octokit"
-  ]
+  "cSpell.userWords": ["Jetpack", "Mergeable", "frontmatter", "octokit"]
 }
