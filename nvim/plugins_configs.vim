@@ -244,7 +244,8 @@ let g:fzf_action = {
             \ 'ctrl-v': 'vsplit' }
 
 " You can set up fzf window using a Vim command (Neovim or latest Vim 8 required)
- let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.7, 'highlight': 'Comment' } }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.7, 'highlight': 'Comment' } }
+let g:fzf_preview_window = ['up:40%']
 
 " Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
 " command! -bang -nargs=* Rg
