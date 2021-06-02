@@ -169,16 +169,16 @@ nmap ,qf  <Plug>(coc-fix-current)
 " nnoremap <silent> ,a  :<C-u>CocAction<CR>
 
 let g:coc_global_extensions = [
-    \ 'coc-json',
-    \ 'coc-marketplace',
-    \ 'coc-rust-analyzer',
-    \ 'coc-xml',
-    \ 'coc-flutter',
-    \ 'coc-emmet',
-    \ 'coc-diagnostic',
-    \ 'coc-explorer',
-    \ 'coc-pairs'
-    \ ]
+      \ 'coc-json',
+      \ 'coc-marketplace',
+      \ 'coc-rust-analyzer',
+      \ 'coc-xml',
+      \ 'coc-flutter',
+      \ 'coc-emmet',
+      \ 'coc-diagnostic',
+      \ 'coc-explorer',
+      \ 'coc-pairs'
+      \ ]
 
 " git
 " navigate chunks of current buffer
@@ -196,19 +196,19 @@ let g:coc_global_extensions = [
 
 " explorer
 let g:coc_explorer_global_presets = {
-\   '.dot': {
-\     'position': 'floating', 
-\     'root-uri': '~/dotfiles',
-\   },
-\   'floating': {
-\     'position': 'floating',
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'simplify': {
-\     'position': 'right',
-\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
-\   }
-\ }
+      \   '.dot': {
+      \     'position': 'floating', 
+      \     'root-uri': '~/dotfiles',
+      \   },
+      \   'floating': {
+      \     'position': 'floating',
+      \     'open-action-strategy': 'sourceWindow',
+      \   },
+      \   'simplify': {
+      \     'position': 'right',
+      \     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+      \   }
+      \ }
 
 " Use preset argument to open it
 nmap <space>nn :CocCommand explorer --preset floating<CR>
@@ -242,9 +242,9 @@ map <leader>fb :Buffers<cr>
 map <leader>fr :RG<cr>
 
 let g:fzf_action = {
-            \ 'ctrl-t': 'tab split',
-            \ 'ctrl-x': 'split',
-            \ 'ctrl-v': 'vsplit' }
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit' }
 
 " You can set up fzf window using a Vim command (Neovim or latest Vim 8 required)
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.7, 'highlight': 'Comment' } }
@@ -258,9 +258,9 @@ let g:fzf_preview_window = ['up:40%']
 "             \           : fzf#vim#with_preview('right:50%:hidden', '?'),
 "             \   <bang>0)
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+      \   fzf#vim#with_preview(), <bang>0)
 
 " Make fzf completely delegate its search responsibliity to ripgrep. 
 " Process by making it restart ripgrep whenever the query string is updated.
@@ -275,11 +275,11 @@ endfunction
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 " Likewise, Files command with preview window
-command! -bang -nargs=? -complete=dir Files
-            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=? -complete=dir Files 
+      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 command! -bang -nargs=? -complete=dir GFiles
-            \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
+      \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim tmux navigator
