@@ -146,6 +146,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " Using CocList
+nnoremap <silent> ,l  :<C-u>CocFzfList<cr>
 nnoremap <silent> ,d  :<C-u>CocFzfList diagnostics<cr>
 nnoremap <silent> ,b  :<C-u>CocFzfList diagnostics --current-buf<CR>
 nnoremap <silent> ,e  :<C-u>CocFzfList extensions<cr>
