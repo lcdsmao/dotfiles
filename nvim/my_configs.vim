@@ -29,10 +29,6 @@ nmap <leader>w :w!<cr>
 " :W sudo saves file
 command W w !sudo tee %% > /dev/null
 
-" Turn to all caps
-nnoremap <leader>T m1gUiw`1
-inoremap <C-S-T> <ESC>gUiwgi
-
 " Turn on the Wild menu
 set wildmenu
 
@@ -89,7 +85,7 @@ endif
 " set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
 
-" Use Unix as the standardcoc#refresh()ile type
+" Use Unix as the standard file type
 set ffs=unix,dos,mac
 
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
@@ -117,9 +113,6 @@ set wrap "Wrap lines
 
 " Terminal
 tnoremap <silent> <C-j><C-j> <C-\><C-n>
-
-" Prompt for a command to run
-map <leader>vp :VimuxPromptCommand<CR>
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
