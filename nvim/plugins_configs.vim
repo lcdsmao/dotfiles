@@ -14,6 +14,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'	
+Plug 'antoinemadec/coc-fzf'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
@@ -145,14 +146,15 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " Using CocList
-nnoremap <silent> ,d  :<C-u>CocList diagnostics<cr>
-nnoremap <silent> ,e  :<C-u>CocList extensions<cr>
-nnoremap <silent> ,c  :<C-u>CocList commands<cr>
-nnoremap <silent> ,o  :<C-u>CocList outline<cr>
-nnoremap <silent> ,s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> ,d  :<C-u>CocFzfList diagnostics<cr>
+nnoremap <silent> ,b  :<C-u>CocFzfList diagnostics --current-buf<CR>
+nnoremap <silent> ,e  :<C-u>CocFzfList extensions<cr>
+nnoremap <silent> ,c  :<C-u>CocFzfList commands<cr>
+nnoremap <silent> ,o  :<C-u>CocFzfList outline<cr>
+nnoremap <silent> ,s  :<C-u>CocFzfList symbols<cr>
+nnoremap <silent> ,p  :<C-u>CocFzfListResume<CR>
 nnoremap <silent> ,j  :<C-u>CocNext<CR>
 nnoremap <silent> ,k  :<C-u>CocPrev<CR>
-nnoremap <silent> ,p  :<C-u>CocListResume<CR>
 
 " " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
