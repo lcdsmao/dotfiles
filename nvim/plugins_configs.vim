@@ -239,12 +239,15 @@ hi FloatermBorder guibg=transparent
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => fzf
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>ff :Files<cr>
-map <leader>fh :HFiles<cr>
-map <leader>fg :GFiles<cr>
-map <leader>fs :GFiles?<cr>
-map <leader>fb :Buffers<cr>
-map <leader>fr :RG<cr>
+nmap <leader>ff :Files<cr>
+nmap <leader>fa :AFiles<cr>
+nmap <leader>fg :GFiles<cr>
+nmap <leader>fs :GFiles?<cr>
+nmap <leader>fb :Buffers<cr>
+nmap <leader>fr :RG<cr>
+nmap <leader>fh :History<cr>
+nmap <leader>fw vawy:Rg <c-r>"<cr>
+xmap <leader>fw y:Rg <c-r>"<cr>
 
 let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
@@ -283,9 +286,10 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 command! -bang -nargs=? -complete=dir Files 
       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-command! -bang -nargs=? -complete=dir HFiles
+command! -bang -nargs=? -complete=dir AFiles
       \ call fzf#vim#files(<q-args>, 
-      \ {'source': 'fd --type f --hidden --no-ignore --follow --exclude .git ""'}, <bang>0)
+      \ extend({'source': 'fd --type f --hidden --no-ignore --follow --exclude .git ""'},
+      \ fzf#vim#with_preview()), <bang>0)
 
 command! -bang -nargs=? -complete=dir GFiles
       \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
