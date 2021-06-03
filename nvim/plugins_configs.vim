@@ -240,6 +240,7 @@ hi FloatermBorder guibg=transparent
 " => fzf
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>ff :Files<cr>
+map <leader>fh :HFiles<cr>
 map <leader>fg :GFiles<cr>
 map <leader>fs :GFiles?<cr>
 map <leader>fb :Buffers<cr>
@@ -281,6 +282,10 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 " Likewise, Files command with preview window
 command! -bang -nargs=? -complete=dir Files 
       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+command! -bang -nargs=? -complete=dir HFiles
+      \ call fzf#vim#files(<q-args>, 
+      \ {'source': 'fd --type f --hidden --no-ignore --follow --exclude .git ""'}, <bang>0)
 
 command! -bang -nargs=? -complete=dir GFiles
       \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
