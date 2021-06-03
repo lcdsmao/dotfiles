@@ -9,7 +9,6 @@
 
 - create:
     - ~/.config
-    - ~/.config/bat
     - ~/.zshconfig
 
 - link:
@@ -21,15 +20,17 @@
       path: karabiner
       force: true
     ~/.config/bat:
-      glob: true
-      path: bat/*
+      path: bat
+      force: true
     ~/.config/nvim/:
       glob: true
       path: nvim/*
-    ~/.config/nvim/autoload/airline:
-      create: true
-      glob: true
-      path: nvim/autoload/airline/*
+      exclude: 
+        - nvim/autoload
+    # ~/.config/nvim/autoload/airline:
+      # create: true
+      # glob: true
+      # path: nvim/autoload/airline/*
     ~/.tmux.conf:
       path: tmux.conf
       force: true
