@@ -178,10 +178,10 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " augroup END
 " set scrolloff=10
 
-augroup KeepCentered
-  autocmd!
-  autocmd CursorMoved * normal! zz
-augroup END
+" augroup KeepCentered
+"   autocmd!
+"   autocmd CursorMoved * normal! zz
+" augroup END
 
 " Move half
 nnoremap <leader>k <c-u>
