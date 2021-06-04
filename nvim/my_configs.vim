@@ -12,8 +12,8 @@ set number relativenumber
 
 augroup numbertoggle
   autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+  autocmd BufEnter,FocusGained,InsertLeave * if &buftype == '' | setlocal relativenumber | endif
+  autocmd BufLeave,FocusLost,InsertEnter   * if &buftype == '' | setlocal norelativenumber | endif
 augroup END
 
 " Split
