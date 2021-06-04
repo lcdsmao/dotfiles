@@ -40,6 +40,7 @@
     ~/.zshconfig/plugins:
       glob: true
       create: true
+      force: true
       path: zshplugins/*
 
 - shell:
