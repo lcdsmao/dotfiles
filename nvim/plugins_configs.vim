@@ -326,7 +326,7 @@ let g:lightline = {
       \             ['branch', 'readonly', 'filename']],
       \   'right': [['lineinfo'],
       \             ['percent'],
-      \             ['fileformat', 'fileencoding', 'filetype'],
+      \             ['fileencoding', 'filetype'],
       \             ['cocstatus', 'cocwarning', 'cocerror']],
       \ },
       \ 'component': {
