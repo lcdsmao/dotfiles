@@ -246,7 +246,7 @@ nmap <leader>fs :GFiles?<cr>
 nmap <leader>fb :Buffers<cr>
 nmap <leader>fr :RG<cr>
 nmap <leader>fh :History<cr>
-nmap <leader>fw vawy:Rg <c-r>"<cr>
+nmap <leader>fw viwy:Rg <c-r>"<cr>
 xmap <leader>fw y:Rg <c-r>"<cr>
 
 let g:fzf_action = {
