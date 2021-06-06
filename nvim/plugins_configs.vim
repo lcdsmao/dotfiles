@@ -37,6 +37,7 @@ Plug 'rhysd/vim-grammarous'
 Plug 'mattn/emmet-vim'
 Plug 'bfredl/nvim-miniyank'
 Plug 'voldikss/vim-floaterm'
+Plug 'honza/vim-snippets'
 
 call plug#end()
 
