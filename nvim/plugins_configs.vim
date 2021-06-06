@@ -207,17 +207,18 @@ let g:coc_explorer_global_presets = {
       \     'open-action-strategy': 'sourceWindow',
       \   },
       \   'simplify': {
-      \     'position': 'right',
+      \     'position': 'left',
       \     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
       \   }
       \ }
 
 " Use preset argument to open it
-nmap <space>nn :CocCommand explorer --preset floating<CR>
+nmap <space>nn :CocCommand explorer --preset simplify --no-toggle<CR>
+nmap <space>nf :CocCommand explorer --preset floating<CR>
 nmap <space>nd :CocCommand explorer --preset .dot<CR>
 autocmd ColorScheme *
-  \ hi CocExplorerNormalFloatBorder guifg=transparent guibg=transparent
-  \ | hi CocExplorerNormalFloat guibg=transparent
+      \ hi CocExplorerNormalFloatBorder guifg=transparent guibg=transparent
+" \ | hi CocExplorerNormalFloat guibg=transparent
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => gitgutter
