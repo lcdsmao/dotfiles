@@ -45,3 +45,7 @@ noremap <leader>x :action CloseEditor<CR>
 
 " Yank a region in VIM without the cursor moving to the top of the block
 vmap y ygv<ESC>
+
+" Move half
+nnoremap <leader>k <c-u>
+nnoremap <leader>j <c-d>
