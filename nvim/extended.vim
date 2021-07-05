@@ -1,11 +1,4 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Important: 
-"       This requries that you install https://github.com/amix/vimrc !
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => GUI related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set font according to system
@@ -74,70 +67,9 @@ imap ½ $
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Parenthesis/bracket
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vnoremap $1 <esc>`>a)<esc>`<i(<esc>
-" vnoremap $2 <esc>`>a]<esc>`<i[<esc>
-" vnoremap $3 <esc>`>a}<esc>`<i{<esc>
-" vnoremap $$ <esc>`>a"<esc>`<i"<esc>
-" vnoremap $q <esc>`>a'<esc>`<i'<esc>
-" vnoremap $e <esc>`>a"<esc>`<i"<esc>
-
-" Map auto complete of (, ", ', [
-" inoremap $1 ()<esc>i
-" inoremap $2 []<esc>i
-" inoremap $3 {}<esc>i
-" inoremap $4 {<esc>o}<esc>O
-" inoremap $q ''<esc>i
-" inoremap $e ""<esc>i
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General abbreviations
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Omni complete functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Ack searching and cope displaying
-"    requires ack.vim - it's much better than vimgrep/grep
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use the the_silver_searcher if possible (much faster than Ack)
-"if executable('ag')
-"  let g:ackprg = 'ag --vimgrep --smart-case'
-"endif
-
-" When you press gv you Ack after the selected text
-"vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
-
-" Open Ack and put the cursor in the right position
-"map <leader>g :Ack!
-
-" When you press <leader>r you can search and replace the selected text
-"vnoremap <silent> <leader>gr :call VisualSelection('replace', '')<CR>
-
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with Ack, display your results in cope by doing:
-"   <leader>cc
-"
-" To go to the next search result do:
-"   <leader>n
-"
-" To go to the previous search results do:
-"   <leader>p
-"
-"map <leader>cc :botright cope<cr>
-"map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-"map <leader>n :cn<cr>
-"map <leader>p :cp<cr>
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

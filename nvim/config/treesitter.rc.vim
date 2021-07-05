@@ -1,0 +1,1 @@
+UsePlugin 'nvim-treesitter'
