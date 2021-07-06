@@ -1,4 +1,4 @@
-UsePlugin 'gitgutter'
+UsePlugin 'vim-gitgutter'
 
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
