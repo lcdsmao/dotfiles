@@ -25,6 +25,7 @@ antigen bundle rustup
 antigen bundle cargo
 antigen bundle pip
 antigen bundle command-not-found
+antigen bundle asdf
 
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
