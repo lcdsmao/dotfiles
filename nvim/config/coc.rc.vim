@@ -184,3 +184,8 @@ nmap <space>nd :CocCommand explorer --preset .dot<CR>
 autocmd ColorScheme *
       \ hi CocExplorerNormalFloatBorder guifg=transparent guibg=transparent
 " \ | hi CocExplorerNormalFloat guibg=transparent
+" auto refresh
+" see: https://github.com/weirongxu/coc-explorer/issues/356
+" see: https://github.com/weirongxu/coc-explorer/issues/161
+autocmd User CocDiagnosticChange,CocGitStatusChange
+    \ call CocActionAsync('runCommand', 'explorer.doAction', 'closest', ['refresh'])
