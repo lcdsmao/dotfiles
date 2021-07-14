@@ -83,14 +83,6 @@ nmap <leader>rr <Plug>(coc-rename)
 " xmap <leader>f  <Plug>(coc-format-selected)
 " nmap <leader>f  <Plug>(coc-format-selected)
 
-" augroup mygroup
-"   autocmd!
-"   " Setup formatexpr specified filetype(s).
-"   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-"   " Update signature help on jump placeholder
-"   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-" augroup end
-
 " Remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
@@ -135,6 +127,17 @@ nmap ,ac  <Plug>(coc-codeaction)
 nmap ,qf  <Plug>(coc-fix-current)
 " nnoremap <silent> ,a  :<C-u>CocAction<CR>
 
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
 let g:coc_global_extensions = [
       \ 'coc-json',
       \ 'coc-marketplace',
@@ -146,20 +149,6 @@ let g:coc_global_extensions = [
       \ 'coc-explorer',
       \ 'coc-pairs'
       \ ]
-
-" git
-" navigate chunks of current buffer
-" nmap [g <Plug>(coc-git-prevchunk)
-" nmap ]g <Plug>(coc-git-nextchunk)
-" show chunk diff at current position
-" nmap gsi <Plug>(coc-git-chunkinfo)
-" show commit contains current position
-" nmap gci <Plug>(coc-git-commit)
-" create text object for git chunks
-" omap ig <Plug>(coc-git-chunk-inner)
-" xmap ig <Plug>(coc-git-chunk-inner)
-" omap ag <Plug>(coc-git-chunk-outer)
-" xmap ag <Plug>(coc-git-chunk-outer)
 
 " explorer
 let g:coc_explorer_global_presets = {
