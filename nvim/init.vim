@@ -150,6 +150,12 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 nnoremap <leader>k <c-u>
 nnoremap <leader>j <c-d>
 
+" Quickfix
+nnoremap [q :<c-u>cprevious<CR>
+nnoremap ]q :<c-u>cnext<CR>
+nnoremap [Q :<c-u>cfirst<CR>
+nnoremap ]Q :<c-u>clast<CR>
+
 "" no one is really happy until you have this shortcuts
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
