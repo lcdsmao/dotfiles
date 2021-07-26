@@ -112,7 +112,7 @@ set tw=500
 
 set ai "Auto indent
 set si "Smart indent
-set nowrap "No Wrap lines
+set wrap "Wrap lines
 
 " Terminal
 tnoremap <silent> <C-j><C-j> <C-\><C-n>
