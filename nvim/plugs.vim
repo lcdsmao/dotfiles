@@ -36,6 +36,7 @@ Plug 'mattn/emmet-vim'
 Plug 'bfredl/nvim-miniyank'
 Plug 'voldikss/vim-floaterm'
 Plug 'honza/vim-snippets'
+Plug 'windwp/nvim-autopairs'
 
 call plug#end()
 
@@ -45,4 +46,4 @@ function! FindPlugin(name) abort
 endfunction
 command! -nargs=1 UsePlugin if !FindPlugin(<args>) | finish | endif
 
-runtime! config/*.vim
+runtime! config/*.{vim,lua}
