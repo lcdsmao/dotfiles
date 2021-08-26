@@ -46,9 +46,10 @@ function atest() { gn test connectedAndroidTest; }                 # execute all
 
 alias text='adb shell input text ' # to enter text input to your device
 
-alias lcr="adb logcat -v color AndroidRuntime:E '*:S'" # prints only Crash logs, if AndroidStudio is not working use this command.
-function lctag() { adb logcat -v color "$1":V '*:S'; }
-function lcapp() { adb logcat -v color --pid="$(adb shell pidof -s "$appId")"; }
+alias lcg="adb logcat -v color"
+alias lccrash="lcg AndroidRuntime:E '*:S'" # prints only Crash logs, if AndroidStudio is not working use this command.
+function lctag() { lcg "$1":V '*:S'; }
+function lcapp() { lcg --pid="$(adb shell pidof -s "$appId")"; }
 
 function adbanim() {
   local factor=${1:-1}
