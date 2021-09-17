@@ -33,6 +33,7 @@
     "~/.pub-cache",
     "~/fvm"
   ],
+  "dart.showTodos": false,
   "imselect.defaultInput": "com.apple.keylayout.ABC",
   "cSpell.enabledLanguageIds": [
     "vim",
