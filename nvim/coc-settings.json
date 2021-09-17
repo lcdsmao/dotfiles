@@ -29,6 +29,10 @@
     "javascript": "javascriptreact",
     "typescript": "typescriptreact"
   },
+  "flutter.workspaceFolder.ignore": [
+    "~/.pub-cache",
+    "~/fvm"
+  ],
   "imselect.defaultInput": "com.apple.keylayout.ABC",
   "cSpell.enabledLanguageIds": [
     "vim",
