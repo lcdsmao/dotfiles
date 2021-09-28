@@ -52,11 +52,7 @@ export TERM="xterm-256color"
 # up to just a slight delay
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
+# Set language environment
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
@@ -84,6 +80,10 @@ eval "$(starship init zsh)"
 
 # fuck
 eval "$(thefuck --alias)"
+
+# pyenv
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
 
 # ignore ctrl + d
 setopt ignoreeof
