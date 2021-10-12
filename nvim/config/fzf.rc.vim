@@ -23,8 +23,6 @@ let g:fzf_action = {
       \ 'ctrl-x': 'split',
       \ 'ctrl-v': 'vsplit' }
 
-let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
-
 " You can set up fzf window using a Vim command (Neovim or latest Vim 8 required)
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.7, 'highlight': 'Comment' } }
 let g:fzf_preview_window = ['up:40%']

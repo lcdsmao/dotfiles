@@ -24,7 +24,8 @@ export FZF_DEFAULT_OPTS="--history=$HOME/.fzf_history
 --color=fg:#9ea3c0,bg:#222433,hl:#545c8c
 --color=fg+:#535f98,bg+:#2a2c3f,hl+:#929be5
 --color=info:#545c8c,prompt:#929be5,pointer:#73c1a9
---color=marker:#73c1a9,spinner:#b5ae7d,header:#87afaf"
+--color=marker:#73c1a9,spinner:#b5ae7d,header:#87afaf
+--bind ctrl-a:select-all,ctrl-d:deselect-all"
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
 # command for listing path candidates.
