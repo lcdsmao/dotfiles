@@ -6,7 +6,7 @@ export ANDROID_SDK=$ANDROID_HOME
 export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/tools
 alias gn='./gradlew'
 alias latestapkname='ls -tr | grep '.apk' | tail -1 | pbcopy'            # copy latestApk file name in current folder to clipboard.
-alias adbca="adb shell dumpsys window windows | grep -E 'mCurrentFocus'" # show current activity name
+alias adbca="adb shell dumpsys activity a . | grep -E 'mResumedActivity' | cut -d ' ' -f 8" # show current activity name
 alias gkill='pkill -9 -l -f gradle-launcher'
 
 function sta() { adb shell am start -n "$appId"/"$mainActivityName"; } # start app
