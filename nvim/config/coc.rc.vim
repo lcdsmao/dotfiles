@@ -178,3 +178,11 @@ autocmd ColorScheme *
 " see: https://github.com/weirongxu/coc-explorer/issues/161
 autocmd User CocDiagnosticChange,CocGitStatusChange
     \ call CocActionAsync('runCommand', 'explorer.doAction', 'closest', ['refresh'])
+" Work with long filename
+" https://github.com/weirongxu/coc-explorer/issues/365#issuecomment-762776149
+function! s:ShowFilename()
+    let s:node_info = CocAction('runCommand', 'explorer.getNodeInfo', 0)
+    redraw | echohl Debug | echom exists('s:node_info.fullpath') ?
+    \ 'CoC Explorer: ' . s:node_info.fullpath : '' | echohl None
+endfunction
+autocmd CursorMoved \[coc-explorer\]* :call <SID>ShowFilename()
