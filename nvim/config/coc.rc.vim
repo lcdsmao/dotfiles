@@ -173,16 +173,24 @@ nmap <space>nd :CocCommand explorer --preset .dot<CR>
 autocmd ColorScheme *
       \ hi CocExplorerNormalFloatBorder guifg=transparent guibg=transparent
 " \ | hi CocExplorerNormalFloat guibg=transparent
-" auto refresh
-" see: https://github.com/weirongxu/coc-explorer/issues/356
-" see: https://github.com/weirongxu/coc-explorer/issues/161
-autocmd User CocDiagnosticChange,CocGitStatusChange
-    \ call CocActionAsync('runCommand', 'explorer.doAction', 'closest', ['refresh'])
+
+" Auto refresh
+function! s:enter_explorer()
+  if &filetype == 'coc-explorer'
+    call CocActionAsync('runCommand', 'explorer.doAction', 'closest', ['refresh'])
+  endif
+endfunction
+
 " Work with long filename
 " https://github.com/weirongxu/coc-explorer/issues/365#issuecomment-762776149
-function! s:ShowFilename()
+function! s:show_filename()
     let s:node_info = CocAction('runCommand', 'explorer.getNodeInfo', 0)
     redraw | echohl Debug | echom exists('s:node_info.fullpath') ?
     \ 'CoC Explorer: ' . s:node_info.fullpath : '' | echohl None
 endfunction
-autocmd CursorMoved \[coc-explorer\]* :call <SID>ShowFilename()
+
+augroup CocExplorerCustom
+  autocmd!
+  autocmd BufEnter * call <SID>enter_explorer()
+  autocmd CursorMoved \[coc-explorer\]* :call s:show_filename()
+augroup END
