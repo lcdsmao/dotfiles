@@ -91,31 +91,27 @@ function adb() {
       adb_one "$@"
       ;;
     *)
-      adb_origin "$@"
+      command adb "$@"
       ;;
 
   esac
 }
 
-function adb_origin {
-  "$ANDROID_HOME/platform-tools/adb" "$@"
-}
-
 function adb_all() {
   local ds=()
-  while IFS='' read -r line; do ds+=("$line"); done < <(adb_origin devices | awk 'NR > 1 {print $1 }')
+  while IFS='' read -r line; do ds+=("$line"); done < <(command adb devices | awk 'NR > 1 {print $1 }')
   for i in "${ds[@]}"; do
-    [[ -n $i ]] && adb_origin -s "$i" "$@"
+    [[ -n $i ]] && command adb -s "$i" "$@"
   done
 }
 
 function adb_one() {
   local ds=()
-  while IFS='' read -r line; do ds+=("$line"); done < <(adb_origin devices | awk 'NR > 1')
+  while IFS='' read -r line; do ds+=("$line"); done < <(command adb devices | awk 'NR > 1')
   for i in "${ds[@]}"; do
     read -r device state <<< "$i"
     if [[ $state = "device" ]]; then
-      adb_origin -s "$device" "$@"
+      command adb -s "$device" "$@"
       break
     fi
   done
@@ -128,9 +124,9 @@ function adbshot() {
 
   local selected_dev
   selected_dev=$(adb_select_device)
-  adb_origin -s "$selected_dev" shell screencap -p /sdcard/screen.png
-  adb_origin -s "$selected_dev" pull /sdcard/screen.png "${DIR_PATH}/${FILE_NAME}"
-  adb_origin -s "$selected_dev" shell rm /sdcard/screen.png
+  command adb -s "$selected_dev" shell screencap -p /sdcard/screen.png
+  command adb -s "$selected_dev" pull /sdcard/screen.png "${DIR_PATH}/${FILE_NAME}"
+  command adb -s "$selected_dev" shell rm /sdcard/screen.png
   copyfile "${DIR_PATH}/${FILE_NAME}"
 }
 
@@ -142,7 +138,7 @@ function adbrecord() {
   local selected_dev
   selected_dev=$(adb_select_device)
 
-  adb_origin -s "$selected_dev" shell screenrecord /sdcard/"$FILE_NAME".mp4 &
+  command adb -s "$selected_dev" shell screenrecord /sdcard/"$FILE_NAME".mp4 &
   pid=$(ps x | grep -v grep | grep "shell screenrecord" | awk '{ print $1 }')
 
   if [ -z "$pid" ]; then
@@ -160,15 +156,15 @@ function adbrecord() {
 
   kill -9 "$pid" # Finished the process of adb screenrecord
   while :; do
-    alive=$(adb_origin -s "$selected_dev" shell ps | grep screenrecord | grep -v grep | awk '{ print $9 }')
+    alive=$(command adb -s "$selected_dev" shell ps | grep screenrecord | grep -v grep | awk '{ print $9 }')
     if [ -z "$alive" ]; then
       break
     fi
   done
 
   printf "Finished the recording process : %s\nSending to %s...\n" "$pid" "$YOUR_PATH"
-  adb_origin -s "$selected_dev" pull /sdcard/"${FILE_NAME}".mp4 $YOUR_PATH
-  adb_origin -s "$selected_dev" shell rm /sdcard/"${FILE_NAME}".mp4
+  command adb -s "$selected_dev" pull /sdcard/"${FILE_NAME}".mp4 $YOUR_PATH
+  command adb -s "$selected_dev" shell rm /sdcard/"${FILE_NAME}".mp4
 
   echo "Converts to GIF? [y]"
   read -r convertGif
