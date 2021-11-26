@@ -9,3 +9,17 @@ fhr() {
     fi
   fi
 }
+
+fv() {
+  local p
+  p=$(pwd)
+  while [[ $p != / ]]; do
+    if [[ -n "$(find "$p" -maxdepth 1 -mindepth 1 -iname '.fvm')" ]]; then
+      "$p/.fvm/flutter_sdk/bin/flutter" "$@"
+      return
+    fi
+    p="$(realpath "$p"/..)"
+  done
+
+  command flutter "$@"
+}
