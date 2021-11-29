@@ -10,15 +10,17 @@ fhr() {
   fi
 }
 
-fv() {
-  local p
-  p=$(pwd)
-  while [[ $p != / ]]; do
-    if [[ -n "$(find "$p" -maxdepth 1 -mindepth 1 -iname '.fvm')" ]]; then
-      "$p/.fvm/flutter_sdk/bin/flutter" "$@"
+flutter() {
+  local search_path
+  local flutter_path
+  search_path=$(pwd)
+  while [[ $search_path != / ]]; do
+    flutter_path="$search_path/.fvm/flutter_sdk/bin/flutter"
+    if [[ -f $flutter_path ]]; then
+      $flutter_path "$@"
       return
     fi
-    p="$(realpath "$p"/..)"
+    search_path="$(realpath "$search_path"/..)"
   done
 
   command flutter "$@"
