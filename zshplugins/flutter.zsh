@@ -16,18 +16,29 @@ flutter() {
   search_path=$(pwd)
   while [[ $search_path != / ]]; do
     flutter_path="$search_path/.fvm/flutter_sdk/bin/flutter"
-    if [[ -f $flutter_path ]]; then
-      if [[ -f melos.yaml ]]; then
-        local package_path
-        package_path=$(melos list -la | fzf | awk '{print $3}')
-        (cd "$package_path" && $flutter_path "$@")
-      else
-        $flutter_path "$@"
-      fi
-      return
-    fi
+    [[ -f $flutter_path ]] && break
     search_path="$(realpath "$search_path"/..)"
   done
 
-  command flutter "$@"
+  local check_melos
+  case "$1" in
+    run | build | pub | clean)
+      check_melos='true'
+      ;;
+  esac
+
+  local package_path
+  if [[ $check_melos == 'true' && -f melos.yaml ]]; then
+    package_path=$(melos list -la | fzf | awk '{print $3}')
+  fi
+
+  (
+    # shellcheck disable=SC2164
+    [[ -d $package_path ]] && cd "$package_path"
+    if [[ -f $flutter_path ]]; then
+      $flutter_path "$@"
+    else
+      command flutter "$@"
+    fi
+  )
 }
