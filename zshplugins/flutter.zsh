@@ -22,7 +22,7 @@ flutter() {
 
   local check_melos
   case "$1" in
-    run | build | pub | clean)
+    run | build | pub | clean | test)
       check_melos='true'
       ;;
   esac
