@@ -17,7 +17,13 @@ flutter() {
   while [[ $search_path != / ]]; do
     flutter_path="$search_path/.fvm/flutter_sdk/bin/flutter"
     if [[ -f $flutter_path ]]; then
-      $flutter_path "$@"
+      if [[ -f melos.yaml ]]; then
+        local package_path
+        package_path=$(melos list -la | fzf | awk '{print $3}')
+        (cd "$package_path" && $flutter_path "$@")
+      else
+        $flutter_path "$@"
+      fi
       return
     fi
     search_path="$(realpath "$search_path"/..)"
