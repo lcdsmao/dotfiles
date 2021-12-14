@@ -183,14 +183,14 @@ endfunction
 
 " Work with long filename
 " https://github.com/weirongxu/coc-explorer/issues/365#issuecomment-762776149
-function! s:show_filename()
-    let s:node_info = CocAction('runCommand', 'explorer.getNodeInfo', 0)
-    redraw | echohl Debug | echom exists('s:node_info.fullpath') ?
-    \ 'CoC Explorer: ' . s:node_info.fullpath : '' | echohl None
-endfunction
+" function! s:show_filename()
+"     let s:node_info = CocAction('runCommand', 'explorer.getNodeInfo', 0)
+"     redraw | echohl Debug | echom exists('s:node_info.fullpath') ?
+"     \ 'CoC Explorer: ' . s:node_info.fullpath : '' | echohl None
+" endfunction
 
 augroup CocExplorerCustom
   autocmd!
   autocmd BufEnter * call <SID>enter_explorer()
-  autocmd CursorMoved \[coc-explorer\]* :call s:show_filename()
+  " autocmd CursorMoved \[coc-explorer\]* :call s:show_filename()
 augroup END
