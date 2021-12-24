@@ -194,13 +194,14 @@ function j() {
 # Android emulator
 function avdr() {
   selected_avd="$(emulator -list-avds | fzf)" \
-    && (emulator @"$selected_avd" > /dev/null &)
+    && (emulator @"$selected_avd" > /dev/null 2>&1 &)
 }
 
 function adb_select_device() {
-  local orig_adb="$ANDROID_HOME/platform-tools/adb"
-  local devs="$($orig_adb devices | awk 'NR > 1 { print $1 }')"
-  local dev_cnt="$(echo $devs | wc -l)"
+  local devs
+  local dev_cnt
+  devs="$(command adb devices | awk 'NR > 1 { print $1 }')"
+  dev_cnt="$(echo "$devs" | wc -l)"
   if [[ $dev_cnt -le 1 ]]; then
     echo "$devs"
   else
@@ -210,6 +211,5 @@ function adb_select_device() {
 
 # adb
 function adb_fzf() {
-  local orig_adb="$ANDROID_HOME/platform-tools/adb"
-  $orig_adb -s "$(adb_select_device)" "$@"
+  command adb -s "$(adb_select_device)" "$@"
 }
