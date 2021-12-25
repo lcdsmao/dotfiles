@@ -34,6 +34,8 @@ noremap <leader>iu :action FindUsages<CR>
 noremap <leader>ip :action ParameterInfo<CR>
 noremap <leader>gs :action GotoSuperMethod<CR>
 noremap <leader>gi :action GotoImplementation<CR>
+noremap <leader>ff :action GotoFile<CR>
+noremap <leader>fr :action FindInPath<CR>
 
 " noremap <leader>R :action Run<CR>
 " noremap <leader>D :action Debug<CR>
