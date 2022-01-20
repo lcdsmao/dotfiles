@@ -203,3 +203,10 @@ function! s:Bclose(bang, buffer)
 endfunction
 command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose(<q-bang>, <q-args>)
 map <leader>x :Bclose<cr>
+
+" How to load list of files in commit into quickfix
+" https://vi.stackexchange.com/questions/13433/how-to-load-list-of-files-in-commit-into-quickfix
+command -nargs=? -bar Gshow call setqflist(map(systemlist("git show --pretty='' --name-only <args>"), '{"filename": v:val, "lnum": 1}'))
+
+command -bar Gchanged call setqflist(map(systemlist("git ls-files -om --exclude-standard"), '{"filename": v:val, "lnum": 1}'))
+
