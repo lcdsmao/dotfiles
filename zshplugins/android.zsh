@@ -124,10 +124,7 @@ function adbshot() {
 
   local selected_dev
   selected_dev=$(adb_select_device)
-  command adb -s "$selected_dev" shell screencap -p /sdcard/screen.png
-  command adb -s "$selected_dev" pull /sdcard/screen.png "${DIR_PATH}/${FILE_NAME}"
-  command adb -s "$selected_dev" shell rm /sdcard/screen.png
-  copyfile "${DIR_PATH}/${FILE_NAME}"
+  command adb -s "$selected_dev" shell screencap -p > "${DIR_PATH}/${FILE_NAME}"
 }
 
 function adbrecord() {
