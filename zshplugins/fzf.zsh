@@ -200,12 +200,12 @@ function avdr() {
 function adb_select_device() {
   local devs
   local dev_cnt
-  devs="$(command adb devices | awk 'NR > 1 { print $1 }')"
+  devs="$(command adb devices -l | awk 'NR > 1 { print }')"
   dev_cnt="$(echo "$devs" | wc -l)"
   if [[ $dev_cnt -le 1 ]]; then
     echo "$devs"
   else
-    selected_dev="$(echo "$devs" | fzf)" && echo "$selected_dev"
+    selected_dev="$(echo "$devs" | fzf)" && echo "$selected_dev" | awk '{ print $1 }'
   fi
 }
 
