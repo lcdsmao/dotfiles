@@ -33,6 +33,8 @@
     "typescriptreact",
     "yaml",
     "yml",
-    "dart"
+    "dart",
+    "nums",
+    "strs"
   ]
 }
