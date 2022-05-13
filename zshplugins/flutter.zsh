@@ -29,7 +29,7 @@ flutter() {
 
   local package_path
   if [[ $check_melos == 'true' && -f melos.yaml ]]; then
-    package_path=$(melos list -la | fzf | awk '{print $3}')
+    package_path=$(melos list -l | fzf | awk '{print $3}')
   fi
 
   (
