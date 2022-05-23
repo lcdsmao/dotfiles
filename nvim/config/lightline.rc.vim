@@ -53,7 +53,7 @@ function! LightlineReadonly() abort
 endfunction
 
 function! LightlineFugitive() abort
-  let branch = fugitive#head()
+  let branch = FugitiveHead()
   return branch !=# '' ? ' '.branch : ''
 endfunction
 
