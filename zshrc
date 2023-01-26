@@ -73,6 +73,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:$HOME/flutter/bin"
 export PATH="$PATH:$HOME/.pub-cache/bin"
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$HOME/.maestro/bin"
 export PATH="/usr/local/sbin:$PATH"
 
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
