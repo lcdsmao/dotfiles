@@ -39,7 +39,7 @@ antigen bundle "$HOME/.zshconfig/plugins"
 
 # Antigen check files
 export ANTIGEN_AUTO_CONFIG=false
-export ANTIGEN_CHECK_FILES=("$HOME"/.zshrc "$HOME"/.zshconfig/plugins/*.zsh)
+export ANTIGEN_CHECK_FILES=("$HOME"/.zshrc "$HOME"/.zshconfig/plugins/*)
 
 # Tell Antigen that you're done.
 antigen apply
@@ -75,6 +75,7 @@ export PATH="$PATH:$HOME/.pub-cache/bin"
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$HOME/.maestro/bin"
 export PATH="/usr/local/sbin:$PATH"
+export PATH="$PATH:$HOME/.zshconfig/plugins/bin"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
