@@ -21,8 +21,6 @@ antigen bundle autojump
 antigen bundle adb
 antigen bundle ripgrep
 antigen bundle gitignore
-antigen bundle rustup
-antigen bundle cargo
 antigen bundle pip
 antigen bundle command-not-found
 antigen bundle asdf
