@@ -1,55 +1,20 @@
-export appId='<Replace with ApplicationId like com.abc.def>'
-export mainActivityName='<Replace with MainActivity of your app like com.abc.def.MainActivity>'
-export buildVariantTarget='iD' # Default to installDebug (iD) ; Replace it with your default buildVariantType
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export ANDROID_SDK=$ANDROID_HOME
 export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/tools
+
+export appid=''
+function updateappid() { [ -n "$1" ] && appid="$1"; }
+
 alias gn='./gradlew'
-alias latestapkname='ls -tr | grep '.apk' | tail -1 | pbcopy'            # copy latestApk file name in current folder to clipboard.
-alias adbca="adb shell dumpsys activity a . | grep -E 'mResumedActivity' | cut -d ' ' -f 8" # show current activity name
 alias gkill='pkill -9 -l -f gradle-launcher'
 
-function sta() { adb shell am start -n "$appId"/"$mainActivityName"; } # start app
-function stp() { adb shell am force-stop "$appId"; }                   # force stop app
-function clr() { adb shell pm clear "$appId"; }                        # clear data of app
-function uns() { adb uninstall "$appId"; }                             # uninstall app
-function iturl() { adb shell am start -a android.intent.action.VIEW -c android.intent.category.BROWSABLE -d "$1"; }
-
-# Build with buildVariantTarget flavor then install App  then start it
-function bld() {
-  [[ $1 == "c" ]] && gn clean
-  gn "$buildVariantTarget" && sta
-}
-
-# Uninstall App then Build with buildVariantTarget flavor then install App & then start it
-function bldu() {
-  uns && gn "$buildVariantTarget" && sta
-}
-
-# use updateAppId com.random.otherapp to change it for that tab.
-function updateappid() {
-  [[ -n $1 ]] && appId="$1"
-}
-
-function updatemainactivity() { if [[ -n $1 ]]; then mainActivityName="$1"; fi; }
-function updatebuildtype() { if [[ -n $1 ]]; then buildVariantTarget="$1"; fi; }
-function printvariables() {
-  echo "appId = $appId
-    mainActivityName = $mainActivityName
-    buildVariantTarget = $buildVariantTarget"
-}
-
-alias ins='uns && adb install ' # Uninstall App then install with existing app path
-alias upg='adb install -r '
-function upglatest() { latestapkname && upg "$(pbpaste)" && sta; } # Upgrade app with latest updated apk in current folder
-function atest() { gn test connectedAndroidTest; }                 # execute all tests
-
-alias text='adb shell input text ' # to enter text input to your device
+function adblink() { adb shell am start -a android.intent.action.VIEW -c android.intent.category.BROWSABLE -d "'$1'"; }
+alias adbtext='adb shell input text ' # to enter text input to your device
 
 alias lcg="adb logcat -v color"
 alias lccrash="lcg AndroidRuntime:E '*:S'" # prints only Crash logs, if AndroidStudio is not working use this command.
 function lctag() { lcg "$1":V '*:S'; }
-function lcapp() { lcg --pid="$(adb shell pidof -s "$appId")"; }
+function lcapp() { lcg --pid="$(adb shell pidof -s "$1")"; }
 
 function adbanim() {
   local factor=${1:-1}
