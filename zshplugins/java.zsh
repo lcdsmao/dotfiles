@@ -7,4 +7,4 @@ jdk() {
 }
 
 # Set default JAVA_HOME
-jdk 11 > /dev/null 2>&1
+jdk 17 > /dev/null 2>&1
