@@ -24,7 +24,7 @@ function adbanim() {
 }
 
 alias adbpg='adb shell settings get global http_proxy;'
-alias adbps='adb shell settings put global http_proxy $(ipconfig getifaddr en0):8080;'
+function adbps() { adb shell settings put global http_proxy "$(ipconfig getifaddr en0)":"$1"; }
 alias adbpr='adb shell settings put global http_proxy :0'
 
 function adbt() {
