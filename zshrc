@@ -72,6 +72,7 @@ export PATH="$PATH:$HOME/flutter/bin"
 export PATH="$PATH:$HOME/.pub-cache/bin"
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$HOME/.maestro/bin"
+export PATH="$PATH:$HOME/.flashlight/bin"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$PATH:$HOME/.zshconfig/plugins/bin"
 
