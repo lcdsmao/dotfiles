@@ -26,6 +26,7 @@
     ~/.config/nvim/:
       glob: true
       path: nvim/*
+      create: true
       exclude: 
         - nvim/autoload
     # ~/.config/nvim/autoload/airline:
