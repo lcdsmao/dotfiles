@@ -67,6 +67,7 @@ fi
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Path
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.docker/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:$HOME/flutter/bin"
