@@ -6,7 +6,7 @@ else
   if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     . "$HOME/miniconda3/etc/profile.d/conda.sh"
   else
-    export PATH="/home/mao/miniconda3/bin:$PATH"
+    export PATH="$HOME/miniconda3/bin:$PATH"
     if type conda &> /dev/null; then
       conda config --set changeps1 True
     fi
