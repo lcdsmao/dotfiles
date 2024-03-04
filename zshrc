@@ -1,4 +1,4 @@
-# Unalias ls in case if we already alias ls to exa
+# Unalias ls in case if we already created ls alias
 unalias ls > /dev/null 2>&1
 
 #  Brew auto completion.
@@ -92,4 +92,4 @@ alias vi=nvim
 alias copypath='pwd | pbcopy' # copy current path to clipboard
 alias o='open .'
 alias c='clear'
-alias ls='exa'
+alias ls='eza'
