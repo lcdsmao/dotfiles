@@ -44,6 +44,7 @@ Plug 'bfredl/nvim-miniyank'
 Plug 'voldikss/vim-floaterm'
 Plug 'honza/vim-snippets'
 Plug 'windwp/nvim-autopairs'
+Plug 'github/copilot.vim'
 
 call plug#end()
 
