@@ -31,7 +31,6 @@ antigen bundle zsh-users/zsh-autosuggestions
 
 # Vi mode.
 antigen bundle jeffreytse/zsh-vi-mode
-export ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT # Start in insert mode
 
 # Local plugins.
 antigen bundle "$HOME/.zshconfig/plugins"
