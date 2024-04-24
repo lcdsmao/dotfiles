@@ -6,7 +6,7 @@ fi
 
 # To install useful key bindings and fuzzy completion:
 # $(brew --prefix)/opt/fzf/install
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Setting fd as the default source for fzf
 # export FZF_DEFAULT_COMMAND='fd --type f'

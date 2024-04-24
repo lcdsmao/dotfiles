@@ -4,10 +4,10 @@ unalias ls > /dev/null 2>&1
 #  Brew auto completion.
 #  Need to call before oh-my-zsh.
 if type brew &> /dev/null; then
-    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 
-    autoload -Uz compinit
-    compinit
+  autoload -Uz compinit
+  compinit
 fi
 
 source "$HOME/.zshconfig/antigen/antigen.zsh"
@@ -58,9 +58,9 @@ export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-    export EDITOR='vim'
+  export EDITOR='vim'
 else
-    export EDITOR='nvim'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -96,3 +96,9 @@ alias copypath='pwd | pbcopy' # copy current path to clipboard
 alias o='open .'
 alias c='clear'
 alias ls='eza'
+
+# https://github.com/jeffreytse/zsh-vi-mode/issues/24#issuecomment-783981662
+# Fix conflicts between zsh-vi-mode and fzf
+zvm_after_init() {
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+}
