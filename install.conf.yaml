@@ -44,6 +44,7 @@
       create: true
       force: true
       path: zshplugins/*
+    ~/.ripgreprc: ripgreprc
 
 - shell:
     - command: 'git submodule update --init --recursive'
