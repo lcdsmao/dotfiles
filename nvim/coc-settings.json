@@ -7,6 +7,7 @@
   "explorer.icon.enableNerdfont": true,
   "explorer.file.column.indent.indentLine": true,
   "explorer.floating.border.chars": ["─", "│", "─", "│", "╭", "╮", "╯", "╰"],
+  "explorer.file.showHiddenFiles": true,
   "diagnostic-languageserver.filetypes": {
     "zsh": "shellcheck",
     "sh": "shellcheck"
