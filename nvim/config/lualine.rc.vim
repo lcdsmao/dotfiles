@@ -1,6 +1,18 @@
 UsePlugin 'lualine.nvim'
 
 lua << EOF
+local function filetype_fmt(name, context)
+  local filetype = vim.o.filetype
+  if filetype == 'fzf' then
+    return 'fzf'
+  elseif filetype == 'coc-explorer' then
+    return 'coc-explorer'
+  elseif filetype == 'floaterm' then
+    return 'term'
+  end
+  return name
+end
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -68,7 +80,8 @@ require('lualine').setup {
           unnamed = '[No Name]', -- Text to show for unnamed buffers.
           newfile = '[New]',     -- Text to show for newly created file before first write
         },
-        color = 'StatusLine'
+        color = 'StatusLine',
+        fmt = filetype_fmt
       }
     },
   },
