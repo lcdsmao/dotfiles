@@ -2,19 +2,18 @@ export ANDROID_HOME=$HOME/Library/Android/sdk
 export ANDROID_SDK=$ANDROID_HOME
 export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/tools
 
-export appid=''
-function updateappid() { [ -n "$1" ] && appid="$1"; }
-
 alias gn='./gradlew'
 alias gkill='pkill -9 -l -f gradle-launcher'
 
 function adblink() { adb shell am start -a android.intent.action.VIEW -c android.intent.category.BROWSABLE -d "'$1'"; }
 alias adbtext='adb shell input text ' # to enter text input to your device
 
+function adbsp() { adb shell pm list package -3 | fzf | cut -d':' -f2; }
+
 alias lcg="adb logcat -v color"
 alias lccrash="lcg AndroidRuntime:E '*:S'" # prints only Crash logs, if AndroidStudio is not working use this command.
 function lctag() { lcg "$1":V '*:S'; }
-function lcapp() { lcg --pid="$(adb shell pidof -s "$1")"; }
+function lcapp() { lcg --pid="$(adb shell pidof -s "$(adbsp)")"; }
 
 function adbanim() {
   local factor=${1:-1}
