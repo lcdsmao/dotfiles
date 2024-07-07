@@ -84,7 +84,6 @@ setopt ignoreeof
 
 # Alias
 alias vi=nvim
-alias copypath='pwd | pbcopy' # copy current path to clipboard
 alias o='open .'
 alias c='clear'
 alias ls='eza'
