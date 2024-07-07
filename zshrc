@@ -1,15 +1,6 @@
 # Unalias ls in case if we already created ls alias
 unalias ls > /dev/null 2>&1
 
-#  Brew auto completion.
-#  Need to call before oh-my-zsh.
-if type brew &> /dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-  autoload -Uz compinit
-  compinit
-fi
-
 source "$HOME/.zshconfig/antigen/antigen.zsh"
 
 # Load the oh-my-zsh's library.
@@ -17,6 +8,7 @@ antigen use oh-my-zsh
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
 antigen bundle git
+antigen bundle brew
 antigen bundle autojump
 antigen bundle adb
 antigen bundle ripgrep
