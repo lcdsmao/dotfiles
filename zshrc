@@ -17,22 +17,12 @@ antigen bundle pip
 antigen bundle command-not-found
 antigen bundle asdf
 
-# Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
-
-# Vi mode.
 antigen bundle jeffreytse/zsh-vi-mode
 
 # Local plugins.
 antigen bundle "$HOME/.zshconfig/plugins"
-
-# Load the theme.
-# antigen theme robbyrussell
-
-# Antigen check files
-export ANTIGEN_AUTO_CONFIG=false
-export ANTIGEN_CHECK_FILES=("$HOME"/.zshrc "$HOME"/.zshconfig/plugins/*)
 
 # Tell Antigen that you're done.
 antigen apply
