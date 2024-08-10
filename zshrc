@@ -21,6 +21,7 @@ antigen bundle command-not-found
 antigen bundle thefuck
 antigen bundle asdf
 antigen bundle nvm
+antigen bundle rvm
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
