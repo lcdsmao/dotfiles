@@ -13,9 +13,7 @@ antigen use oh-my-zsh
 antigen bundle git
 antigen bundle brew
 antigen bundle autojump
-antigen bundle adb
 antigen bundle eza
-antigen bundle ripgrep
 antigen bundle gitignore
 antigen bundle pip
 antigen bundle command-not-found
