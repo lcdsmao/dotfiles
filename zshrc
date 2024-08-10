@@ -10,8 +10,9 @@ source "$HOME/.zshconfig/antigen/antigen.zsh"
 antigen use oh-my-zsh
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle git
 antigen bundle brew
+antigen bundle git
+antigen bundle starship
 antigen bundle autojump
 antigen bundle eza
 antigen bundle gitignore
