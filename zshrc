@@ -1,3 +1,9 @@
+# Keep PATH variable clean
+if [ -f /etc/profile ]; then
+    PATH=""
+    source /etc/profile
+fi
+
 # Unalias ls in case if we already created ls alias
 unalias ls > /dev/null 2>&1
 
