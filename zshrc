@@ -4,9 +4,6 @@ if [ -f /etc/profile ]; then
     source /etc/profile
 fi
 
-# Unalias ls in case if we already created ls alias
-unalias ls > /dev/null 2>&1
-
 source "$HOME/.zshconfig/antigen/antigen.zsh"
 
 # Load the oh-my-zsh's library.
@@ -17,6 +14,7 @@ antigen bundle git
 antigen bundle brew
 antigen bundle autojump
 antigen bundle adb
+antigen bundle eza
 antigen bundle ripgrep
 antigen bundle gitignore
 antigen bundle pip
@@ -82,7 +80,6 @@ setopt ignoreeof
 alias vi=nvim
 alias o='open .'
 alias c='clear'
-alias ls='eza'
 
 # https://github.com/jeffreytse/zsh-vi-mode/issues/24#issuecomment-783981662
 # Fix conflicts between zsh-vi-mode and fzf
