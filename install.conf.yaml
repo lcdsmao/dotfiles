@@ -29,10 +29,6 @@
       create: true
       exclude: 
         - nvim/autoload
-    # ~/.config/nvim/autoload/airline:
-      # create: true
-      # glob: true
-      # path: nvim/autoload/airline/*
     ~/.tmux.conf:
       path: tmux.conf
       force: true
