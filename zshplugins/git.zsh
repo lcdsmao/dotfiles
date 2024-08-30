@@ -10,7 +10,7 @@ gitdsb() {
   while read -r branch; do
     mergeBase=$(git merge-base "$target_branch" "$branch")
     if [[ -n $mergeBase && $(git cherry "$target_branch" "$(git commit-tree "$(git rev-parse "$branch^{tree}")" -p "$mergeBase" -m _)") == "-"* ]]; then
-      echo git branch -D "$branch"
+      git branch -D "$branch"
     fi
   done <<< "$branches"
 }
