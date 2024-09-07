@@ -1,5 +1,4 @@
 {
-  "coc.preferences.semanticTokensHighlights": false,
   "prettier.trailingComma": "es5",
   "prettier.singleQuote": true,
   "prettier.semi": false,
@@ -7,6 +6,7 @@
   "explorer.icon.enableNerdfont": true,
   "explorer.file.column.indent.indentLine": true,
   "explorer.floating.border.chars": ["─", "│", "─", "│", "╭", "╮", "╯", "╰"],
+  "explorer.icon.source": "nvim-web-devicons",
   "explorer.file.showHiddenFiles": true,
   "diagnostic-languageserver.filetypes": {
     "zsh": "shellcheck",
@@ -30,17 +30,9 @@
     "javascript": "javascriptreact",
     "typescript": "typescriptreact"
   },
-  "flutter.workspaceFolder.ignore": [
-    "~/.pub-cache",
-    "~/fvm"
-  ],
+  "flutter.workspaceFolder.ignore": ["~/.pub-cache", "~/fvm"],
   "dart.showTodos": false,
-  "snippets.ultisnips.directories": [
-    "~/dotfiles/ultisnips"
-  ],
+  "snippets.ultisnips.directories": ["~/dotfiles/ultisnips"],
   "imselect.defaultInput": "com.apple.keylayout.ABC",
-  "cSpell.fixSpellingWithRenameProvider": true,
-  "cSpell.import": [
-    "~/dotfiles/cspell.json"
-  ]
+  "cSpell.import": ["~/dotfiles/cspell.json"]
 }
