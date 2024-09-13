@@ -86,5 +86,5 @@ alias c='clear'
 # https://github.com/jeffreytse/zsh-vi-mode/issues/24#issuecomment-783981662
 # Fix conflicts between zsh-vi-mode and fzf
 zvm_after_init() {
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  source <(fzf --zsh)
 }
