@@ -22,6 +22,7 @@ antigen bundle thefuck
 antigen bundle asdf
 antigen bundle nvm
 antigen bundle rvm
+antigen bundle rbenv
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
@@ -63,12 +64,10 @@ export PATH="$HOME/.docker/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:$HOME/flutter/bin"
 export PATH="$PATH:$HOME/.pub-cache/bin"
-export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$HOME/.maestro/bin"
 export PATH="$PATH:$HOME/.flashlight/bin"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$PATH:$HOME/.zshconfig/plugins/bin"
-export PATH="$HOME/.rbenv/bin:$PATH"
 
 # ignore ctrl + d
 setopt ignoreeof
