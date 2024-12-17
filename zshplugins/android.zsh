@@ -1,6 +1,5 @@
 export ANDROID_HOME=$HOME/Library/Android/sdk
-export ANDROID_SDK=$ANDROID_HOME
-export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator
 
 # https://developer.android.com/tools/adb#mdnsBackends
 export ADB_MDNS_OPENSCREEN=1
