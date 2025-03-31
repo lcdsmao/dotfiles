@@ -24,9 +24,11 @@ function adbanim() {
   adb shell settings put global animator_duration_scale "$factor"
 }
 
-alias adbpg='adb shell settings get global http_proxy;'
-function adbps() { adb shell settings put global http_proxy "$(ipconfig getifaddr en0)":"$1"; }
-alias adbpr='adb shell settings put global http_proxy :0'
+alias adbgproxy='adb shell settings get global http_proxy;'
+alias adbsproxy='adb shell settings put global http_proxy $(ipconfig getifaddr en0):8889;'
+alias adbrproxy='adb shell settings put global http_proxy :0'
+alias adbeam='adb shell cmd connectivity airplane-mode enable'
+alias adbdam='adb shell cmd connectivity airplane-mode disable'
 
 function adbt() {
   case "$1" in
