@@ -8,7 +8,7 @@ alias gn='./gradlew'
 alias gkill='pkill -9 -l -f gradle-launcher'
 
 function adblink() { adb shell am start -a android.intent.action.VIEW -c android.intent.category.BROWSABLE -d "'$1'"; }
-alias adbtext='adb shell input text ' # to enter text input to your device
+function adbtext() { adb shell input text "'$1'"; }
 
 function adbsp() { adb shell pm list package -3 | fzf | cut -d':' -f2; }
 
