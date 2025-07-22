@@ -126,10 +126,8 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 " Using Telescope for COC lists (better UI)
-nnoremap <silent> ,l  :<C-u>Telescope coc<cr>
+nnoremap <silent> ,l  :<C-u>Telescope coc list<cr>
 nnoremap <silent> ,d  :<C-u>Telescope coc diagnostics<cr>
-nnoremap <silent> ,b  :<C-u>Telescope coc diagnostics<CR>
-nnoremap <silent> ,e  :<C-u>Telescope coc extensions<cr>
 nnoremap <silent> ,c  :<C-u>Telescope coc commands<cr>
 nnoremap <silent> ,o  :<C-u>Telescope coc document_symbols<cr>
 nnoremap <silent> ,s  :<C-u>Telescope coc workspace_symbols<cr>
@@ -145,6 +143,7 @@ let g:coc_global_extensions = [
       \ 'coc-emmet',
       \ 'coc-diagnostic',
       \ 'coc-explorer',
+      \ '@hexuhua/coc-copilot',
       \ ]
 
 " explorer
