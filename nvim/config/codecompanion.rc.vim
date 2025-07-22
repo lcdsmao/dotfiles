@@ -49,3 +49,4 @@ vim.keymap.set("n", "<LocalLeader>ci", "<cmd>CodeCompanion<cr>", { noremap = tru
 
 -- Expand 'cc' into 'CodeCompanion' in the command line
 vim.cmd([[cab cc CodeCompanion]])
+EOF
