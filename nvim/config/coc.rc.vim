@@ -1,7 +1,8 @@
 UsePlugin 'coc.nvim'
-UsePlugin 'fzf'
-UsePlugin 'fzf.vim'
-UsePlugin 'coc-fzf'
+" UsePlugin 'fzf'
+" UsePlugin 'fzf.vim'
+" UsePlugin 'coc-fzf'
+UsePlugin 'telescope-coc.nvim'
 
 " Some servers have issues with backup files, see #649.
 set nobackup
@@ -124,15 +125,15 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
-" Using CocList
-nnoremap <silent> ,l  :<C-u>CocFzfList<cr>
-nnoremap <silent> ,d  :<C-u>CocFzfList diagnostics<cr>
-nnoremap <silent> ,b  :<C-u>CocFzfList diagnostics --current-buf<CR>
-nnoremap <silent> ,e  :<C-u>CocFzfList extensions<cr>
-nnoremap <silent> ,c  :<C-u>CocFzfList commands<cr>
-nnoremap <silent> ,o  :<C-u>CocFzfList outline<cr>
-nnoremap <silent> ,s  :<C-u>CocFzfList symbols<cr>
-nnoremap <silent> ,p  :<C-u>CocFzfListResume<CR>
+" Using Telescope for COC lists (better UI)
+nnoremap <silent> ,l  :<C-u>Telescope coc<cr>
+nnoremap <silent> ,d  :<C-u>Telescope coc diagnostics<cr>
+nnoremap <silent> ,b  :<C-u>Telescope coc diagnostics<CR>
+nnoremap <silent> ,e  :<C-u>Telescope coc extensions<cr>
+nnoremap <silent> ,c  :<C-u>Telescope coc commands<cr>
+nnoremap <silent> ,o  :<C-u>Telescope coc document_symbols<cr>
+nnoremap <silent> ,s  :<C-u>Telescope coc workspace_symbols<cr>
+nnoremap <silent> ,p  :<C-u>CocListResume<CR>
 nnoremap <silent> ,j  :<C-u>CocNext<CR>
 nnoremap <silent> ,k  :<C-u>CocPrev<CR>
 

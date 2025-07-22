@@ -13,15 +13,16 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
-" Plug 'nvim-lua/popup.nvim'
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'fannheyward/telescope-coc.nvim'
 " Plug 'neovim/nvim-lspconfig'
 " Plug 'nvim-lua/completion-nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'	
-Plug 'antoinemadec/coc-fzf'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'	
+" Plug 'antoinemadec/coc-fzf'
 Plug 'kevinhwang91/nvim-bqf'
 " Plug 'itchyny/lightline.vim'
 " Plug 'ryanoasis/vim-devicons'
@@ -46,7 +47,7 @@ Plug 'bfredl/nvim-miniyank'
 Plug 'voldikss/vim-floaterm'
 Plug 'honza/vim-snippets'
 Plug 'windwp/nvim-autopairs'
-Plug 'github/copilot.vim'
+Plug 'olimorris/codecompanion.nvim'
 
 call plug#end()
 
