@@ -82,13 +82,17 @@ augroup end
 xmap ,a  <Plug>(coc-codeaction-selected)
 nmap ,a  <Plug>(coc-codeaction-selected)
 
-" Remap keys for applying codeAction to the current buffer.
-nmap ,ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
+" Remap keys for applying code actions at the cursor position
+nmap ,ac  <Plug>(coc-codeaction-cursor)
+" Remap keys for apply code actions affect whole buffer
+nmap ,as  <Plug>(coc-codeaction-source)
+" Apply the most preferred quickfix action to fix diagnostic on the current line
 nmap ,qf  <Plug>(coc-fix-current)
 
-" Run the Code Lens action on the current line.
-nmap ,cl  <Plug>(coc-codelens-action)
+" Remap keys for applying refactor code actions
+nmap <silent> ,re <Plug>(coc-codeaction-refactor)
+xmap <silent> ,r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> ,r  <Plug>(coc-codeaction-refactor-selected)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -125,8 +129,8 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
-" Using Telescope for COC lists (better UI)
-nnoremap <silent> ,l  :<C-u>Telescope coc list<cr>
+" Using Telescope for COC if possible
+nnoremap <silent> ,l  :<C-u>CocList<cr>
 nnoremap <silent> ,d  :<C-u>Telescope coc diagnostics<cr>
 nnoremap <silent> ,c  :<C-u>Telescope coc commands<cr>
 nnoremap <silent> ,o  :<C-u>Telescope coc document_symbols<cr>
