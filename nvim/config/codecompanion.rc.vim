@@ -18,7 +18,7 @@ require("codecompanion").setup({
       provider = "telescope",
     },
     chat = {
-      intro_message = "Welcome to CodeCompanion ✨\n\nYou can use variables, slash commands, and tools to enhance your experience:\n- Variables: #{buffer}, #{lsp}, #{viewport}\n- Slash commands: /buffer, /file, /help, /now, /symbols, /terminal\n- Tools: @cmd_runner, @files, @web_search\n\nPress ? for more help",
+      auto_scroll = false,
       window = {
         position = "right",
         width = 0.4,
