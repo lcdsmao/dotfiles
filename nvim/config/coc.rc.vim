@@ -147,7 +147,6 @@ let g:coc_global_extensions = [
       \ 'coc-emmet',
       \ 'coc-diagnostic',
       \ 'coc-explorer',
-      \ '@hexuhua/coc-copilot',
       \ ]
 
 " explorer

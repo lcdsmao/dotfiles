@@ -34,5 +34,5 @@
   "dart.showTodos": false,
   "snippets.ultisnips.directories": ["~/dotfiles/ultisnips"],
   "imselect.defaultInput": "com.apple.keylayout.ABC",
-  "cSpell.import": ["~/dotfiles/cspell.json"]
+  "cSpell.import": ["~/dotfiles/cspell.json"],
 }

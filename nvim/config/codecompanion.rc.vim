@@ -27,7 +27,7 @@ require("codecompanion").setup({
   },
   opts = {
     log_level = "DEBUG",
-    send_code = false,
+    send_code = true,
   },
   tools = {
     enabled = {
