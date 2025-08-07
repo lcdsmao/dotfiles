@@ -35,4 +35,15 @@
   "snippets.ultisnips.directories": ["~/dotfiles/ultisnips"],
   "imselect.defaultInput": "com.apple.keylayout.ABC",
   "cSpell.import": ["~/dotfiles/cspell.json"],
+  "languageserver": {
+    "sourcekit": {
+      "command": "sourcekit-lsp",
+      "filetypes": ["swift", "objective-c", "objective-cpp"],
+      "rootPatterns": ["Package.swift", ".git/"],
+      "initializationOptions": {
+        "useClientCapabilities": true,
+        "useServerCapabilities": true
+      }
+    },
+  }
 }
