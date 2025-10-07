@@ -2,6 +2,28 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AIFeatureFunctionCalling</key>
+	<true/>
+	<key>AIFeatureHostedCodeInterpeter</key>
+	<true/>
+	<key>AIFeatureHostedFileSearch</key>
+	<true/>
+	<key>AIFeatureHostedWebSearch</key>
+	<true/>
+	<key>AIFeatureStreamingResponses</key>
+	<true/>
+	<key>AITermAPI</key>
+	<integer>2</integer>
+	<key>AIVectorStore</key>
+	<integer>1</integer>
+	<key>AiMaxTokens</key>
+	<integer>1000000</integer>
+	<key>AiModel</key>
+	<string>gpt-4.1</string>
+	<key>AiResponseMaxTokens</key>
+	<integer>32768</integer>
+	<key>AitermURL</key>
+	<string>https://api.openai.com/v1/responses</string>
 	<key>AllowClipboardAccess</key>
 	<true/>
 	<key>AlternateMouseScroll</key>
@@ -2969,15 +2991,15 @@
 			<key>HotKey Alternate Shortcuts</key>
 			<array/>
 			<key>HotKey Characters</key>
-			<string>`</string>
+			<string></string>
 			<key>HotKey Characters Ignoring Modifiers</key>
-			<string>`</string>
+			<string></string>
 			<key>HotKey Key Code</key>
-			<integer>50</integer>
+			<integer>48</integer>
 			<key>HotKey Modifier Activation</key>
 			<integer>0</integer>
 			<key>HotKey Modifier Flags</key>
-			<integer>1048576</integer>
+			<integer>917504</integer>
 			<key>HotKey Window Animates</key>
 			<false/>
 			<key>HotKey Window AutoHides</key>
@@ -3377,16 +3399,16 @@
 						<key>Alpha Component</key>
 						<real>1</real>
 						<key>Blue Component</key>
-						<real>0.20000000298023224</real>
+						<real>0.19691023230552673</real>
 						<key>Color Space</key>
-						<string>sRGB</string>
+						<string>P3</string>
 						<key>Green Component</key>
-						<real>0.16470588743686676</real>
+						<real>0.16420909762382507</real>
 						<key>Red Component</key>
-						<real>0.14901961386203766</real>
+						<real>0.15192815661430359</real>
 					</dict>
 					<key>font</key>
-					<string>Roboto-Regular 12</string>
+					<string>Menlo-Regular 11</string>
 					<key>remove empty components</key>
 					<false/>
 					<key>separator color 2</key>
@@ -3396,7 +3418,7 @@
 						<key>Blue Component</key>
 						<real>0.0</real>
 						<key>Color Space</key>
-						<string>sRGB</string>
+						<string>P3</string>
 						<key>Green Component</key>
 						<real>0.0</real>
 						<key>Red Component</key>
