@@ -2999,7 +2999,7 @@
 			<key>HotKey Modifier Activation</key>
 			<integer>0</integer>
 			<key>HotKey Modifier Flags</key>
-			<integer>1966080</integer>
+			<integer>917504</integer>
 			<key>HotKey Window Animates</key>
 			<false/>
 			<key>HotKey Window AutoHides</key>
@@ -3324,7 +3324,7 @@
 			<key>Name</key>
 			<string>Half</string>
 			<key>Non Ascii Font</key>
-			<string>Menlo-Regular 11</string>
+			<string>MesloLGSNer-Regular 12</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
@@ -4158,15 +4158,15 @@
 			<key>HotKey Alternate Shortcuts</key>
 			<array/>
 			<key>HotKey Characters</key>
-			<string>	</string>
+			<string>i</string>
 			<key>HotKey Characters Ignoring Modifiers</key>
-			<string>I</string>
+			<string>i</string>
 			<key>HotKey Key Code</key>
 			<integer>34</integer>
 			<key>HotKey Modifier Activation</key>
 			<integer>0</integer>
 			<key>HotKey Modifier Flags</key>
-			<integer>1966080</integer>
+			<integer>1048576</integer>
 			<key>HotKey Window Animates</key>
 			<false/>
 			<key>HotKey Window AutoHides</key>
