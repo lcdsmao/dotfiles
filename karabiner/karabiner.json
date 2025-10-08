@@ -1021,6 +1021,16 @@
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
         },
         {
+            "devices": [
+                {
+                    "disable_built_in_keyboard_if_exists": true,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 1,
+                        "vendor_id": 57624
+                    }
+                }
+            ],
             "name": "None",
             "selected": true,
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
