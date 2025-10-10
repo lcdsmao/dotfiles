@@ -29,6 +29,7 @@
                     },
                     {
                         "description": "コマンドキー（右）を単体で押したときに、英数・かなをトグルで切り替える。",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -74,6 +75,7 @@
                     },
                     {
                         "description": "KBD: BluetoothConverter、IKBC_C87、XD60: Swap Win/CMD and Alt/Opt",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -844,6 +846,7 @@
                     },
                     {
                         "description": "Hyper Misc    (Check https://github.com/suliveevil/Capslock for all details)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
