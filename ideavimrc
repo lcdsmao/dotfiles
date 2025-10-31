@@ -52,6 +52,8 @@ noremap <leader>sv :action SplitVertically<CR>
 noremap <leader>0 :action ActivateProjectToolWindow<CR>
 noremap <leader>x :action CloseEditor<CR>
 
+noremap ,ac :action ShowIntentionActions<CR>
+
 " Yank a region in VIM without the cursor moving to the top of the block
 vmap y ygv<ESC>
 
