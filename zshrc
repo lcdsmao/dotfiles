@@ -18,7 +18,6 @@ antigen bundle eza
 antigen bundle gitignore
 antigen bundle pip
 antigen bundle command-not-found
-antigen bundle thefuck
 antigen bundle asdf
 antigen bundle nvm
 antigen bundle rvm
