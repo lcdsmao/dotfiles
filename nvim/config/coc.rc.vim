@@ -43,10 +43,15 @@ nmap <silent> [d <Plug>(coc-diagnostic-prev)
 nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+" Use Telescope for gotos
+nmap <silent> gd :<C-u>Telescope coc definitions<cr>
+nmap <silent> gy :<C-u>Telescope coc type_definitions<cr>
+nmap <silent> gi :<C-u>Telescope coc implementations<cr>
+nmap <silent> gr :<C-u>Telescope coc references<cr>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call ShowDocumentation()<CR>
@@ -130,7 +135,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 " Using Telescope for COC if possible
-nnoremap <silent> ,l  :<C-u>CocList<cr>
+nnoremap <silent> ,l  :<C-u>Telescope coc<cr>
 nnoremap <silent> ,d  :<C-u>Telescope coc diagnostics<cr>
 nnoremap <silent> ,c  :<C-u>Telescope coc commands<cr>
 nnoremap <silent> ,o  :<C-u>Telescope coc document_symbols<cr>

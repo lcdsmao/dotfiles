@@ -23,6 +23,7 @@ require('telescope').setup({
     coc = {
       -- COC extension settings
       prefer_locations = true, -- always use Telescope locations to preview definitions/declarations/implementations etc
+      push_cursor_on_edit = true, -- save the cursor position to jump back in the future
     },
   },
 })
