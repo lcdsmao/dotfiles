@@ -48,7 +48,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'honza/vim-snippets'
 Plug 'windwp/nvim-autopairs'
 Plug 'github/copilot.vim'
-Plug 'olimorris/codecompanion.nvim'
+" Plug 'olimorris/codecompanion.nvim'
 Plug 'MeanderingProgrammer/render-markdown.nvim'
 Plug 'echasnovski/mini.diff'
 
