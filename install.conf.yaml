@@ -23,6 +23,9 @@
     ~/.config/bat:
       path: bat
       force: true
+    ~/.config/scripts:
+      path: scripts
+      force: true
     ~/.config/nvim/:
       glob: true
       path: nvim/*
