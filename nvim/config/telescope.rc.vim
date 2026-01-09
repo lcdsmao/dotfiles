@@ -15,6 +15,12 @@ require('telescope').setup({
         mirror = false,
       },
     },
+    mappings = {
+      i = {
+        ["<C-n>"] = require('telescope.actions').cycle_history_next,
+        ["<C-p>"] = require('telescope.actions').cycle_history_prev,
+      },
+    },
   },
   extensions = {
     -- codecompanion = {
