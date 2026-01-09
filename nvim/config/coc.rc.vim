@@ -71,8 +71,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rr <Plug>(coc-rename)
 
 " Remap for format selected region
-" xmap ,f  <Plug>(coc-format-selected)
-" nmap ,f  <Plug>(coc-format-selected)
+xmap =f  <Plug>(coc-format-selected)
+" nmap =f  <Plug>(coc-format-selected)
 
 augroup CocGroup
   autocmd!
@@ -118,8 +118,6 @@ inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float
 vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
-nmap =f :Format<cr>
-
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of language server.
 nmap <silent> <C-s> <Plug>(coc-range-select)
@@ -127,6 +125,7 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocActionAsync('format')
+nmap =f :Format<cr>
 
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
