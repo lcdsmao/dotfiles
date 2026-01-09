@@ -23,9 +23,6 @@ require('telescope').setup({
     },
   },
   extensions = {
-    -- codecompanion = {
-    --   prompt_title = "CodeCompanion Actions",
-    -- },
     coc = {
       -- COC extension settings
       prefer_locations = true, -- always use Telescope locations to preview definitions/declarations/implementations etc
@@ -35,7 +32,6 @@ require('telescope').setup({
 })
 
 -- Load extensions with error protection
--- pcall(require('telescope').load_extension, 'codecompanion')
 pcall(require('telescope').load_extension, 'coc')
 EOF
 
@@ -44,4 +40,3 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope git_files<cr>
 nnoremap <leader>fr <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
-" nnoremap <leader>fc <cmd>Telescope codecompanion<cr>
