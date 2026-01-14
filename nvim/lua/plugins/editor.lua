@@ -29,10 +29,10 @@ return {
   },
   {
     "bfredl/nvim-miniyank",
-    config = function()
-      vim.keymap.set('', 'p', '<Plug>(miniyank-autoput)')
-      vim.keymap.set('', 'P', '<Plug>(miniyank-autoPut)')
-    end,
+    keys = {
+      { "p", "<Plug>(miniyank-autoput)", mode = { "n", "x" }, desc = "Paste" },
+      { "P", "<Plug>(miniyank-autoPut)", mode = { "n", "x" }, desc = "Paste before" },
+    },
   },
   {
     "honza/vim-snippets",

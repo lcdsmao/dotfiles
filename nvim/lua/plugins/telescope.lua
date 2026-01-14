@@ -6,6 +6,12 @@ return {
       "nvim-lua/plenary.nvim",
       "fannheyward/telescope-coc.nvim",
     },
+    keys = {
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+      { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find git files" },
+      { "<leader>fr", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
+    },
     opts = {
       defaults = {
         layout_config = {
@@ -34,12 +40,6 @@ return {
     config = function(_, opts)
       require('telescope').setup(opts)
       pcall(require('telescope').load_extension, 'coc')
-
-      -- Keymaps
-      vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
-      vim.keymap.set('n', '<leader>fg', '<cmd>Telescope git_files<cr>')
-      vim.keymap.set('n', '<leader>fr', '<cmd>Telescope live_grep<cr>')
-      vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
     end,
   },
 }

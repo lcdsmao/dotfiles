@@ -1,13 +1,13 @@
 return {
   {
     "airblade/vim-gitgutter",
-    config = function()
-      vim.keymap.set('n', ']h', '<Plug>(GitGutterNextHunk)')
-      vim.keymap.set('n', '[h', '<Plug>(GitGutterPrevHunk)')
-      vim.keymap.set('n', 'ghs', '<Plug>(GitGutterStageHunk)')
-      vim.keymap.set('n', 'ghu', '<Plug>(GitGutterUndoHunk)')
-      vim.keymap.set('n', 'ghp', '<Plug>(GitGutterPreviewHunk)')
-    end,
+    keys = {
+      { "]h", "<Plug>(GitGutterNextHunk)", desc = "Next hunk" },
+      { "[h", "<Plug>(GitGutterPrevHunk)", desc = "Previous hunk" },
+      { "ghs", "<Plug>(GitGutterStageHunk)", desc = "Stage hunk" },
+      { "ghu", "<Plug>(GitGutterUndoHunk)", desc = "Undo hunk" },
+      { "ghp", "<Plug>(GitGutterPreviewHunk)", desc = "Preview hunk" },
+    },
   },
   {
     "tpope/vim-fugitive",
