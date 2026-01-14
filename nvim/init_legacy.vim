@@ -168,6 +168,3 @@ cnoreabbrev Qall qall
 
 " Helper function
 runtime ./extended.vim
-
-" Plugin
-runtime ./plugs.vim

@@ -46,33 +46,33 @@ M.cheatsheet_content = [[
 function M.show_cheatsheet()
   -- Create a new buffer
   local buf = vim.api.nvim_create_buf(false, true)
-  
+
   -- Set buffer options
   vim.api.nvim_buf_set_option(buf, 'buftype', 'nofile')
   vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
   vim.api.nvim_buf_set_option(buf, 'swapfile', false)
   vim.api.nvim_buf_set_option(buf, 'filetype', 'markdown')
   vim.api.nvim_buf_set_option(buf, 'modifiable', false)
-  
+
   -- Split content into lines
   local lines = vim.split(M.cheatsheet_content, '\n')
-  
+
   -- Set buffer content
   vim.api.nvim_buf_set_option(buf, 'modifiable', true)
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
   vim.api.nvim_buf_set_option(buf, 'modifiable', false)
-  
+
   -- Set buffer name
   vim.api.nvim_buf_set_name(buf, 'Cheatsheet')
-  
+
   -- Open in vertical split
   vim.cmd('vnew')
   local win = vim.api.nvim_get_current_win()
   vim.api.nvim_win_set_buf(win, buf)
-  
+
   -- Set window options
   vim.api.nvim_win_set_option(win, 'wrap', false)
-  
+
   -- Set buffer-local keymaps to close
   local opts = { noremap = true, silent = true, buffer = buf }
   vim.keymap.set('n', 'q', ':close<CR>', opts)
