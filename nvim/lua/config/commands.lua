@@ -24,21 +24,21 @@ vim.api.nvim_create_user_command("Redir", function(ctx)
   local rng = ctx.range
   local start = ctx.line1
   local finish = ctx.line2
-  
+
   -- Close existing scratch windows
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     if vim.w[win].scratch then
       vim.api.nvim_win_close(win, false)
     end
   end
-  
+
   local output
   if vim.startswith(cmd, "!") then
     local shell_cmd = cmd:gsub("^!", "")
     if shell_cmd:find("%%") then
       shell_cmd = shell_cmd:gsub("%%", vim.fn.expand("%:p"))
     end
-    
+
     if rng == 0 then
       output = vim.fn.systemlist(shell_cmd)
     else
@@ -49,7 +49,7 @@ vim.api.nvim_create_user_command("Redir", function(ctx)
   else
     output = vim.split(vim.api.nvim_exec2(cmd, { output = true }).output, "\n")
   end
-  
+
   vim.cmd("vnew")
   vim.w.scratch = 1
   vim.bo.buftype = "nofile"
@@ -75,17 +75,17 @@ local function bclose(bang, buffer)
   else
     btarget = vim.fn.bufnr(buffer)
   end
-  
+
   if btarget < 0 then
     warn("No matching buffer for " .. buffer)
     return
   end
-  
+
   if bang == "" and vim.fn.getbufvar(btarget, "&modified") == 1 then
     warn("No write since last change for buffer " .. btarget .. " (use :Bclose!)")
     return
   end
-  
+
   -- Get windows showing target buffer
   local wnums = {}
   for w = 1, vim.fn.winnr("$") do
@@ -93,12 +93,12 @@ local function bclose(bang, buffer)
       table.insert(wnums, w)
     end
   end
-  
+
   if vim.g.bclose_multiple ~= 1 and #wnums > 1 then
     warn('Buffer is in multiple windows (use ":let bclose_multiple=1")')
     return
   end
-  
+
   local wcurrent = vim.fn.winnr()
   for _, w in ipairs(wnums) do
     vim.cmd(w .. "wincmd w")
@@ -108,7 +108,7 @@ local function bclose(bang, buffer)
     else
       vim.cmd("bprevious")
     end
-    
+
     if btarget == vim.fn.bufnr("%") then
       local blisted = {}
       for b = 1, vim.fn.bufnr("$") do
@@ -116,14 +116,14 @@ local function bclose(bang, buffer)
           table.insert(blisted, b)
         end
       end
-      
+
       local bhidden = {}
       for _, b in ipairs(blisted) do
         if vim.fn.bufwinnr(b) < 0 then
           table.insert(bhidden, b)
         end
       end
-      
+
       local bjump = (bhidden[1] or blisted[1]) or -1
       if bjump > 0 then
         vim.cmd("buffer " .. bjump)
@@ -132,7 +132,7 @@ local function bclose(bang, buffer)
       end
     end
   end
-  
+
   vim.cmd("bdelete" .. bang .. " " .. btarget)
   vim.cmd(wcurrent .. "wincmd w")
 end

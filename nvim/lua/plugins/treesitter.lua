@@ -1,25 +1,8 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = false,
     build = ":TSUpdate",
-    opts = function()
-      require('nvim-treesitter').install {
-        "markdown",
-        "markdown_inline",
-        "lua",
-        "vim",
-        "vimdoc",
-        "query",
-        "javascript",
-        "typescript",
-        "python",
-        "rust",
-        "go",
-        "java",
-        "c",
-        "cpp",
-      }
-    end,
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
