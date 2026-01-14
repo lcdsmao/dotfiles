@@ -22,16 +22,10 @@ return {
   },
   {
     "windwp/nvim-autopairs",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    opts = {},
-    config = function(_, opts)
-      require('nvim-autopairs').setup(opts)
-      require('nvim-treesitter').setup {
-        autopairs = {
-          enable = true
-        }
-      }
-    end,
+    event = "InsertEnter",
+    opts = {
+      map_cr = false,
+    },
   },
   {
     "bfredl/nvim-miniyank",

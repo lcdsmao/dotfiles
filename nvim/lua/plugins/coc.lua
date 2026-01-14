@@ -23,10 +23,13 @@ return {
               \ CheckBackspace() ? "\<Tab>" :
               \ coc#refresh()
         inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
         " Make <CR> to accept selected completion item or notify coc.nvim to format
-        inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+        " inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+        "    \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+        " Work with nvim-autopairs
+        inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() :
+            \ "\<CMD>call feedkeys(v:lua.require('nvim-autopairs').autopairs_cr(), 'in')\<CR>"
+
 
         function! CheckBackspace() abort
           let col = col('.') - 1
