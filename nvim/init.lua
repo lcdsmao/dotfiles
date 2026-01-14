@@ -1,8 +1,12 @@
--- Load legacy vimrc settings
-vim.cmd('runtime init_legacy.vim')
+-- Load core configuration
+require("config.options")
+require("config.keymaps")
+require("config.autocmds")
+require("config.commands")
 
 -- Setup lazy.nvim
 require("config.lazy")
 
--- Other configurations
+-- Load miscellaneous configurations
 require("config.cheatsheet")
+
