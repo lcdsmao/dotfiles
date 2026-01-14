@@ -2,6 +2,7 @@ return {
   {
     "neoclide/coc.nvim",
     branch = "release",
+    lazy = false,
     config = function()
       vim.cmd([[
         " Some servers have issues with backup files, see #649.
