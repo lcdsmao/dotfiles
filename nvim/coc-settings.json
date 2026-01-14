@@ -44,16 +44,6 @@
         "useClientCapabilities": true,
         "useServerCapabilities": true
       }
-    },
-    "kotlin": {
-      "command": "kotlin-lsp",
-      "args": ["--stdio"],
-      "filetypes": ["kotlin"],
-      "rootPatterns": ["build.gradle.kts", "build.gradle", ".git/"],
-      "initializationOptions": {
-        "useClientCapabilities": true,
-        "useServerCapabilities": true
-      }
     }
   },
   "snippets.ultisnips.pythonPrompt": false
