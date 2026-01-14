@@ -19,8 +19,8 @@ return {
         },
         mappings = {
           i = {
-            ["<C-n>"] = function() return require('telescope.actions').cycle_history_next end,
-            ["<C-p>"] = function() return require('telescope.actions').cycle_history_prev end,
+            ["<C-n>"] = require('telescope.actions').cycle_history_next,
+            ["<C-p>"] = require('telescope.actions').cycle_history_prev,
           },
         },
       },
