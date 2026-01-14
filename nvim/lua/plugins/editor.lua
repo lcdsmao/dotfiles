@@ -15,6 +15,9 @@ return {
     "editorconfig/editorconfig-vim",
   },
   {
+    "tpope/vim-sleuth",
+  },
+  {
     "AndrewRadev/splitjoin.vim",
   },
   {
