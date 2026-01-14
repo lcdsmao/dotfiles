@@ -89,6 +89,3 @@ end
 if vim.env.COLORTERM == "gnome-terminal" then
   opt.t_Co = 256
 end
-
--- Enable syntax
-vim.cmd("syntax enable")
