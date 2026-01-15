@@ -138,42 +138,41 @@ return {
               \ 'coc-xml',
               \ 'coc-emmet',
               \ 'coc-diagnostic',
-              \ 'coc-explorer',
               \ ]
 
         " explorer
-        let g:coc_explorer_global_presets = {
-              \   '.dot': {
-              \     'position': 'floating', 
-              \     'root-uri': '~/dotfiles',
-              \   },
-              \   'floating': {
-              \     'position': 'floating',
-              \     'open-action-strategy': 'sourceWindow',
-              \   },
-              \   'simplify': {
-              \     'position': 'left',
-              \     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
-              \   }
-              \ }
+        " let g:coc_explorer_global_presets = {
+        "       \   '.dot': {
+        "       \     'position': 'floating', 
+        "       \     'root-uri': '~/dotfiles',
+        "       \   },
+        "       \   'floating': {
+        "       \     'position': 'floating',
+        "       \     'open-action-strategy': 'sourceWindow',
+        "       \   },
+        "       \   'simplify': {
+        "       \     'position': 'left',
+        "       \     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+        "       \   }
+        "       \ }
 
-        nmap <space>nn :CocCommand explorer --preset simplify --no-toggle<CR>
-        nmap <space>nf :CocCommand explorer --preset floating<CR>
-        nmap <space>nd :CocCommand explorer --preset .dot<CR>
-        autocmd ColorScheme *
-              \ hi CocExplorerNormalFloatBorder guifg=transparent guibg=transparent
+        "nmap <space>nn :CocCommand explorer --preset simplify --no-toggle<CR>
+        "nmap <space>nf :CocCommand explorer --preset floating<CR>
+        "nmap <space>nd :CocCommand explorer --preset .dot<CR>
+        "autocmd ColorScheme *
+        "      \ hi CocExplorerNormalFloatBorder guifg=transparent guibg=transparent
 
-        " Auto refresh
-        function! s:enter_explorer()
-          if &filetype == 'coc-explorer'
-            call CocActionAsync('runCommand', 'explorer.doAction', 'closest', ['refresh'])
-          endif
-        endfunction
+        "" Auto refresh
+        "function! s:enter_explorer()
+        "  if &filetype == 'coc-explorer'
+        "    call CocActionAsync('runCommand', 'explorer.doAction', 'closest', ['refresh'])
+        "  endif
+        "endfunction
 
-        augroup CocExplorerCustom
-          autocmd!
-          autocmd BufEnter * call <SID>enter_explorer()
-        augroup END
+        "augroup CocExplorerCustom
+        "  autocmd!
+        "  autocmd BufEnter * call <SID>enter_explorer()
+        "augroup END
       ]])
     end,
   },
