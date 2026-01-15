@@ -26,6 +26,7 @@ return {
         },
         mappings = {
           i = {
+            ["<C-q>"] = require('telescope.actions').smart_send_to_qflist + require('telescope.actions').open_qflist,
             ["<C-n>"] = require('telescope.actions').cycle_history_next,
             ["<C-p>"] = require('telescope.actions').cycle_history_prev,
           },
