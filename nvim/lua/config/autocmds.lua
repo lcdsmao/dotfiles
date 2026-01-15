@@ -30,3 +30,10 @@ autocmd("BufReadPost", {
     end
   end,
 })
+
+-- Checks for changes when the window gains focus or switch buffers
+autocmd({ "FocusGained", "BufEnter" }, {
+  group = augroup("AutoRefresh", { clear = true }),
+  command = ":silent! checktime",
+  pattern = "*",
+})
