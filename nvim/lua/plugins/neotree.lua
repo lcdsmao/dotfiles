@@ -15,6 +15,10 @@ return {
     opts = {
       window = {
         mappings = {
+          ["z"] = "noop",
+          ["Z"] = "close_all_nodes",
+          ["h"] = "close_node",
+          ["l"] = "open",
           ["gs"] = function(state)
             local reveal_file = vim.fn.expand("#:p")
             if reveal_file ~= "" then
