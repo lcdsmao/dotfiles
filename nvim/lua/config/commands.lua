@@ -16,7 +16,7 @@ vim.cmd([[
 vim.api.nvim_create_user_command("W", "w !sudo tee % > /dev/null", {})
 
 -- Insert date abbreviation
-vim.cmd([[iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>]])
+vim.cmd([[iab xdate <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>]])
 
 -- Redirect command output to scratch buffer
 vim.api.nvim_create_user_command("Redir", function(ctx)
