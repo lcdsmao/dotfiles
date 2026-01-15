@@ -122,7 +122,7 @@ return {
         command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
         " Using Telescope for COC if possible
-        nnoremap <silent> ,l  :<C-u>Telescope coc<cr>
+        nnoremap <silent> ,l  :<C-u>CocList<cr>
         nnoremap <silent> ,d  :<C-u>Telescope coc diagnostics<cr>
         nnoremap <silent> ,c  :<C-u>Telescope coc commands<cr>
         nnoremap <silent> ,o  :<C-u>Telescope coc document_symbols<cr>
@@ -138,7 +138,11 @@ return {
               \ 'coc-xml',
               \ 'coc-emmet',
               \ 'coc-diagnostic',
+              \ 'coc-lists',
               \ ]
+
+        " Coc lists
+        nnoremap <silent> ,m :<C-u>Telescope coc mru<cr>
 
         " explorer
         " let g:coc_explorer_global_presets = {
