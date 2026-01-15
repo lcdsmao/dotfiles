@@ -40,4 +40,20 @@ return {
   {
     "kevinhwang91/nvim-bqf",
   },
+  {
+    "echasnovski/mini.bufremove",
+    version = "*",
+    keys = {
+      {
+        "<leader>x",
+        function()
+          require("mini.bufremove").delete(0, false)
+        end,
+        desc = "Close buffer",
+      },
+    },
+    config = function()
+      require("mini.bufremove").setup()
+    end,
+  },
 }
