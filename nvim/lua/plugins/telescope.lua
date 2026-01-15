@@ -2,11 +2,11 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-      "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
-      "fannheyward/telescope-coc.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = 'make' },
     },
     keys = {
+      { "<leader>ft", "<cmd>Telescope<cr>", desc = "Telescope" },
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
       { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find git files" },
       { "<leader>fa", "<cmd>Telescope find_files hidden=true no_ignore=true<cr>", desc = "Find all files" },

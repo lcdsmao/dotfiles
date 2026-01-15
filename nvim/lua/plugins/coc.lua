@@ -1,6 +1,10 @@
 return {
   {
     "neoclide/coc.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "fannheyward/telescope-coc.nvim",
+    },
     branch = "release",
     lazy = false,
     config = function()
