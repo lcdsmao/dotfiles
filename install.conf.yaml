@@ -30,8 +30,6 @@
       glob: true
       path: nvim/*
       create: true
-      exclude: 
-        - nvim/autoload
     ~/.tmux.conf:
       path: tmux.conf
       force: true
