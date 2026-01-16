@@ -1,6 +1,7 @@
 return {
   {
     "airblade/vim-gitgutter",
+    event = "BufRead",
     keys = {
       { "]h", "<Plug>(GitGutterNextHunk)", desc = "Next hunk" },
       { "[h", "<Plug>(GitGutterPrevHunk)", desc = "Previous hunk" },
