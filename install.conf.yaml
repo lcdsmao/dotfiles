@@ -40,6 +40,10 @@
     ~/.config/starship.toml:
       path: starship.toml
       force: true
+    ~/.config/wezterm/:
+      glob: true
+      path: webterm/*
+      create: true
     ~/.zshconfig/plugins:
       glob: true
       create: true
