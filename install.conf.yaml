@@ -30,6 +30,10 @@
       glob: true
       path: nvim/*
       create: true
+    ~/.config/opencode/:
+      glob: true
+      path: ai/opencode/*
+      create: true
     ~/.tmux.conf:
       path: tmux.conf
       force: true
