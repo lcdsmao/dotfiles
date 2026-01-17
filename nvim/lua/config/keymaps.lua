@@ -6,7 +6,9 @@ local map = vim.keymap.set
 
 -- Navigation
 map("n", "<leader>a", "^", { desc = "Go to beginning of line" })
+map("v", "<leader>a", "^", { desc = "Go to beginning of line" })
 map("n", "<leader>e", "$", { desc = "Go to end of line" })
+map("v", "<leader>e", "$", { desc = "Go to end of line" })
 
 -- Split
 map("n", "<leader>ss", ":split<CR>", { desc = "Horizontal split" })
