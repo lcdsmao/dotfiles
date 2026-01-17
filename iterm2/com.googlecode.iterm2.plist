@@ -15,13 +15,13 @@
 	<key>AITermAPI</key>
 	<integer>2</integer>
 	<key>AIVectorStore</key>
-	<integer>1</integer>
+	<integer>0</integer>
 	<key>AiMaxTokens</key>
-	<integer>1000000</integer>
+	<integer>400000</integer>
 	<key>AiModel</key>
-	<string>gpt-4.1</string>
+	<string>gpt-5.1</string>
 	<key>AiResponseMaxTokens</key>
-	<integer>32768</integer>
+	<integer>128000</integer>
 	<key>AitermURL</key>
 	<string>https://api.openai.com/v1/responses</string>
 	<key>AllowClipboardAccess</key>
@@ -3394,36 +3394,10 @@
 					<integer>1</integer>
 					<key>auto-rainbow style</key>
 					<integer>0</integer>
-					<key>background color</key>
-					<dict>
-						<key>Alpha Component</key>
-						<real>1</real>
-						<key>Blue Component</key>
-						<real>0.19691023230552673</real>
-						<key>Color Space</key>
-						<string>P3</string>
-						<key>Green Component</key>
-						<real>0.16420909762382507</real>
-						<key>Red Component</key>
-						<real>0.15192815661430359</real>
-					</dict>
 					<key>font</key>
-					<string>Menlo-Regular 11</string>
+					<string>JetBrainsMonoNF-Regular 12</string>
 					<key>remove empty components</key>
 					<false/>
-					<key>separator color 2</key>
-					<dict>
-						<key>Alpha Component</key>
-						<real>0.0</real>
-						<key>Blue Component</key>
-						<real>0.0</real>
-						<key>Color Space</key>
-						<string>P3</string>
-						<key>Green Component</key>
-						<real>0.0</real>
-						<key>Red Component</key>
-						<real>0.0</real>
-					</dict>
 				</dict>
 				<key>components</key>
 				<array>
@@ -3447,36 +3421,10 @@
 								<integer>1</integer>
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
-								<key>background color</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>1</real>
-									<key>Blue Component</key>
-									<real>0.20000000298023224</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.16470588743686676</real>
-									<key>Red Component</key>
-									<real>0.14901961386203766</real>
-								</dict>
 								<key>font</key>
-								<string>Roboto-Regular 12</string>
+								<string>JetBrainsMonoNF-Regular 12</string>
 								<key>remove empty components</key>
 								<false/>
-								<key>separator color 2</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>0.0</real>
-									<key>Blue Component</key>
-									<real>0.0</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.0</real>
-									<key>Red Component</key>
-									<real>0.0</real>
-								</dict>
 							</dict>
 						</dict>
 					</dict>
@@ -3502,36 +3450,10 @@
 								<integer>1</integer>
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
-								<key>background color</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>1</real>
-									<key>Blue Component</key>
-									<real>0.20000000298023224</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.16470588743686676</real>
-									<key>Red Component</key>
-									<real>0.14901961386203766</real>
-								</dict>
 								<key>font</key>
-								<string>Roboto-Regular 12</string>
+								<string>JetBrainsMonoNF-Regular 12</string>
 								<key>remove empty components</key>
 								<false/>
-								<key>separator color 2</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>0.0</real>
-									<key>Blue Component</key>
-									<real>0.0</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.0</real>
-									<key>Red Component</key>
-									<real>0.0</real>
-								</dict>
 							</dict>
 						</dict>
 					</dict>
@@ -3555,36 +3477,10 @@
 								<integer>1</integer>
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
-								<key>background color</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>1</real>
-									<key>Blue Component</key>
-									<real>0.20000000298023224</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.16470588743686676</real>
-									<key>Red Component</key>
-									<real>0.14901961386203766</real>
-								</dict>
 								<key>font</key>
-								<string>Roboto-Regular 12</string>
+								<string>JetBrainsMonoNF-Regular 12</string>
 								<key>remove empty components</key>
 								<false/>
-								<key>separator color 2</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>0.0</real>
-									<key>Blue Component</key>
-									<real>0.0</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.0</real>
-									<key>Red Component</key>
-									<real>0.0</real>
-								</dict>
 							</dict>
 						</dict>
 					</dict>
@@ -3619,36 +3515,10 @@
 								<integer>1</integer>
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
-								<key>background color</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>1</real>
-									<key>Blue Component</key>
-									<real>0.20000000298023224</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.16470588743686676</real>
-									<key>Red Component</key>
-									<real>0.14901961386203766</real>
-								</dict>
 								<key>font</key>
-								<string>Roboto-Regular 12</string>
+								<string>JetBrainsMonoNF-Regular 12</string>
 								<key>remove empty components</key>
 								<false/>
-								<key>separator color 2</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>0.0</real>
-									<key>Blue Component</key>
-									<real>0.0</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.0</real>
-									<key>Red Component</key>
-									<real>0.0</real>
-								</dict>
 							</dict>
 						</dict>
 					</dict>
@@ -3683,36 +3553,10 @@
 								<integer>1</integer>
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
-								<key>background color</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>1</real>
-									<key>Blue Component</key>
-									<real>0.20000000298023224</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.16470588743686676</real>
-									<key>Red Component</key>
-									<real>0.14901961386203766</real>
-								</dict>
 								<key>font</key>
-								<string>Roboto-Regular 12</string>
+								<string>JetBrainsMonoNF-Regular 12</string>
 								<key>remove empty components</key>
 								<false/>
-								<key>separator color 2</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>0.0</real>
-									<key>Blue Component</key>
-									<real>0.0</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.0</real>
-									<key>Red Component</key>
-									<real>0.0</real>
-								</dict>
 							</dict>
 						</dict>
 					</dict>
@@ -3747,36 +3591,10 @@
 								<integer>1</integer>
 								<key>auto-rainbow style</key>
 								<integer>0</integer>
-								<key>background color</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>1</real>
-									<key>Blue Component</key>
-									<real>0.20000000298023224</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.16470588743686676</real>
-									<key>Red Component</key>
-									<real>0.14901961386203766</real>
-								</dict>
 								<key>font</key>
-								<string>Roboto-Regular 12</string>
+								<string>JetBrainsMonoNF-Regular 12</string>
 								<key>remove empty components</key>
 								<false/>
-								<key>separator color 2</key>
-								<dict>
-									<key>Alpha Component</key>
-									<real>0.0</real>
-									<key>Blue Component</key>
-									<real>0.0</real>
-									<key>Color Space</key>
-									<string>sRGB</string>
-									<key>Green Component</key>
-									<real>0.0</real>
-									<key>Red Component</key>
-									<real>0.0</real>
-								</dict>
 							</dict>
 						</dict>
 					</dict>
@@ -5035,8 +4853,10 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewPreferredModeKey</key>
-	<integer>0</integer>
+	<integer>7</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
+	<false/>
+	<key>kCPKUseSystemColorPicker</key>
 	<false/>
 </dict>
 </plist>
