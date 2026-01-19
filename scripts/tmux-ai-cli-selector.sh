@@ -49,19 +49,17 @@ if [ -n "$AI_CLI" ]; then
 	# Save the selected CLI for next time (ensure cache directory exists)
 	mkdir -p "$CACHE_DIR"
 	echo "$AI_CLI" >"$LAST_CLI_FILE"
+	OPTIONS=()
 
-	# Only show resume option for copilot (others can resume inside chat session)
 	if [ "$AI_CLI" = "copilot" ]; then
+		# Only show resume option for copilot (others can resume inside chat session)
 		RESUME=$(printf "No\nYes" | fzf --prompt="Resume previous session? " --height=~50% --reverse --border)
-
 		if [ "$RESUME" = "Yes" ]; then
-			exec "$AI_CLI" --resume
-		else
-			exec "$AI_CLI"
+			OPTIONS+=("--resume")
 		fi
-	else
-		exec "$AI_CLI"
+		OPTIONS+=("--allow-all-tools")
 	fi
+	exec "$AI_CLI" "${OPTIONS[@]}"
 else
-	exec "$SHELL"
+	exit 0
 fi
