@@ -3,9 +3,16 @@
 
 - defaults:
     link:
+      create: true
       relink: true
 
-- clean: ['~']
+- clean:
+    ~/:
+      force: true
+    ~/.config:
+      recursive: true
+    ~/.zshconfig:
+      recursive: true
 
 - create:
     - ~/.config
@@ -16,6 +23,9 @@
     ~/.vimrc: vimrc
     ~/.zshrc:
       path: zshrc
+      force: true
+    ~/.tmux.conf:
+      path: tmux.conf
       force: true
     ~/.config/karabiner:
       path: karabiner
@@ -29,24 +39,17 @@
     ~/.config/nvim/:
       glob: true
       path: nvim/*
-      create: true
     ~/.config/opencode/:
       glob: true
       path: ai/opencode/*
-      create: true
-    ~/.tmux.conf:
-      path: tmux.conf
-      force: true
     ~/.config/starship.toml:
       path: starship.toml
       force: true
     ~/.config/wezterm/:
       glob: true
       path: webterm/*
-      create: true
     ~/.zshconfig/plugins:
       glob: true
-      create: true
       force: true
       path: zshplugins/*
     ~/.ripgreprc: ripgreprc
