@@ -35,12 +35,12 @@ return {
           return false
         end
 
-        local pane_cmd = vim.fn.system(
-          'tmux display-message -p -t "' .. vim.g.VimuxRunnerIndex .. '" "#{pane_current_command}" 2>/dev/null'
+        local pane_type = vim.fn.system(
+          'tmux show-options -pv -t "' .. vim.g.VimuxRunnerIndex .. '" @pane-type 2>/dev/null'
         )
         if vim.v.shell_error == 0 then
-          pane_cmd = vim.fn.trim(pane_cmd)
-          return vim.fn.match(pane_cmd, '\\v(opencode|copilot|claude|codex|gemini)$') ~= -1
+          pane_type = vim.fn.trim(pane_type)
+          return pane_type == "ai-cli"
         end
         return false
       end
