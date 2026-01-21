@@ -34,91 +34,11 @@ function avdr() {
     selected_avd="$(emulator -list-avds | fzf)" && (emulator @"$selected_avd" "$@" > /dev/null 2>&1 &)
 }
 
-function adb_select_device() {
-    local devs
-    local selected_dev
-    local dev_cnt
-    devs="$(command adb devices -l | awk 'NR > 1 { print }')"
-    dev_cnt="$(echo "$devs" | wc -l)"
-    if [[ $dev_cnt -le 1 ]]; then
-        selected_dev="$devs"
-    else
-        selected_dev="$(echo "$devs" | fzf)"
-    fi
-    echo "$selected_dev" | awk '{ print $1 }'
-}
-
-function adbt() {
-    case "$1" in
-        -a)
-            export _adb_type="ALL"
-            echo "adb type: ALL"
-            ;;
-        -f)
-            export _adb_type="FZF"
-            echo "adb type: FZF"
-            ;;
-        -d)
-            unset _adb_type
-            echo "adb type: DEFAULT"
-            ;;
-        *)
-            export _adb_type="ONE"
-            echo "adb type: ONE"
-            ;;
-    esac
-}
-
-function adb() {
-    case "$_adb_type" in
-        "ALL")
-            adb_all "$@"
-            ;;
-        "FZF")
-            adb_fzf "$@"
-            ;;
-        "ONE")
-            adb_one "$@"
-            ;;
-        *)
-            command adb "$@"
-            ;;
-
-    esac
-}
-
-function adb_all() {
-    local ds=()
-    while IFS='' read -r line; do ds+=("$line"); done < <(command adb devices | awk 'NR > 1 {print $1 }')
-    for i in "${ds[@]}"; do
-        [[ -n $i ]] && command adb -s "$i" "$@"
-    done
-}
-
-function adb_fzf() {
-    command adb -s "$(adb_select_device)" "$@"
-}
-
-function adb_one() {
-    local ds=()
-    while IFS='' read -r line; do ds+=("$line"); done < <(command adb devices | awk 'NR > 1')
-    for i in "${ds[@]}"; do
-        read -r device state <<< "$i"
-        if [[ $state = "device" ]]; then
-            command adb -s "$device" "$@"
-            break
-        fi
-    done
-}
-
 function adbshot() {
     DATE=$(date '+%y%m%d%H%M%S')
     FILE_NAME=screenshot-${DATE}.png
     DIR_PATH=~/Desktop
-
-    local selected_dev
-    selected_dev=$(adb_select_device)
-    command adb -s "$selected_dev" shell screencap -p > "${DIR_PATH}/${FILE_NAME}"
+    adb shell screencap -p > "${DIR_PATH}/${FILE_NAME}"
 }
 
 function adbrecord() {
@@ -126,10 +46,8 @@ function adbrecord() {
     FILE_NAME=record-${DATE}
     YOUR_PATH=~/Desktop
 
-    local selected_dev
-    selected_dev=$(adb_select_device)
-
-    command adb -s "$selected_dev" shell screenrecord /sdcard/"$FILE_NAME".mp4 &
+    selected_device=$(adbs)
+    adb -s "$selected_device" shell screenrecord /sdcard/"$FILE_NAME".mp4 &
     pid=$(ps x | grep -v grep | grep "shell screenrecord" | awk '{ print $1 }')
 
     if [ -z "$pid" ]; then
@@ -147,15 +65,15 @@ function adbrecord() {
 
     kill -9 "$pid" # Finished the process of adb screenrecord
     while :; do
-        alive=$(command adb -s "$selected_dev" shell ps | grep screenrecord | grep -v grep | awk '{ print $9 }')
+        alive=$(adb -s "$selected_device" shell ps | grep screenrecord | grep -v grep | awk '{ print $9 }')
         if [ -z "$alive" ]; then
             break
         fi
     done
 
     printf "Finished the recording process : %s\nSending to %s...\n" "$pid" "$YOUR_PATH"
-    command adb -s "$selected_dev" pull /sdcard/"${FILE_NAME}".mp4 $YOUR_PATH
-    command adb -s "$selected_dev" shell rm /sdcard/"${FILE_NAME}".mp4
+    command adb -s "$selected_device" pull /sdcard/"${FILE_NAME}".mp4 $YOUR_PATH
+    command adb -s "$selected_device" shell rm /sdcard/"${FILE_NAME}".mp4
 
     echo "Converts to GIF? [y]"
     read -r convertGif
@@ -165,9 +83,117 @@ function adbrecord() {
     esac
 }
 
-function adbwifi() {
-    adb tcpip 5555 \
-        && sleep 1 \
-        && ip=$(adb shell "ip addr show wlan0 | grep -e wlan0$ | cut -d\" \" -f 6 | cut -d/ -f 1") \
-        && adb connect "$ip":5555
+function scrcpy() {
+    command scrcpy -s "$(adbs)" "$@"
+}
+
+# Function to interactively select an ADB device and return its serial number.
+# Usage: serial=$(adbs)
+function adbs() {
+    # Check if 'fzf' is installed
+    if ! command -v fzf > /dev/null 2>&1; then
+        echo "Error: fzf is not installed." >&2
+        return 1
+    fi
+
+    # Get the detailed list of connected devices
+    # We skip the header line and any empty lines
+    local devices_detailed
+    devices_detailed=$(command adb devices -l | sed '1d' | grep -v '^$')
+
+    if [ -z "$devices_detailed" ]; then
+        echo "Error: No devices/emulators found." >&2
+        return 1
+    fi
+
+    local device_count
+    device_count=$(echo "$devices_detailed" | wc -l | awk '{print $1}')
+
+    if [ "$device_count" -eq 1 ]; then
+        # If only one device, return it directly without prompt
+        echo "$devices_detailed" | awk '{print $1}'
+    else
+        # Multiple devices: use fzf to pick one
+        local selection
+        selection=$(echo "$devices_detailed" | fzf --height 40% --reverse --prompt="Select ADB Device: " --header="Multiple devices found:")
+
+        if [ -n "$selection" ]; then
+            # Extract and return only the serial number
+            echo "$selection" | awk '{print $1}'
+        else
+            return 1
+        fi
+    fi
+}
+
+# A smart wrapper for the 'adb' command and a standalone device selector.
+function adb() {
+    # Check if 'fzf' is installed
+    if ! command -v fzf > /dev/null 2>&1; then
+        command adb "$@"
+        return $?
+    fi
+
+    local first_arg="$1"
+    local needs_target=true
+
+    # If no arguments, just run standard adb (which shows help)
+    if [ -z "$first_arg" ]; then
+        command adb
+        return $?
+    fi
+
+    # Check if the command is in the skip list
+    # Using a case statement here is the most portable way to check
+    # against multiple strings in both Bash and Zsh without array issues.
+    case "$first_arg" in
+        devices | help | version | start-server | kill-server | connect | disconnect)
+            needs_target=false
+            ;;
+    esac
+
+    # Check if user already provided a target flag (-s, -d, -e, -t)
+    local has_target=false
+    for arg in "$@"; do
+        case "$arg" in
+            -s | -d | -e | -t)
+                has_target=true
+                break
+                ;;
+        esac
+    done
+
+    # If we already have a target flag or don't need a target, pass through immediately
+    if [ "$has_target" = true ] || [ "$needs_target" = false ]; then
+        command adb "$@"
+        return $?
+    fi
+
+    # Check for devices
+    local devices_list
+    devices_list=$(command adb devices | sed '1d' | grep -v '^$')
+
+    if [ -z "$devices_list" ]; then
+        command adb "$@"
+        return $?
+    fi
+
+    local device_count
+    device_count=$(echo "$devices_list" | wc -l | awk '{print $1}')
+
+    if [ "$device_count" -le 1 ]; then
+        command adb "$@"
+    else
+        # Use the adbs function for selection
+        local selected_device
+        selected_device=$(adbs)
+
+        if [ -n "$selected_device" ]; then
+            echo "Targeting device: $selected_device"
+            command adb -s "$selected_device" "$@"
+        else
+            echo "Selection cancelled."
+            return 1
+        fi
+    fi
 }
