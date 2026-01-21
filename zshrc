@@ -1,17 +1,12 @@
 # Profile for zsh shell
 # $ time zsh -i -c exit
-# zmodload zsh/zprof
+zmodload zsh/zprof
 
 # Keep PATH variable clean
 if [ -f /etc/profile ]; then
     PATH=""
     source /etc/profile
 fi
-
-# Configure plugin settings BEFORE loading antidote
-export NVM_LAZY_LOAD=true  # Lazy-load nvm (biggest perf win)
-export NVM_COMPLETION=true # Enable nvm completion
-export NVM_AUTO_USE=true   # Auto-switch Node version based on .nvmrc
 
 # Disable oh-my-zsh auto-update checks
 zstyle ':omz:update' mode disabled
@@ -87,4 +82,4 @@ alias o='open .'
 alias c='clear'
 
 # Profile end
-# zprof
+zprof
