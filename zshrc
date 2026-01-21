@@ -1,6 +1,6 @@
 # Profile for zsh shell
 # $ time zsh -i -c exit
-zmodload zsh/zprof
+# zmodload zsh/zprof
 
 # Keep PATH variable clean
 if [ -f /etc/profile ]; then
@@ -82,4 +82,4 @@ alias o='open .'
 alias c='clear'
 
 # Profile end
-zprof
+# zprof
