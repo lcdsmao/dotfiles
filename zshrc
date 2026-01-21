@@ -13,20 +13,7 @@ zstyle ':omz:update' mode disabled
 
 # Source antidote
 source "${HOME}/.antidote/antidote.zsh"
-
-# Set the root name of the plugins files (.txt and .zsh) antidote will use
-zsh_plugins="${ZDOTDIR:-$HOME}/.zsh_plugins"
-
-#Ensure the .zsh_plugins.txt file exists so you can add plugins
-[[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
-
-# Generate a new static file whenever .zsh_plugins.txt is updated
-if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
-    antidote bundle < ${zsh_plugins}.txt >| ${zsh_plugins}.zsh
-fi
-
-# Source your static plugins file
-source ${zsh_plugins}.zsh
+antidote load
 
 export TERM="xterm-256color"
 
@@ -55,12 +42,6 @@ fi
 # Path
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.docker/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="$PATH:$HOME/flutter/bin"
-export PATH="$PATH:$HOME/.pub-cache/bin"
-export PATH="$PATH:$HOME/.maestro/bin"
-export PATH="$PATH:$HOME/.flashlight/bin"
-export PATH="/usr/local/sbin:$PATH"
 export PATH="$PATH:$HOME/.zshconfig/plugins/bin"
 
 # ignore ctrl + d
@@ -70,11 +51,6 @@ setopt ignoreeof
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-x' edit-command-line
-
-# start tmux automatically
-# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-#     exec tmux new-session -A -s main
-# fi
 
 # Alias
 alias vi=nvim
