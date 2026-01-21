@@ -113,18 +113,3 @@ function fcs() {
         && commit=$(echo "$commits" | fzf --tac +s +m -e --ansi --reverse) \
         && echo -n "$(echo "$commit" | sed "s/ .*//")"
 }
-
-###################################################
-# Autojump
-function j() {
-    local preview_cmd="ls -la {}"
-    if command -v eza &> /dev/null; then
-        preview_cmd="eza -la --color=always {}"
-    fi
-
-    if [[ $# -eq 0 ]]; then
-        cd "$(autojump -s | grep -E '^\s*[0-9]+\.[0-9]+:\s+/' | sort -t: -k1 -rn | awk -F'\t' '{print $2}' | fzf --height 60% --reverse --inline-info --no-sort --tiebreak=index --preview "$preview_cmd")" || return
-    else
-        cd "$(autojump "$@")" || return
-    fi
-}
