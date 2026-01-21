@@ -1,3 +1,7 @@
+# Profile for zsh shell
+# $ time zsh -i -c exit
+# zmodload zsh/zprof
+
 # Keep PATH variable clean
 if [ -f /etc/profile ]; then
     PATH=""
@@ -81,3 +85,6 @@ bindkey '\C-x\C-x' edit-command-line
 alias vi=nvim
 alias o='open .'
 alias c='clear'
+
+# Profile end
+# zprof
