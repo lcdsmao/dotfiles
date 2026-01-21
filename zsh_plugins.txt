@@ -12,7 +12,6 @@ ohmyzsh/ohmyzsh path:plugins/eza
 ohmyzsh/ohmyzsh path:plugins/gitignore
 ohmyzsh/ohmyzsh path:plugins/pip
 ohmyzsh/ohmyzsh path:plugins/command-not-found
-ohmyzsh/ohmyzsh path:plugins/fnm
 
 # Completion and syntax highlighting (deferred for better performance)
 zsh-users/zsh-syntax-highlighting kind:defer
@@ -22,6 +21,7 @@ zsh-users/zsh-autosuggestions kind:defer
 $HOME/.zshconfig/plugins/android.zsh
 $HOME/.zshconfig/plugins/ffmpeg.zsh
 $HOME/.zshconfig/plugins/flutter.zsh
+$HOME/.zshconfig/plugins/fnm.zsh
 $HOME/.zshconfig/plugins/fzf.zsh
 $HOME/.zshconfig/plugins/ios.zsh
 $HOME/.zshconfig/plugins/java.zsh
