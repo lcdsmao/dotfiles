@@ -24,6 +24,9 @@
     ~/.zshrc:
       path: zshrc
       force: true
+    ~/.zsh_plugins.txt:
+      path: .zsh_plugins.txt
+      force: true
     ~/.tmux.conf:
       path: tmux.conf
       force: true
@@ -58,6 +61,6 @@
     - command: 'git submodule update --init --recursive'
       description: Installing submodules
       stdout: true
-    - command: '[ ! -e ~/.zshconfig/antigen ] && git clone https://github.com/zsh-users/antigen.git ~/.zshconfig/antigen || true'
-      description: Installing antigen
+    - command: '[ ! -e ~/.antidote ] && git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote || true'
+      description: Installing antidote
       stdout: true
