@@ -25,7 +25,7 @@
       path: zshrc
       force: true
     ~/.zsh_plugins.txt:
-      path: .zsh_plugins.txt
+      path: zsh_plugins.txt
       force: true
     ~/.tmux.conf:
       path: tmux.conf
