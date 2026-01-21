@@ -25,7 +25,6 @@ antigen bundle rbenv
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle jeffreytse/zsh-vi-mode
 
 # Local plugins.
 antigen bundle "$HOME/.zshconfig/plugins"
@@ -71,6 +70,11 @@ export PATH="$PATH:$HOME/.zshconfig/plugins/bin"
 # ignore ctrl + d
 setopt ignoreeof
 
+# Enable command line editor
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '\C-x\C-x' edit-command-line
+
 # start tmux automatically
 # if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 #     exec tmux new-session -A -s main
@@ -80,9 +84,3 @@ setopt ignoreeof
 alias vi=nvim
 alias o='open .'
 alias c='clear'
-
-# https://github.com/jeffreytse/zsh-vi-mode/issues/24#issuecomment-783981662
-# Fix conflicts between zsh-vi-mode and fzf
-zvm_after_init() {
-  source <(fzf --zsh)
-}
