@@ -23,7 +23,7 @@ export FZF_DEFAULT_OPTS="--history=$HOME/.fzf_history
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --color=fg:#8085a6,fg+:#d0d0d0,bg:-1,bg+:#262626
   --color=hl:#bdc3e6,hl+:#5fd7ff,info:#929be5,marker:#b871b8
-  --color=prompt:#32364c,spinner:#73c1a9,pointer:#b871b8,header:#32364c
+  --color=prompt:#696f9f,spinner:#73c1a9,pointer:#b871b8,header:#32364c
   --color=border:#32364c,label:#aeaeae,query:#d9d9d9
   --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="> "
   --marker=">" --pointer="◆" --separator="─" --scrollbar="│"'
