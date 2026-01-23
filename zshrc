@@ -55,7 +55,7 @@ bindkey '\C-x\C-x' edit-command-line
 # Alias
 alias vi=nvim
 alias o='open .'
-alias c='clear'
+alias c='tput clear'
 
 # Profile end
 # zprof
