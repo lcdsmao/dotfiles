@@ -37,10 +37,6 @@ function j() {
             fi
         done < <(tmux list-windows -F '#{window_id}')
 
-        if [[ -n "$target_window" && "$target_window" == "$current_window" ]]; then
-            return
-        fi
-
         if [[ -n "$target_window" ]]; then
             local reply
             read -r "reply?Jump to window already at $target_path? [y/N] "
