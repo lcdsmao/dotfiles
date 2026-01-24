@@ -15,7 +15,10 @@ zstyle ':omz:update' mode disabled
 source "${HOME}/.antidote/antidote.zsh"
 antidote load
 
-export TERM="xterm-256color"
+# Set TERM only outside of tmux
+if [ -z "$TMUX" ]; then
+    export TERM="xterm-256color"
+fi
 
 # Due to the following issue:
 # https://github.com/zsh-users/zsh-syntax-highlighting/issues/295

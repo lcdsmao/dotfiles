@@ -103,7 +103,7 @@ wezterm.on("gui-startup", function(cmd)
   local args = cmd or {}
   if not args.args then
     args.args = { "/bin/zsh", "-l", "-c",
-      "if command -v tmux &> /dev/null && [ -z \"$TMUX\" ]; then exec tmux new-session -A -s main; else exec $SHELL; fi" }
+      "if command -v tmux &> /dev/null && [ -z \"$TMUX\" ]; then exec tmux -u new-session -A -s main; else exec $SHELL; fi" }
   end
 
   local tab, pane, window = wezterm.mux.spawn_window(args)
