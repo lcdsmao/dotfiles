@@ -56,6 +56,10 @@
       force: true
       path: zshplugins/*
     ~/.ripgreprc: ripgreprc
+    ~/.hammerspoon:
+      glob: true
+      force: true
+      path: hammerspoon/*
 
 - shell:
     - command: 'git submodule update --init --recursive'
