@@ -29,6 +29,9 @@ config.window_background_gradient = {
   colors = { "#222433" },
 }
 
+config.initial_cols = 240
+config.initial_rows = 60
+
 -- Scrollback
 config.scrollback_lines = 1000
 config.enable_scroll_bar = false
