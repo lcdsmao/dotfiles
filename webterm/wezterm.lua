@@ -5,7 +5,10 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 -- Font configuration
-config.font = wezterm.font("JetBrains Mono", { weight = "Regular" })
+config.font = wezterm.font_with_fallback({
+  { family = "JetBrains Mono", weight = "Regular" },
+  { family = "Apple Color Emoji" },
+})
 config.font_size = 12.0
 
 -- Color scheme
