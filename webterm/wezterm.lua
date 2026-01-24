@@ -99,12 +99,7 @@ config.keys = {
 
 -- Window startup behavior
 wezterm.on("gui-startup", function(cmd)
-  -- Start tmux for the first window/tab only
   local args = cmd or {}
-  if not args.args then
-    args.args = { "/bin/zsh", "-l", "-c",
-      "if command -v tmux &> /dev/null && [ -z \"$TMUX\" ]; then exec tmux -u new-session -A -s main; else exec $SHELL; fi" }
-  end
 
   local tab, pane, window = wezterm.mux.spawn_window(args)
   local gui_window = window:gui_window()
@@ -124,6 +119,9 @@ wezterm.on("gui-startup", function(cmd)
   -- Set the size and position
   gui_window:set_inner_size(full_width, half_height)
   gui_window:set_position(x_position, y_position)
+
+  -- This runs after Zsh initialization completes and environment variables are set
+  pane:send_text('if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then exec tmux -u new-session -A -s main; fi\n')
 end)
 
 return config
