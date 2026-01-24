@@ -37,8 +37,7 @@ return {
           mappings = {
             i = {
               ["<C-f>"] = function(prompt_bufnr)
-                local state = require('telescope.actions.state')
-                local current_text = state.get_current_line()
+                local current_text = require('telescope.actions.state').get_current_line()
 
                 vim.ui.input({ prompt = "Enter rg parameters (e.g., -t lua, --glob *.rs): " }, function(input)
                   if input == nil then

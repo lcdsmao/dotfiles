@@ -212,12 +212,9 @@ end
 
 -- Telescope picker function
 function M.telescope_cheatsheet()
-  local telescope = require('telescope.builtin')
   local pickers = require('telescope.pickers')
   local finders = require('telescope.finders')
   local previewers = require('telescope.previewers')
-  local actions = require('telescope.actions')
-  local action_state = require('telescope.actions.state')
 
   local sections = M.parse_sections()
 
