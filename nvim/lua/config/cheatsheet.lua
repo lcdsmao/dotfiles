@@ -3,6 +3,29 @@ local M = {}
 M.cheatsheet_content = [[
 # My Cheatsheet
 
+## Range Prefix (%, ., $, line ranges)
+### Common Prefixes
+- `%` - Entire buffer (all lines)
+- `.` - Current line only
+- `$` - Last line
+- `1,10` - Lines 1 to 10 (range)
+- `5,$` - Lines 5 to end of file
+- `.,+5` - Current line + 5 lines after
+- `'<,'>` - Visual selection (in visual mode)
+- `-2,+2` - 2 lines before and after current
+
+### Examples
+```
+:%s/foo/bar/g         # Replace in entire buffer
+:s/foo/bar/g          # Replace on current line only
+:10,20s/foo/bar/g     # Replace in lines 10-20
+:%!sort               # Filter entire buffer through sort
+:5,10!cat             # Filter lines 5-10 through cat
+:%norm I//            # Comment entire buffer
+:.,+10d               # Delete current line + 10 lines after
+:'<,'>s/old/new/g     # Replace in visual selection
+```
+
 ## Quickfix List (nvim-bqf)
 ### Basic Navigation
 - `]q` - Next quickfix item (:cnext)
@@ -67,6 +90,14 @@ M.cheatsheet_content = [[
 - `:5,10s/old/new/g` - Replace in range (lines 5-10)
 - `:s/old/new/gc` - Replace with confirmation
 
+### Flags
+- `g` - Global (replace all matches on line)
+- `c` - Confirm each replacement
+- `i` - Case-insensitive
+- `I` - Case-sensitive (override ignorecase)
+- `e` - No error if pattern not found
+- `n` - Count only (don't replace)
+
 ### Quick Pattern Insertion (Ctrl+R)
 In command mode, use Ctrl+R to insert:
 - `<C-r><C-w>` - Insert word under cursor
@@ -81,8 +112,10 @@ In command mode, use Ctrl+R to insert:
 :s/foo/bar/           # Replace first 'foo' with 'bar' on line
 :%s/foo/bar/g         # Replace all 'foo' with 'bar' in buffer
 :%s/\<old\>/new/g     # Replace whole word 'old' with 'new'
+:%s/foo/bar/gi        # Case-insensitive replace
 :%s/^/# /g            # Add '# ' at start of every line
 :%s/$/;/g             # Add ';' at end of every line
+:%s/foo/bar/gn        # Count matches without replacing
 :cdo s/old/new/ge     # Replace in all quickfix items (e flag ignores errors)
 ```
 
@@ -174,6 +207,27 @@ In command mode, use Ctrl+R to insert:
 :g/debug/d                   # Delete debug statements
 :cdo norm dd                 # Delete all search results
 ```
+
+## Tips & Best Practices
+
+### General Patterns
+- Always use `\<` and `\>` for whole word matching in substitution
+- Use `e` flag with `:cdo s/` to avoid errors when pattern not found
+- Combine `:g` with `:norm` for powerful bulk editing
+- Test with `gn` flag before replacing with `g` flag
+
+### Common Workflows
+- **Find & Replace in Project**: `:Telescope live_grep` → `:cfdo %s/old/new/g` → `:cfdo w`
+- **Comment Lines**: `:g/pattern/norm I//` or `:g/pattern/s/^/# /`
+- **Remove Duplicates**: `:%!sort | uniq`
+- **Format JSON**: `:%!python3 -m json.tool`
+- **Add Line Numbers**: `:%s/^/\=line('.') . ' '/`
+
+### Performance Tips
+- Use `:cfdo` instead of `:cdo` when modifying entire files (faster)
+- Use `n` flag to count matches before doing replacements
+- Combine `:g/pattern/d` instead of selecting manually for bulk deletion
+- Use `range!` to filter only specific lines
 ]]
 
 -- Parse cheatsheet into sections
