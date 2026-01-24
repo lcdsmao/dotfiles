@@ -176,6 +176,81 @@ In command mode, use Ctrl+R to insert:
 ```
 ]]
 
+-- Parse cheatsheet into sections
+function M.parse_sections()
+  local sections = {}
+  local lines = vim.split(M.cheatsheet_content, '\n')
+  local current_section = nil
+  local current_content = {}
+
+  for _, line in ipairs(lines) do
+    if line:match('^## ') then
+      -- Main section
+      if current_section then
+        sections[#sections + 1] = {
+          title = current_section,
+          content = table.concat(current_content, '\n'),
+        }
+      end
+      current_section = line:gsub('^## ', '')
+      current_content = {}
+    elseif current_section then
+      current_content[#current_content + 1] = line
+    end
+  end
+
+  -- Add last section
+  if current_section then
+    sections[#sections + 1] = {
+      title = current_section,
+      content = table.concat(current_content, '\n'),
+    }
+  end
+
+  return sections
+end
+
+-- Telescope picker function
+function M.telescope_cheatsheet()
+  local telescope = require('telescope.builtin')
+  local pickers = require('telescope.pickers')
+  local finders = require('telescope.finders')
+  local previewers = require('telescope.previewers')
+  local actions = require('telescope.actions')
+  local action_state = require('telescope.actions.state')
+
+  local sections = M.parse_sections()
+
+  local finder = finders.new_table({
+    results = sections,
+    entry_maker = function(entry)
+      return {
+        value = entry,
+        display = entry.title,
+        ordinal = entry.title,
+      }
+    end,
+  })
+
+  local previewer = previewers.new_buffer_previewer({
+    define_preview = function(self, entry)
+      local content = entry.value.content
+      local lines = vim.split(content, '\n')
+      vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
+      vim.api.nvim_buf_set_option(self.state.bufnr, 'filetype', 'markdown')
+    end,
+  })
+
+  local picker = pickers.new({
+    prompt_title = 'Cheatsheet',
+    finder = finder,
+    previewer = previewer,
+    sorter = require('telescope.sorters').get_generic_fuzzy_sorter(),
+  })
+
+  picker:find()
+end
+
 function M.show_cheatsheet()
   -- Create a new buffer
   local buf = vim.api.nvim_create_buf(false, true)
@@ -212,7 +287,8 @@ function M.show_cheatsheet()
   vim.keymap.set('n', '<Esc>', ':close<CR>', opts)
 end
 
--- Create command
+-- Create commands
 vim.api.nvim_create_user_command('Cheatsheet', M.show_cheatsheet, {})
+vim.api.nvim_create_user_command('CheatsheetSearch', M.telescope_cheatsheet, {})
 
 return M
