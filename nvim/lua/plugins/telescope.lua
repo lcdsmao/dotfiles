@@ -12,6 +12,7 @@ return {
       { "<leader>fa", "<cmd>Telescope find_files hidden=true no_ignore=true<cr>", desc = "Find all files" },
       { "<leader>fr", "<cmd>Telescope live_grep<cr>",                             desc = "Live grep" },
       { "<leader>fb", "<cmd>Telescope buffers<cr>",                               desc = "Find buffers" },
+      { "<leader>fp", "<cmd>Telescope resume<cr>",                                desc = "Resume last search" },
     },
     opts = {
       defaults = {
