@@ -13,7 +13,7 @@ config.color_scheme = "dogrun"
 
 -- Window appearance
 config.window_decorations = "RESIZE"
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.95
 config.macos_window_background_blur = 20
 config.line_height = 1.0
 
