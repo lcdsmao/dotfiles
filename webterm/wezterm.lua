@@ -11,6 +11,10 @@ config.font_size = 12.0
 -- Color scheme
 config.color_scheme = "dogrun"
 
+-- Default shell startup with tmux
+config.default_prog = { "/bin/zsh", "-l", "-c",
+  "if command -v tmux &> /dev/null && [ -z \"$TMUX\" ]; then exec tmux new-session -A -s main; else exec $SHELL; fi" }
+
 -- Window appearance
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.95
