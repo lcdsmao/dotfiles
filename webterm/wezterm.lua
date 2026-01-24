@@ -11,10 +11,6 @@ config.font_size = 12.0
 -- Color scheme
 config.color_scheme = "dogrun"
 
--- Window sizing
-config.initial_rows = 30
-config.initial_cols = 120
-
 -- Window appearance
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.9
@@ -64,5 +60,57 @@ config.visual_bell = {
   fade_out_duration_ms = 75,
   target = "CursorColor",
 }
+
+-- Key bindings
+config.keys = {
+  {
+    key = "Enter",
+    mods = "CMD|SUPER",
+    action = wezterm.action_callback(function(window, pane)
+      local screens = wezterm.gui.screens()
+      local active_screen = screens.active
+
+      local current_size = window:get_dimensions()
+      local full_width = active_screen.width
+      local full_height = active_screen.height
+      local half_height = math.floor(full_height / 2)
+
+      -- Check if current height is approximately half (within 10% tolerance)
+      local is_half = math.abs(current_size.pixel_height - half_height) < (full_height * 0.1)
+
+      if is_half then
+        -- Toggle to full height
+        window:set_inner_size(full_width, full_height)
+        window:set_position(active_screen.x, active_screen.y)
+      else
+        -- Toggle to half height
+        window:set_inner_size(full_width, half_height)
+        window:set_position(active_screen.x, active_screen.y + half_height)
+      end
+    end),
+  },
+}
+
+-- Window startup behavior
+wezterm.on("gui-startup", function(cmd)
+  local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+  local gui_window = window:gui_window()
+
+  -- Get the active screen info
+  local screens = wezterm.gui.screens()
+  local active_screen = screens.active
+
+  -- Calculate dimensions for full width and half height
+  local full_width = active_screen.width
+  local half_height = math.floor(active_screen.height / 2)
+
+  -- Position at bottom half of screen
+  local x_position = active_screen.x
+  local y_position = active_screen.y + half_height
+
+  -- Set the size and position
+  gui_window:set_inner_size(full_width, half_height)
+  gui_window:set_position(x_position, y_position)
+end)
 
 return config
