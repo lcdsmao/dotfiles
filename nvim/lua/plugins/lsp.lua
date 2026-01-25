@@ -188,6 +188,13 @@ return {
       snippets = {
         preset = "default",
       },
+
+      -- Cmdline completion
+      cmdline = {
+        keymap = {
+          ['<CR>'] = { 'accept', 'fallback' },
+        },
+      },
     },
     opts_extend = { "sources.default" },
     config = function(_, opts)
