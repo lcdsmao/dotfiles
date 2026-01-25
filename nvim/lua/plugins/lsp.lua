@@ -199,6 +199,7 @@ return {
         callback = function()
           vim.api.nvim_set_hl(0, "BlinkCmpMenu", { fg = "#9ea3c0", bg = "#32364c" })
           vim.api.nvim_set_hl(0, "BlinkCmpDoc", { fg = "#9ea3c0", bg = "#32364c" })
+          vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { fg = "#8085a6", bg = "#32364c" })
         end,
       })
 

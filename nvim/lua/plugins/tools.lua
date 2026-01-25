@@ -10,9 +10,16 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {
       file_types = { "markdown", "vimwiki" },
+      preset = "lazy",
       anti_conceal = {
         enabled = false,
       },
+      ignore = function(bufnr)
+        -- Ignore nofile buffers or name is empty
+        local buftype = vim.api.nvim_get_option_value("buftype", { buf = bufnr })
+        local name = vim.api.nvim_buf_get_name(bufnr)
+        return buftype == "nofile" or name == ""
+      end,
     },
   },
   {
