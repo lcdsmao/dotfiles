@@ -288,7 +288,7 @@ function M.telescope_cheatsheet()
       local content = entry.value.content
       local lines = vim.split(content, '\n')
       vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
-      vim.api.nvim_buf_set_option(self.state.bufnr, 'filetype', 'markdown')
+      vim.api.nvim_set_option_value('filetype', 'markdown', { buf = self.state.bufnr })
     end,
   })
 
@@ -297,7 +297,7 @@ function M.telescope_cheatsheet()
     finder = finder,
     previewer = previewer,
     sorter = require('telescope.sorters').get_generic_fuzzy_sorter(),
-  })
+  }, {})
 
   picker:find()
 end
@@ -307,22 +307,20 @@ function M.show_cheatsheet()
   local buf = vim.api.nvim_create_buf(false, true)
 
   -- Set buffer options
-  vim.api.nvim_buf_set_option(buf, 'buftype', 'nofile')
-  vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
-  vim.api.nvim_buf_set_option(buf, 'swapfile', false)
-  vim.api.nvim_buf_set_option(buf, 'filetype', 'markdown')
-  vim.api.nvim_buf_set_option(buf, 'modifiable', false)
+  vim.api.nvim_set_option_value('buftype', 'nofile', { buf = buf })
+  vim.api.nvim_set_option_value('filetype', 'markdown', { buf = buf })
+  vim.api.nvim_set_option_value('bufhidden', 'wipe', { buf = buf })
+  vim.api.nvim_set_option_value('swapfile', false, { buf = buf })
 
   -- Split content into lines
   local lines = vim.split(M.cheatsheet_content, '\n')
 
   -- Set buffer content
-  vim.api.nvim_buf_set_option(buf, 'modifiable', true)
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-  vim.api.nvim_buf_set_option(buf, 'modifiable', false)
 
   -- Set buffer name
   vim.api.nvim_buf_set_name(buf, 'Cheatsheet')
+  vim.api.nvim_set_option_value('modifiable', false, { buf = buf })
 
   -- Open in vertical split
   vim.cmd('vnew')
@@ -330,7 +328,7 @@ function M.show_cheatsheet()
   vim.api.nvim_win_set_buf(win, buf)
 
   -- Set window options
-  vim.api.nvim_win_set_option(win, 'wrap', false)
+  vim.api.nvim_set_option_value('wrap', false, { win = win })
 
   -- Set buffer-local keymaps to close
   local opts = { noremap = true, silent = true, buffer = buf }
