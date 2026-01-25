@@ -47,6 +47,9 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.docker/bin:$PATH"
 export PATH="$PATH:$HOME/.zshconfig/plugins/bin"
 
+# Homebrew
+[[ -f /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # ignore ctrl + d
 setopt ignoreeof
 
