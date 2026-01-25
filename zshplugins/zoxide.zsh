@@ -12,9 +12,11 @@ function j() {
         return
     fi
 
+    local current_path
+    current_path="$(pwd -P)"
     local target_path
     target_path="$(zoxide query -i 2> /dev/null)" || return
-    if [[ -z "$target_path" ]]; then
+    if [[ -z "$target_path" || "$target_path" == "$current_path" ]]; then
         return
     fi
 
@@ -37,7 +39,7 @@ function j() {
             fi
         done < <(tmux list-windows -F '#{window_id}')
 
-        if [[ -n "$target_window" ]]; then
+        if [[ -n "$target_window" && "$target_window" != "$current_window" ]]; then
             local reply
             read -r "reply?Jump to window already at $target_path? [y/N] "
             if [[ "$reply" == [yY]* ]]; then
