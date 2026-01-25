@@ -1,6 +1,7 @@
 return {
   {
     "neoclide/coc.nvim",
+    enabled = false,
     dependencies = {
       "nvim-telescope/telescope.nvim",
       "fannheyward/telescope-coc.nvim",
