@@ -32,6 +32,7 @@ opt.tm = 500
 
 -- UI
 opt.foldcolumn = "1"
+opt.signcolumn = "yes"
 opt.ruler = true
 opt.wildmenu = true
 opt.wildignore = { "*.o", "*~", "*.pyc", "*/.git/*", "*/.hg/*", "*/.svn/*", "*/.DS_Store" }
@@ -75,7 +76,7 @@ if vim.fn.has("gui_running") == 1 then
   opt.guioptions:remove("R")
   opt.guioptions:remove("l")
   opt.guioptions:remove("L")
-  
+
   if vim.fn.has("mac") == 1 or vim.fn.has("macunix") == 1 then
     opt.guifont = "IBM Plex Mono:h14,Hack:h14,Source Code Pro:h15,Menlo:h15"
   elseif vim.fn.has("win32") == 1 then
