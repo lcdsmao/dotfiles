@@ -124,4 +124,7 @@ wezterm.on("gui-startup", function(cmd)
   pane:send_text('if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then exec tmux -u new-session -A -s main; fi\n')
 end)
 
+-- Hyperlink rules
+config.hyperlink_rules = wezterm.default_hyperlink_rules()
+
 return config
