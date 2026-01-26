@@ -43,7 +43,9 @@ return {
           timeout_ms = 1000,
         }, function(err, did_set)
           -- Notify if error occurs
-          vim.notify_once(err, vim.log.levels.ERROR, { title = "Conform" })
+          if err then
+            vim.notify(err or "Formatted successfully", vim.log.levels.ERROR, { title = "Conform" })
+          end
         end)
       end
 
