@@ -1,19 +1,19 @@
--- Command abbreviations for typos
-vim.cmd([[
-  cnoreabbrev W! w!
-  cnoreabbrev Q! q!
-  cnoreabbrev Qa! qa!
-  cnoreabbrev Wq wq
-  cnoreabbrev Wa wa
-  cnoreabbrev wQ wq
-  cnoreabbrev WQ wq
-  cnoreabbrev W w
-  cnoreabbrev Q q
-  cnoreabbrev Qa qa
-]])
+-- Command typo fixes (compatible with blink.cmp cmdline)
+local function command_with_bang(cmd)
+  return function(opts)
+    vim.cmd(cmd .. (opts.bang and "!" or ""))
+  end
+end
+
+vim.api.nvim_create_user_command("W", command_with_bang("w"), { bang = true })
+vim.api.nvim_create_user_command("Q", command_with_bang("q"), { bang = true })
+vim.api.nvim_create_user_command("Qa", command_with_bang("qa"), { bang = true })
+vim.api.nvim_create_user_command("Wa", command_with_bang("wa"), { bang = true })
+vim.api.nvim_create_user_command("Wq", command_with_bang("wq"), { bang = true })
+vim.api.nvim_create_user_command("WQ", command_with_bang("wq"), { bang = true })
 
 -- Sudo save command
-vim.api.nvim_create_user_command("W", "w !sudo tee % > /dev/null", {})
+vim.api.nvim_create_user_command("Wsudo", "w !sudo tee % > /dev/null", {})
 
 -- Insert date abbreviation
 vim.cmd([[iab xdate <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>]])
