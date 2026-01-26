@@ -17,29 +17,26 @@ noremap ,f :action ReformatCode<CR>
 
 noremap <leader>a ^
 noremap <leader>e $
-noremap <leader>ss :action Switcher<CR>
-
-" Turn to all caps
-nnoremap <leader>T m1gUiw`1
-inoremap <C-S-T> <ESC>gUiwgi
 
 " Paste
 nmap <c-p> :pu<CR>
 
-noremap <leader>rr :action RenameElement<CR>
-noremap <leader>rm :action Move<CR>
-noremap <leader>ri :action Inline<CR>
-noremap <leader>sg :action Generate<CR>
-noremap <leader>iu :action FindUsages<CR>
-noremap <leader>ip :action ParameterInfo<CR>
 noremap <leader>ff :action GotoFile<CR>
 noremap <leader>fr :action FindInPath<CR>
+noremap <leader>fb :action Switcher<CR>
 
 noremap <silent> gd :action GotoDeclaration<CR>
 noremap <silent> gy :action GotoTypeDeclaration<CR>
 noremap <silent> gi :action GotoImplementation<CR>
 noremap <silent> gs :action GotoSuperMethod<CR>
+noremap <silent> gr :action ShowUsages<CR>
 noremap <silent> gt :action GotoTest<CR>
+
+noremap ,rr :action RenameElement<CR>
+noremap ,a :action ShowIntentionActions<CR>
+noremap ,rm :action Move<CR>
+noremap ,ri :action Inline<CR>
+noremap ,sg :action Generate<CR>
 
 nnoremap [d :action GotoPreviousError<CR>
 nnoremap ]d :action GotoNextError<CR>
@@ -49,10 +46,8 @@ nnoremap ]d :action GotoNextError<CR>
 
 " noremap <leader>ww :action NextSplitter<CR>
 noremap <leader>sv :action SplitVertically<CR>
-noremap <leader>0 :action ActivateProjectToolWindow<CR>
 noremap <leader>x :action CloseEditor<CR>
-
-noremap ,ac :action ShowIntentionActions<CR>
+noremap <leader>nn :action ActivateProjectToolWindow<CR>
 
 " Yank a region in VIM without the cursor moving to the top of the block
 vmap y ygv<ESC>
