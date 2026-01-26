@@ -29,9 +29,6 @@ return {
     "mattn/emmet-vim",
   },
   {
-    "github/copilot.vim",
-  },
-  {
     "rcarriga/nvim-notify",
     config = function()
       vim.notify = require("notify")

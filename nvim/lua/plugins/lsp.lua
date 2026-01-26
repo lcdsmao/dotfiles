@@ -26,6 +26,7 @@ return {
           "bashls",        -- Bash/Shell
           "lua_ls",        -- Lua
           "ts_ls",         -- TypeScript/JavaScript
+          "copilot",
         },
         -- Automatically enable installed servers (new API)
         automatic_enable = true,
@@ -157,7 +158,10 @@ return {
   -- blink.cmp: Completion engine
   {
     "saghen/blink.cmp",
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      "fang2hou/blink-copilot",
+    },
     version = "1.*",
     opts = {
       -- Custom keymap: Use Enter to accept completion
@@ -176,9 +180,16 @@ return {
         documentation = { auto_show = true, auto_show_delay_ms = 500 },
       },
 
-      -- Sources: LSP, path, snippets, buffer
+      -- Sources
       sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
+        default = { "lsp", "path", "snippets", "buffer", "copilot" },
+        providers = {
+          copilot = {
+            name = "copilot",
+            module = "blink-copilot",
+            async = true,
+          },
+        },
       },
 
       -- Use Rust fuzzy matcher for better performance
