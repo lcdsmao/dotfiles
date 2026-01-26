@@ -41,11 +41,14 @@ return {
           lsp_fallback = true,
           async = false,
           timeout_ms = 1000,
-        })
+        }, function(err, did_set)
+          -- Notify if error occurs
+          vim.notify_once(err, vim.log.levels.ERROR, { title = "Conform" })
+        end)
       end
 
       -- Keybindings
-      vim.keymap.set({ "n", "x" }, "=f", format, { desc = "Format buffer/selection" })
+      vim.keymap.set({ "n", "x" }, ",f", format, { desc = "Format buffer/selection" })
 
       -- :Format command
       vim.api.nvim_create_user_command("Format", format, { desc = "Format buffer" })

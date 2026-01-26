@@ -12,7 +12,7 @@ set nu rnu
 
 let mapleader = " "
 
-noremap =f :action ReformatCode<CR>
+noremap ,f :action ReformatCode<CR>
 ":action Detekt.AutoCorrect<CR>
 
 noremap <leader>a ^

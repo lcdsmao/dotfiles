@@ -90,9 +90,8 @@ return {
           map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", "Next diagnostic")
 
           -- Code actions (lspsaga)
-          map("n", "<leader>rr", "<cmd>Lspsaga rename<cr>", "Rename symbol")
+          map("n", ",rr", "<cmd>Lspsaga rename<cr>", "Rename symbol")
           map({ "n", "x" }, ",a", "<cmd>Lspsaga code_action<cr>", "Code action")
-          map("n", ",qf", "<cmd>Lspsaga code_action<cr>", "Quick fix")
 
           -- Lists with Telescope
           map("n", ",d", "<cmd>Telescope diagnostics<cr>", "List diagnostics")
