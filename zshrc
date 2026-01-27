@@ -2,12 +2,6 @@
 # $ time zsh -i -c exit
 # zmodload zsh/zprof
 
-# Keep PATH variable clean
-if [ -f /etc/profile ]; then
-    PATH=""
-    source /etc/profile
-fi
-
 # Disable oh-my-zsh auto-update checks
 zstyle ':omz:update' mode disabled
 
