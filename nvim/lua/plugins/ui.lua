@@ -49,7 +49,7 @@ return {
                 info  = 'DiagnosticInfo',
                 hint  = 'DiagnosticHint',
               },
-              symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'},
+              symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
               colored = true,
               update_in_insert = false,
               always_visible = false,

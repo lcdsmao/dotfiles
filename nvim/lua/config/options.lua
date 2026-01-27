@@ -32,7 +32,7 @@ opt.tm = 500
 
 -- UI
 opt.foldcolumn = "1"
-opt.signcolumn = "yes"
+opt.signcolumn = "yes:2"
 opt.ruler = true
 opt.wildmenu = true
 opt.wildignore = { "*.o", "*~", "*.pyc", "*/.git/*", "*/.hg/*", "*/.svn/*", "*/.DS_Store" }
