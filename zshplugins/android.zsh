@@ -24,11 +24,37 @@ function adbanim() {
     adb shell settings put global animator_duration_scale "$factor"
 }
 
-alias adbgproxy='adb shell settings get global http_proxy;'
-alias adbsproxy='adb shell settings put global http_proxy $(ipconfig getifaddr en0):8889;'
-alias adbrproxy='adb shell settings put global http_proxy :0'
-alias adbeam='adb shell cmd connectivity airplane-mode enable'
-alias adbdam='adb shell cmd connectivity airplane-mode disable'
+function adbproxy() {
+  local arg="$1"
+  local host
+
+  if [ -z "$arg" ]; then
+    adb shell settings get global http_proxy
+    return $?
+  fi
+
+  host="$(ipconfig getifaddr en0)"
+  if [ "$arg" = "-" ]; then
+    adb shell settings put global http_proxy "${host}:8889"
+  elif [ "$arg" = "0" ]; then
+    adb shell settings put global http_proxy :0
+  elif [[ "$arg" =~ ^[0-9]+$ ]]; then
+    adb shell settings put global http_proxy "${host}:${arg}"
+  else
+    adb shell settings put global http_proxy "$arg"
+  fi
+
+  adb shell settings get global http_proxy
+}
+
+function adbam() {
+    local mode="${1:-0}"
+    if [ "$mode" = "1" ]; then
+        adb shell cmd connectivity airplane-mode disable
+    else
+        adb shell cmd connectivity airplane-mode enable
+    fi
+}
 
 function avdr() {
     selected_avd="$(emulator -list-avds | fzf)" && (emulator @"$selected_avd" "$@" > /dev/null 2>&1 &)
