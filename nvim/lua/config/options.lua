@@ -7,7 +7,7 @@ opt.autoread = true
 
 -- Line numbers
 opt.number = true
-opt.relativenumber = true
+opt.relativenumber = false
 
 -- Search
 opt.ignorecase = true
