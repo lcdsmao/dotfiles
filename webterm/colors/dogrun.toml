@@ -5,6 +5,10 @@ cursor_bg = "#9ea3c0"
 cursor_fg = "#222433"
 cursor_border = "#9ea3c0"
 selection_bg = "#363e7f"
+quick_select_label_bg = { Color = "#363e7f" }
+quick_select_label_fg = { Color = "#d656d6" }
+quick_select_match_bg = { Color = "#363e7f" }
+quick_select_match_fg = { Color = "#59d9d9" }
 ansi = [
   "#111219",
   "#e58585",

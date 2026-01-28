@@ -95,6 +95,7 @@ config.keys = {
       end
     end),
   },
+  { key = 's', mods = 'CMD|SUPER', action = wezterm.action.QuickSelect },
 }
 
 -- Window startup behavior
