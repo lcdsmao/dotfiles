@@ -23,9 +23,7 @@ return {
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    opts = {
-      map_cr = false,
-    },
+    config = true,
   },
   {
     "bfredl/nvim-miniyank",
