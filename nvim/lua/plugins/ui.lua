@@ -15,14 +15,27 @@ return {
         return name
       end
 
+      local function xcodebuild_device()
+        if vim.g.xcodebuild_platform == "macOS" then
+          return " macOS"
+        end
+
+        local deviceIcon = ""
+        if vim.g.xcodebuild_os then
+          return deviceIcon .. " " .. vim.g.xcodebuild_device_name .. " (" .. vim.g.xcodebuild_os .. ")"
+        end
+
+        return deviceIcon .. " " .. vim.g.xcodebuild_device_name
+      end
+
       return {
         options = {
           icons_enabled = true,
           theme = 'auto',
-          component_separators = { left = '', right = ''},
-          section_separators = { left = '', right = '' },
+          component_separators = '',
+          section_separators = { left = '', right = '' },
           disabled_filetypes = {
-            statusline = {'coc-explorer', 'gitsigns-blame'},
+            statusline = { 'coc-explorer', 'gitsigns-blame' },
             winbar = {},
           },
           ignore_focus = {},
@@ -35,10 +48,12 @@ return {
           }
         },
         sections = {
-          lualine_a = {'mode'},
+          lualine_a = { 'mode' },
           lualine_b = {
             'branch',
             'diff',
+          },
+          lualine_c = {
             {
               'diagnostics',
               sources = { 'nvim_diagnostic', 'coc' },
@@ -55,18 +70,21 @@ return {
               always_visible = false,
             }
           },
-          lualine_c = {'filename'},
-          lualine_x = {'encoding', 'fileformat', 'filetype'},
-          lualine_y = {'progress'},
-          lualine_z = {'location'}
+          lualine_x = {
+            'encoding',
+            'fileformat',
+            'filetype',
+          },
+          lualine_y = { 'progress' },
+          lualine_z = { 'location' }
         },
         inactive_sections = {
           lualine_a = {},
           lualine_b = {},
-          lualine_c = {'filename'},
-          lualine_x = {'location'},
-          lualine_y = {},
-          lualine_z = {}
+          lualine_c = { 'filename' },
+          lualine_x = { 'encoding', 'fileformat', 'filetype' },
+          lualine_y = { 'progress' },
+          lualine_z = { 'location' }
         },
         tabline = {
           lualine_c = {
@@ -83,6 +101,11 @@ return {
               color = 'StatusLine',
               fmt = filetype_fmt
             }
+          },
+          lualine_x = {
+            { "' ' .. vim.g.xcodebuild_last_status", color = { fg = "Gray" } },
+            { "'󰙨 ' .. vim.g.xcodebuild_test_plan", color = { fg = "#a6e3a1" } },
+            { xcodebuild_device, color = { fg = "#f9e2af" } },
           },
         },
         winbar = {},
