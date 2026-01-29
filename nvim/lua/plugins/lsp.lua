@@ -54,6 +54,9 @@ return {
         },
         symbol_in_winbar = { enable = false },
         lightbulb = { enable = false },
+        diagnostic = {
+          diagnostic_only_current = true,
+        },
       })
 
       -- Diagnostic configuration
@@ -94,27 +97,29 @@ return {
             vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc, silent = true })
           end
 
-          -- Navigation with Telescope
+          -- Navigation
           map("n", "gd", "<cmd>Telescope lsp_definitions<cr>", "Go to definition")
           map("n", "gy", "<cmd>Telescope lsp_type_definitions<cr>", "Go to type definition")
           map("n", "gi", "<cmd>Telescope lsp_implementations<cr>", "Go to implementation")
           map("n", "gr", "<cmd>Telescope lsp_references<cr>", "Find references")
 
-          -- Documentation (lspsaga)
-          map("n", "K", "<cmd>Lspsaga hover_doc<cr>", "Show documentation")
-
-          -- Diagnostics (lspsaga)
-          map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Previous diagnostic")
-          map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", "Next diagnostic")
-
-          -- Code actions (lspsaga)
-          map("n", ",rr", "<cmd>Lspsaga rename<cr>", "Rename symbol")
-          map({ "n", "x" }, ",a", "<cmd>Lspsaga code_action<cr>", "Code action")
-
-          -- Lists with Telescope
-          map("n", ",d", "<cmd>Telescope diagnostics<cr>", "List diagnostics")
+          -- Symbols
           map("n", ",o", "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols")
           map("n", ",s", "<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace symbols")
+
+          -- Documentation
+          map("n", "K", "<cmd>Lspsaga hover_doc<cr>", "Show documentation")
+
+          -- Diagnostics
+          map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Previous diagnostic")
+          map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", "Next diagnostic")
+          map("n", ",d",
+            "<cmd>lua require('telescope.builtin').diagnostics({wrap_results=true, line_width='full', bufnr=0})<cr>",
+            "List diagnostics")
+
+          -- Code actions
+          map("n", ",rr", "<cmd>Lspsaga rename<cr>", "Rename symbol")
+          map({ "n", "x" }, ",a", "<cmd>Lspsaga code_action<cr>", "Code action")
         end,
       })
 
