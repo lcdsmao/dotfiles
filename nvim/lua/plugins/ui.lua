@@ -115,6 +115,18 @@ return {
     end,
   },
   {
+    "j-hui/fidget.nvim",
+    opts = {
+      -- options
+    },
+  },
+  {
+    "rcarriga/nvim-notify",
+    config = function()
+      vim.notify = require("notify")
+    end,
+  },
+  {
     "wadackel/vim-dogrun",
     lazy = false,
     priority = 1000,
