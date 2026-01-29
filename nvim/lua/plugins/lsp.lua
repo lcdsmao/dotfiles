@@ -154,15 +154,6 @@ return {
       -- SourceKit (Swift/iOS)
       vim.lsp.config.sourcekit = {
         capabilities = capabilities,
-        cmd = { "sourcekit-lsp" },
-        filetypes = { "swift", "objc", "objcpp" },
-        root_dir = function(_, callback)
-          local util = require("lspconfig.util")
-          local git_dir = vim.fs.find(".git", { path = vim.fn.getcwd(), upward = true })[1]
-          local git_root = git_dir and vim.fs.dirname(git_dir) or nil
-          local root = util.root_pattern("buildServer.json", "Package.swift")(vim.fn.getcwd()) or git_root
-          callback(root)
-        end,
       }
       vim.lsp.enable("sourcekit")
 
