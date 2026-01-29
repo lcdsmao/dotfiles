@@ -116,9 +116,7 @@ return {
   },
   {
     "j-hui/fidget.nvim",
-    opts = {
-      -- options
-    },
+    opts = {},
   },
   {
     "rcarriga/nvim-notify",
