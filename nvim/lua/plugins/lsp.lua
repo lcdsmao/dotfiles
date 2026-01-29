@@ -182,6 +182,8 @@ return {
       -- Custom keymap: Use Enter to accept completion
       keymap = {
         ['<CR>'] = { 'accept', 'fallback' },
+        ["<Tab>"] = { "select_next", "fallback" },
+        ["<S-Tab>"] = { "select_prev", "fallback" },
       },
 
       -- Completion behavior
