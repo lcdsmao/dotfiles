@@ -17,6 +17,7 @@ return {
           yaml = { "prettier" },
           markdown = { "prettier" },
           lua = { "stylua" },
+          swift = { "swiftformat" },
           sh = { "shfmt" },
           bash = { "shfmt" },
           zsh = { "shfmt" },
