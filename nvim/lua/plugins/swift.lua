@@ -22,6 +22,20 @@ return {
         },
         show_build_progress_bar = false,
         logs = {
+          notify = function(message, severity)
+            if progress_handle then
+              progress_handle.message = message
+              if not message:find("Loading") then
+                progress_handle:finish()
+                progress_handle = nil
+                if vim.trim(message) ~= "" then
+                  vim.notify(message, severity)
+                end
+              end
+            else
+              vim.notify(message, severity)
+            end
+          end,
           notify_progress = function(message)
             local progress = require("fidget.progress")
 
