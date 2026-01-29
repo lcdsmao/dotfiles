@@ -5,6 +5,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
+      "mfussenegger/nvim-dap",
     },
     config = function()
       local progress_handle
@@ -36,6 +37,9 @@ return {
           end,
         }
       })
+
+      local dap = require("xcodebuild.integrations.dap")
+      dap.setup()
 
       local augroup = vim.api.nvim_create_augroup("xcodebuild_keymaps", { clear = true })
 

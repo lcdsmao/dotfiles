@@ -28,4 +28,22 @@ return {
   {
     "mattn/emmet-vim",
   },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio",
+      "nvim-telescope/telescope.nvim",
+      "nvim-telescope/telescope-dap.nvim",
+    },
+    config = function()
+      require("dapui").setup({})
+
+      vim.api.nvim_create_user_command("Dap", function()
+        require("dapui").toggle()
+      end, { bar = true })
+
+      require('telescope').load_extension('dap')
+    end,
+  },
 }

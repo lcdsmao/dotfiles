@@ -35,7 +35,17 @@ return {
           component_separators = '',
           section_separators = { left = '', right = '' },
           disabled_filetypes = {
-            statusline = { 'coc-explorer', 'gitsigns-blame' },
+            statusline = {
+              'coc-explorer',
+              'gitsigns-blame',
+              'dap-repl',
+              'dapui_breakpoints',
+              'dapui_console',
+              'dapui_repl',
+              'dapui_scopes',
+              'dapui_stacks',
+              'dapui_watches',
+            },
             winbar = {},
           },
           ignore_focus = {},
