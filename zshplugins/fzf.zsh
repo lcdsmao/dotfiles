@@ -73,11 +73,12 @@ function cdf() {
 # Git
 # fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
 function fco() {
-    local tags branches target
+    local tags branches target kind ref local_name
     branches=$(
-        git --no-pager branch --all \
-            --format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" \
-            | sed '/^$/d'
+        {
+            git for-each-ref --format="%1B[0;34;1mbranch%09%1B[m%(refname:short)" refs/heads
+            git for-each-ref --format="%1B[0;36;1mremote%09%1B[m%(refname:short)" refs/remotes
+        } | sed '/^$/d' | sed '/\/HEAD$/d'
     ) || return
     tags=$(
         git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}'
@@ -90,7 +91,20 @@ function fco() {
             | fzf --no-hscroll --no-multi -n 2 \
                 --ansi --preview="git --no-pager log -150 --pretty=format:%s '..{2}'"
     ) || return
-    git checkout $(awk '{print $2}' <<< "$target")
+    kind=$(awk '{print $1}' <<< "$target")
+    ref=$(awk '{print $2}' <<< "$target")
+
+    if [[ "$kind" == *remote* ]]; then
+        local_name="${ref#*/}"
+        if git show-ref --verify --quiet "refs/heads/${local_name}"; then
+            git checkout "$local_name"
+        else
+            git checkout -t "$ref"
+        fi
+        return
+    fi
+
+    git checkout "$ref"
 }
 
 # fshow - git commit browser
