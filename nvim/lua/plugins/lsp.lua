@@ -40,6 +40,7 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "folke/lazydev.nvim",
       "saghen/blink.cmp",
       "nvimdev/lspsaga.nvim",
     },
@@ -210,12 +211,17 @@ return {
 
       -- Sources
       sources = {
-        default = { "lsp", "path", "snippets", "buffer", "copilot" },
+        default = { "lazydev", "lsp", "path", "snippets", "buffer", "copilot" },
         providers = {
           copilot = {
             name = "copilot",
             module = "blink-copilot",
             async = true,
+          },
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            score_offset = 100,
           },
         },
       },
@@ -258,5 +264,19 @@ return {
   {
     "b0o/schemastore.nvim",
     lazy = true,
+  },
+
+  -- Lazydev: LuaLS workspace library management
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    dependencies = {
+      'DrKJeff16/wezterm-types',
+    },
+    opts = {
+      library = {
+        { path = 'wezterm-types', mods = { 'wezterm' } },
+      },
+    },
   },
 }

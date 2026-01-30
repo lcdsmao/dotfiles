@@ -1,7 +1,7 @@
--- Pull in the wezterm API
+---@type Wezterm
 local wezterm = require("wezterm")
 
--- This will hold the configuration.
+---@type Config
 local config = wezterm.config_builder()
 
 -- Font configuration
