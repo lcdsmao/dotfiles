@@ -178,12 +178,23 @@ function adb() {
             ;;
     esac
 
-    # Check if user already provided a target flag (-s, -d, -e, -t)
+    # Check if user already provided a target flag (-s)
+    # Only consider flags before the subcommand.
     local has_target=false
     for arg in "$@"; do
+        if [ "$arg" = "--" ]; then
+            break
+        fi
         case "$arg" in
-            -s | -d | -e | -t)
-                has_target=true
+            -*)
+                case "$arg" in
+                    -s)
+                        has_target=true
+                        break
+                        ;;
+                esac
+                ;;
+            *)
                 break
                 ;;
         esac
