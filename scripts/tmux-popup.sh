@@ -4,7 +4,6 @@ PREFIX="_popup-"
 # 1. Get all active window IDs (all sessions)
 # We use a space-separated string for easier lookup in bash
 active_windows=" $(tmux list-windows -a -F '#{window_id}' | tr '\n' ' ') "
-
 # 2. Get all popup sessions
 popup_sessions=$(tmux list-sessions -F '#S' | grep "^$PREFIX" || true)
 
@@ -34,7 +33,7 @@ window_width=$(tmux display-message -p '#{window_width}')
 pane_center=$((pane_left + pane_width / 2))
 window_center=$((window_width / 2))
 
-if [ "$pane_center" -lt "$window_center" ]; then
+if [ "$pane_center" -le "$window_center" ]; then
   # Current pane is on the left, show popup on the right
   # Calculate the starting column for the right half
   popup_x=$((window_width / 2 + 8))
