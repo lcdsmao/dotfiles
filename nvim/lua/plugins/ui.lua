@@ -124,7 +124,13 @@ return {
   },
   {
     "j-hui/fidget.nvim",
-    opts = {},
+    opts = {
+      notification = {
+        window = {
+          winblend = 0, -- Make window fully transparent
+        },
+      },
+    },
   },
   {
     "rcarriga/nvim-notify",
@@ -139,6 +145,10 @@ return {
     config = function()
       vim.opt.termguicolors = true
       vim.cmd([[colorscheme dogrun]])
+
+      -- Apply transparency immediately
+      vim.api.nvim_set_hl(0, "Normal", { ctermbg = "NONE", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "NonText", { ctermbg = "NONE", bg = "NONE" })
     end,
   },
 }
