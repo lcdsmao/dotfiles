@@ -1,6 +1,12 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": ["@mohak34/opencode-notifier@0.1.15"],
+  "small_model": "github-copilot/gpt-5-mini",
+  "agent": {
+    "general": { "model": "github-copilot/gpt-5-mini" },
+    "explore": { "model": "github-copilot/gpt-5-mini" },
+    "compaction": { "model": "github-copilot/gpt-5-mini" }
+  },
   "keybinds": {
     "app_exit": "<leader>q"
   }
