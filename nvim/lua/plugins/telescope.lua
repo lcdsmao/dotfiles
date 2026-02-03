@@ -14,7 +14,7 @@ return {
       { "<leader>fr", "<cmd>Telescope live_grep<cr>",                             desc = "Live grep" },
       { "<leader>fb", "<cmd>Telescope buffers<cr>",                               desc = "Find buffers" },
       { "<leader>fp", "<cmd>Telescope resume<cr>",                                desc = "Resume last search" },
-      { "<leader>fe", "<cmd>Telescope frecency workspace=CWD<cr>",               desc = "Frecency workspaces" },
+      { "<leader>fe", "<cmd>Telescope frecency workspace=CWD<cr>",                desc = "Frecency workspaces" },
     },
     opts = {
       defaults = {
@@ -36,7 +36,11 @@ return {
         },
       },
       pickers = {
+        find_files = {
+          follow = true,
+        },
         live_grep = {
+          additional_args = { "--follow" },
           mappings = {
             i = {
               ["<C-f>"] = function(prompt_bufnr)
