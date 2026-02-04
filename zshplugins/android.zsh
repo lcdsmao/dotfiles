@@ -25,26 +25,26 @@ function adbanim() {
 }
 
 function adbproxy() {
-  local arg="$1"
-  local host
+    local arg="$1"
+    local host
 
-  if [ -z "$arg" ]; then
+    if [ -z "$arg" ]; then
+        adb shell settings get global http_proxy
+        return $?
+    fi
+
+    host="$(ipconfig getifaddr en0)"
+    if [ "$arg" = "-" ]; then
+        adb shell settings put global http_proxy "${host}:8889"
+    elif [ "$arg" = "0" ]; then
+        adb shell settings put global http_proxy :0
+    elif [[ "$arg" =~ ^[0-9]+$ ]]; then
+        adb shell settings put global http_proxy "${host}:${arg}"
+    else
+        adb shell settings put global http_proxy "$arg"
+    fi
+
     adb shell settings get global http_proxy
-    return $?
-  fi
-
-  host="$(ipconfig getifaddr en0)"
-  if [ "$arg" = "-" ]; then
-    adb shell settings put global http_proxy "${host}:8889"
-  elif [ "$arg" = "0" ]; then
-    adb shell settings put global http_proxy :0
-  elif [[ "$arg" =~ ^[0-9]+$ ]]; then
-    adb shell settings put global http_proxy "${host}:${arg}"
-  else
-    adb shell settings put global http_proxy "$arg"
-  fi
-
-  adb shell settings get global http_proxy
 }
 
 function adbam() {
