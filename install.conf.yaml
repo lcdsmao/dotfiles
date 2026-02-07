@@ -51,6 +51,9 @@
     ~/.config/wezterm/:
       glob: true
       path: webterm/*
+    ~/.config/yazi/:
+      glob: true
+      path: yazi/*
     ~/.zshconfig/plugins:
       glob: true
       force: true

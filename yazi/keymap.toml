@@ -1,0 +1,14 @@
+# Keymap configuration for Yazi
+# See https://yazi-rs.github.io/docs/configuration/keymap for full documentation
+
+# Custom keybindings can be added here
+# Use prepend_keymap or append_keymap to customize upon defaults
+# Example:
+# [manager]
+# prepend_keymap = [
+#   { on = [ "<C-s>" ], run = "search fd", desc = "Search files with fd" }
+# ]
+
+[[mgr.prepend_keymap]]
+on = "<C-p>"
+run = "shell -- qlmanage -p %s"

@@ -1,0 +1,27 @@
+# Configuration file for Yazi
+# See https://yazi-rs.github.io/docs/configuration/yazi for full documentation
+
+[manager]
+# Show hidden files
+show_hidden = false
+# Sort by
+sort_by = "natural"
+# Sort directories first
+sort_dir_first = true
+# Sort reverse
+sort_reverse = false
+
+[preview]
+# Maximum file size to preview (in MB)
+max_width = 900
+max_height = 600
+
+[opener]
+# Configure file openers here
+# Example:
+# edit = [ { run = 'nvim "$@"', block = true } ]
+
+[open]
+# Configure file opening rules here
+# Example:
+# rules = [ { mime = "text/*", use = "edit" } ]

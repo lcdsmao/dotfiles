@@ -1,0 +1,7 @@
+# Theme configuration for Yazi
+# See https://yazi-rs.github.io/docs/configuration/theme for full documentation
+
+# Custom colors and styles can be configured here
+# Example:
+# [manager]
+# cwd = { fg = "cyan" }
