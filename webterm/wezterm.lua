@@ -252,7 +252,7 @@ local function popup_launch(window, pane, value)
 
   -- Spawn popup window
   wezterm.mux.spawn_window({
-    args = { "zsh", "-l", "-c", command },
+    args = { "zsh", "-li", "-c", command },
     cwd = cwd,
     position = {
       x = x_position,
