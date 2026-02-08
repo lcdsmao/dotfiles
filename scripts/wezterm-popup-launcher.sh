@@ -31,19 +31,16 @@ set_user_var() {
 if [ -n "$TMUX" ] && [ -n "$WEZTERM_UNIX_SOCKET" ]; then
   # Scenario A: In tmux inside wezterm - use wezterm window
 
-  # Resolve command to absolute path to avoid "command not found" errors
-  COMMAND_PATH=$(command -v "$COMMAND" 2> /dev/null || printf '%s' "$COMMAND")
-
   # Get the pane's TTY to write the escape sequence directly to it
   pane_tty=$(tmux display-message -p '#{pane_tty}')
 
   # Send command and path to wezterm popup launcher
   # Format: "command,path"
   if [ -w "$pane_tty" ]; then
-    set_user_var popup_launch "$COMMAND_PATH,$CURRENT_PATH" > "$pane_tty"
+    set_user_var popup_launch "$COMMAND,$CURRENT_PATH" > "$pane_tty"
   else
     # Fallback: print to stdout (when called directly)
-    set_user_var popup_launch "$COMMAND_PATH,$CURRENT_PATH"
+    set_user_var popup_launch "$COMMAND,$CURRENT_PATH"
   fi
 
 elif [ -n "$TMUX" ]; then
