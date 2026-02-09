@@ -3,5 +3,42 @@ add_newline = true
 [kotlin]
 disabled = true
 
+[aws]
+symbol = " "
+
 [python]
 pyenv_version_name = true
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[gcloud]
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[java]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[swift]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[gradle]
+symbol = " "
+
+[package]
+symbol = "󰏗 "
