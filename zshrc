@@ -1,6 +1,8 @@
 # Profile for zsh shell
 # $ time zsh -i -c exit
-# zmodload zsh/zprof
+if [[ -n $ZSH_PROFILE ]]; then
+    zmodload zsh/zprof
+fi
 
 # Disable oh-my-zsh auto-update checks
 zstyle ':omz:update' mode disabled
@@ -58,4 +60,6 @@ alias o='open .'
 alias c='tput clear'
 
 # Profile end
-# zprof
+if [[ -n $ZSH_PROFILE ]]; then
+    zprof
+fi
