@@ -7,7 +7,7 @@ disabled = true
 symbol = " "
 
 [python]
-pyenv_version_name = true
+python_binary = [["uv", "run", "--no-python-downloads", "python"]]
 symbol = " "
 
 [nodejs]
