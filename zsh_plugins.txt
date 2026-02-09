@@ -25,6 +25,5 @@ $HOME/.zshconfig/plugins/fzf.zsh
 $HOME/.zshconfig/plugins/ios.zsh
 $HOME/.zshconfig/plugins/java.zsh
 $HOME/.zshconfig/plugins/kotlin.zsh
-$HOME/.zshconfig/plugins/maccopyfile.zsh
 $HOME/.zshconfig/plugins/rg.zsh
 $HOME/.zshconfig/plugins/zoxide.zsh
