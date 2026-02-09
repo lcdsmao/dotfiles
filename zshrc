@@ -22,6 +22,10 @@ fi
 # up to just a slight delay
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
+# Configure fzf-tab
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
 # Set language environment
 export LANG=en_US.UTF-8
 
