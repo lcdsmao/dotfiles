@@ -26,6 +26,7 @@ return {
           "bashls",        -- Bash/Shell
           "lua_ls",        -- Lua
           "ts_ls",         -- TypeScript/JavaScript
+          "pyright",       -- Python
           "copilot",
         },
         -- Automatically enable installed servers (new API)
@@ -157,6 +158,27 @@ return {
         capabilities = capabilities,
       }
       vim.lsp.enable("sourcekit")
+
+      -- Pyright (Python) config
+      local function venv_python_path()
+        local venv = vim.fs.find(".venv", { upward = true, type = "directory" })[1]
+        if venv then
+          local python = venv .. "/bin/python"
+          if vim.uv.fs_stat(python) then
+            return python
+          end
+        end
+      end
+
+      vim.lsp.config.pyright = {
+        capabilities = capabilities,
+        settings = {
+          python = {
+            pythonPath = venv_python_path(),
+          }
+        }
+      }
+      vim.lsp.enable("pyright")
 
       -- Lua config
       vim.lsp.config.lua_ls = {
