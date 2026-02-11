@@ -79,3 +79,7 @@ vim.api.nvim_create_user_command("Gchanged", function()
   vim.fn.setqflist(qflist)
   vim.cmd("copen")
 end, { bar = true })
+
+-- Buf management commands
+vim.api.nvim_create_user_command("Bonly", ":%bdelete|edit#|bdelete#", {})
+vim.api.nvim_create_user_command("Ball", ":bufdo bd", {})

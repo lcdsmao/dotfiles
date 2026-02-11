@@ -36,7 +36,6 @@ map("n", "<C-h>", "<C-W>h", { desc = "Move to window left" })
 map("n", "<C-l>", "<C-W>l", { desc = "Move to window right" })
 
 -- Buffer management
-map("n", "<leader>ba", ":bufdo bd<CR>", { desc = "Close all buffers" })
 map("n", "<leader>l", ":bnext<CR>", { desc = "Next buffer" })
 map("n", "<leader>h", ":bprevious<CR>", { desc = "Previous buffer" })
 map("n", "<leader>tt", ":b#<CR>", { desc = "Toggle buffer" })
