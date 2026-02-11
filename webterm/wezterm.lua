@@ -32,6 +32,8 @@ config.window_background_gradient = {
 config.initial_cols = 240
 config.initial_rows = 60
 
+config.adjust_window_size_when_changing_font_size = false
+
 -- Scrollback
 config.scrollback_lines = 1000
 config.enable_scroll_bar = false
