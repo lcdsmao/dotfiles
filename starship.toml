@@ -1,3 +1,5 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 add_newline = true
 
 [kotlin]
@@ -28,9 +30,6 @@ symbol = " "
 [swift]
 symbol = " "
 
-[git_branch]
-symbol = " "
-
 [golang]
 symbol = " "
 
@@ -42,3 +41,10 @@ symbol = " "
 
 [package]
 symbol = "󰏗 "
+
+[git_branch]
+symbol = " "
+
+[git_commit]
+tag_symbol = " "
+
