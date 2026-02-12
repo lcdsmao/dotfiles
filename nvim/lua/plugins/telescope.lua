@@ -7,14 +7,14 @@ return {
       "nvim-telescope/telescope-frecency.nvim",
     },
     keys = {
-      { "<leader>ft", "<cmd>Telescope<cr>",                                       desc = "Telescope" },
-      { "<leader>ff", "<cmd>Telescope find_files<cr>",                            desc = "Find files" },
-      { "<leader>fg", "<cmd>Telescope git_files<cr>",                             desc = "Find git files" },
-      { "<leader>fa", "<cmd>Telescope find_files hidden=true no_ignore=true<cr>", desc = "Find all files" },
-      { "<leader>fr", "<cmd>Telescope live_grep<cr>",                             desc = "Live grep" },
-      { "<leader>fb", "<cmd>Telescope buffers<cr>",                               desc = "Find buffers" },
-      { "<leader>fp", "<cmd>Telescope resume<cr>",                                desc = "Resume last search" },
-      { "<leader>fe", "<cmd>Telescope frecency workspace=CWD<cr>",                desc = "Frecency workspaces" },
+      { "<leader>ft", "<cmd>Telescope<cr>",                                                        desc = "Telescope" },
+      { "<leader>ff", "<cmd>Telescope find_files<cr>",                                             desc = "Find files" },
+      { "<leader>fg", "<cmd>Telescope git_files<cr>",                                              desc = "Find git files" },
+      { "<leader>fa", "<cmd>Telescope find_files hidden=true no_ignore=true<cr>",                  desc = "Find all files" },
+      { "<leader>fr", "<cmd>Telescope live_grep<cr>",                                              desc = "Live grep" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>",                                                desc = "Find buffers" },
+      { "<leader>fp", "<cmd>Telescope resume<cr>",                                                 desc = "Resume last search" },
+      { "<leader>fe", "<cmd>Telescope frecency workspace=CWD path_display={'filename_first'}<cr>", desc = "Frecency workspaces" },
     },
     opts = {
       defaults = {
@@ -35,6 +35,7 @@ return {
             ["<C-p>"] = require('telescope.actions').cycle_history_prev,
           },
         },
+        path_display = { "filename_first" }
       },
       pickers = {
         find_files = {
