@@ -18,6 +18,7 @@ return {
     },
     opts = {
       defaults = {
+        wrap_results = true,
         layout_config = {
           horizontal = {
             preview_width = 0.55,
