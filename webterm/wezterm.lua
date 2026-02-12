@@ -98,6 +98,9 @@ config.keys = {
     end),
   },
   { key = 's', mods = 'CMD|SUPER', action = wezterm.action.QuickSelect },
+  { key = 'j', mods = 'CMD|SUPER', action = wezterm.action.ActivateWindowRelative(1) },
+  { key = 'k', mods = 'CMD|SUPER', action = wezterm.action.ActivateWindowRelative(-1) },
+  { key = 'h', mods = 'CMD|SUPER', action = wezterm.action.Nop }, -- Disable mac os hide ke:
 }
 
 -- Window startup behavior
