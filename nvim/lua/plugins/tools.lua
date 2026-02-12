@@ -101,7 +101,6 @@ return {
     ---@type AutoSession.Config
     opts = {
       suppressed_dirs = { "~/", "~/Downloads", "/" },
-      auto_restore_last_session = true,
       git_use_branch_name = true,
       git_auto_restore_on_branch_change = true,
     },
