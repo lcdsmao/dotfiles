@@ -19,12 +19,15 @@ return {
     opts = {
       defaults = {
         wrap_results = true,
+        layout_strategy = "horizontal",
         layout_config = {
           horizontal = {
-            preview_width = 0.55,
-            results_width = 0.8,
+            width = 0.9,
+            preview_width = 0.45,
           },
           vertical = {
+            preview_height = 0.5,
+            preview_cutoff = 0,
             mirror = false,
           },
         },
