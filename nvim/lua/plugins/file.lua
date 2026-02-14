@@ -8,9 +8,9 @@ return {
       "MunifTanjim/nui.nvim",
       "nvim-tree/nvim-web-devicons", -- optional, but recommended
     },
-    lazy = false,                    -- neo-tree will lazily load itself
+    lazy = false, -- neo-tree will lazily load itself
     keys = {
-      { "<leader>nn", "<cmd>Neotree float reveal<cr>",     desc = "Open NeoTree File" },
+      { "<leader>nn", "<cmd>Neotree float reveal<cr>", desc = "Open NeoTree File" },
       { "<leader>ng", "<cmd>Neotree float git_status<cr>", desc = "Open NeoTree Git" },
     },
     opts = {
@@ -28,7 +28,7 @@ return {
           hide_gitignored = false,
         },
       },
-    }
+    },
   },
   {
     "mikavilpas/yazi.nvim",
@@ -38,8 +38,8 @@ return {
       { "nvim-lua/plenary.nvim", lazy = true },
     },
     keys = {
-      { "<leader>nf", "<cmd>Yazi<cr>",        desc = "Open yazi at the current file" },
-      { "<leader>nw", "<cmd>Yazi cwd<cr>",    desc = "Open the file manager in nvim's working directory" },
+      { "<leader>nf", "<cmd>Yazi<cr>", desc = "Open yazi at the current file" },
+      { "<leader>nw", "<cmd>Yazi cwd<cr>", desc = "Open the file manager in nvim's working directory" },
       { "<leader>nn", "<cmd>Yazi toggle<cr>", desc = "Resume the last yazi session" },
     },
     opts = {
@@ -54,5 +54,5 @@ return {
       -- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
       vim.g.loaded_netrwPlugin = 1
     end,
-  }
+  },
 }

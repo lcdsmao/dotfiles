@@ -9,4 +9,3 @@ require("config.lazy")
 
 -- Load miscellaneous configurations
 require("config.cheatsheet")
-

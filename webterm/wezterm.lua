@@ -6,7 +6,7 @@ local config = wezterm.config_builder()
 
 -- Font configuration
 config.font = wezterm.font_with_fallback({
-  { family = "JetBrains Mono",   weight = "Regular" },
+  { family = "JetBrains Mono", weight = "Regular" },
   { family = "Apple Color Emoji" },
 })
 config.font_size = 12.0
@@ -97,10 +97,10 @@ config.keys = {
       end
     end),
   },
-  { key = 's', mods = 'CMD|SUPER', action = wezterm.action.QuickSelect },
-  { key = 'j', mods = 'CMD|SUPER', action = wezterm.action.ActivateWindowRelative(1) },
-  { key = 'k', mods = 'CMD|SUPER', action = wezterm.action.ActivateWindowRelative(-1) },
-  { key = 'h', mods = 'CMD|SUPER', action = wezterm.action.Nop }, -- Disable mac os hide ke:
+  { key = "s", mods = "CMD|SUPER", action = wezterm.action.QuickSelect },
+  { key = "j", mods = "CMD|SUPER", action = wezterm.action.ActivateWindowRelative(1) },
+  { key = "k", mods = "CMD|SUPER", action = wezterm.action.ActivateWindowRelative(-1) },
+  { key = "h", mods = "CMD|SUPER", action = wezterm.action.Nop }, -- Disable mac os hide ke:
 }
 
 -- Window startup behavior
@@ -136,13 +136,13 @@ config.hyperlink_rules = wezterm.default_hyperlink_rules()
 -- Popup launcher configuration
 local POPUP_CONFIG = {
   -- Size ratios
-  width_ratio = 0.6,             -- 60% of terminal width
-  height_ratio = 0.9,            -- 90% of terminal height (bottom-half mode)
+  width_ratio = 0.6, -- 60% of terminal width
+  height_ratio = 0.9, -- 90% of terminal height (bottom-half mode)
   fullscreen_height_ratio = 0.8, -- 80% of terminal height (fullscreen mode)
 
   -- Positioning
   fullscreen_threshold = 0.6, -- >60% screen height = fullscreen
-  top_padding_ratio = 0.04,   -- 4% of screen height padding
+  top_padding_ratio = 0.04, -- 4% of screen height padding
 
   -- Bounds
   screen_margin = 20, -- Pixel margin when clamping
@@ -218,9 +218,8 @@ local function popup_launch(window, pane, value)
 
   -- Calculate window size
   local window_cols = math.floor(main_cols * POPUP_CONFIG.width_ratio)
-  local window_rows = is_fullscreen
-      and math.floor(screen_height / char_height * POPUP_CONFIG.fullscreen_height_ratio)
-      or math.floor((screen_height / char_height - main_rows) * POPUP_CONFIG.height_ratio)
+  local window_rows = is_fullscreen and math.floor(screen_height / char_height * POPUP_CONFIG.fullscreen_height_ratio)
+    or math.floor((screen_height / char_height - main_rows) * POPUP_CONFIG.height_ratio)
 
   -- Calculate pixel dimensions
   local window_width_px = math.floor(window_cols * char_width)

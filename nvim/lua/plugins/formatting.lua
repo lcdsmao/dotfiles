@@ -25,13 +25,17 @@ return {
         formatters = {
           prettier = {
             prepend_args = {
-              "--trailing-comma", "es5",
+              "--trailing-comma",
+              "es5",
               "--single-quote",
               "--no-semi",
             },
           },
           shfmt = {
             prepend_args = { "-i", "2", "-bn", "-ci", "-sr" },
+          },
+          stylua = {
+            prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" },
           },
         },
       })

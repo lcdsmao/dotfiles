@@ -3,7 +3,9 @@ return {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
@@ -38,7 +40,7 @@ return {
     },
     config = function()
       require("dapui").setup({})
-      require('telescope').load_extension('dap')
+      require("telescope").load_extension("dap")
 
       vim.api.nvim_create_user_command("Dap", function()
         require("dapui").toggle()
@@ -51,45 +53,47 @@ return {
         local actions = require("telescope.actions")
         local action_state = require("telescope.actions.state")
 
-        pickers.new({
-          layout_config = {
-            width = 60,
-            height = 15,
-          },
-        }, {
-          prompt_title = "Dapui Float",
-          finder = finders.new_table({
-            results = {
-              "breakpoints",
-              "console",
-              "repl",
-              "scopes",
-              "stacks",
-              "watches",
+        pickers
+          .new({
+            layout_config = {
+              width = 60,
+              height = 15,
             },
-          }),
-          sorter = conf.generic_sorter({}),
-          attach_mappings = function(prompt_bufnr, map)
-            local function float_element()
-              local selection = action_state.get_selected_entry()
-              if not selection then
-                return
+          }, {
+            prompt_title = "Dapui Float",
+            finder = finders.new_table({
+              results = {
+                "breakpoints",
+                "console",
+                "repl",
+                "scopes",
+                "stacks",
+                "watches",
+              },
+            }),
+            sorter = conf.generic_sorter({}),
+            attach_mappings = function(prompt_bufnr, map)
+              local function float_element()
+                local selection = action_state.get_selected_entry()
+                if not selection then
+                  return
+                end
+
+                actions.close(prompt_bufnr)
+                require("dapui").float_element(selection[1], {
+                  close_on_escape = true,
+                  position = "center",
+                  width = vim.o.columns - 20,
+                  height = vim.o.lines - 10,
+                })
               end
 
-              actions.close(prompt_bufnr)
-              require("dapui").float_element(selection[1], {
-                close_on_escape = true,
-                position = "center",
-                width = vim.o.columns - 20,
-                height = vim.o.lines - 10,
-              })
-            end
-
-            map("i", "<CR>", float_element)
-            map("n", "<CR>", float_element)
-            return true
-          end,
-        }):find()
+              map("i", "<CR>", float_element)
+              map("n", "<CR>", float_element)
+              return true
+            end,
+          })
+          :find()
       end, { bar = true })
     end,
   },
@@ -121,5 +125,5 @@ return {
         desc = "Buffer Local Keymaps (which-key)",
       },
     },
-  }
+  },
 }

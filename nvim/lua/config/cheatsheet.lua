@@ -233,20 +233,20 @@ In command mode, use Ctrl+R to insert:
 -- Parse cheatsheet into sections
 function M.parse_sections()
   local sections = {}
-  local lines = vim.split(M.cheatsheet_content, '\n')
+  local lines = vim.split(M.cheatsheet_content, "\n")
   local current_section = nil
   local current_content = {}
 
   for _, line in ipairs(lines) do
-    if line:match('^## ') then
+    if line:match("^## ") then
       -- Main section
       if current_section then
         sections[#sections + 1] = {
           title = current_section,
-          content = table.concat(current_content, '\n'),
+          content = table.concat(current_content, "\n"),
         }
       end
-      current_section = line:gsub('^## ', '')
+      current_section = line:gsub("^## ", "")
       current_content = {}
     elseif current_section then
       current_content[#current_content + 1] = line
@@ -257,7 +257,7 @@ function M.parse_sections()
   if current_section then
     sections[#sections + 1] = {
       title = current_section,
-      content = table.concat(current_content, '\n'),
+      content = table.concat(current_content, "\n"),
     }
   end
 
@@ -266,9 +266,9 @@ end
 
 -- Telescope picker function
 function M.telescope_cheatsheet()
-  local pickers = require('telescope.pickers')
-  local finders = require('telescope.finders')
-  local previewers = require('telescope.previewers')
+  local pickers = require("telescope.pickers")
+  local finders = require("telescope.finders")
+  local previewers = require("telescope.previewers")
 
   local sections = M.parse_sections()
 
@@ -286,17 +286,17 @@ function M.telescope_cheatsheet()
   local previewer = previewers.new_buffer_previewer({
     define_preview = function(self, entry)
       local content = entry.value.content
-      local lines = vim.split(content, '\n')
+      local lines = vim.split(content, "\n")
       vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
-      vim.api.nvim_set_option_value('filetype', 'markdown', { buf = self.state.bufnr })
+      vim.api.nvim_set_option_value("filetype", "markdown", { buf = self.state.bufnr })
     end,
   })
 
   local picker = pickers.new({
-    prompt_title = 'Cheatsheet',
+    prompt_title = "Cheatsheet",
     finder = finder,
     previewer = previewer,
-    sorter = require('telescope.sorters').get_generic_fuzzy_sorter(),
+    sorter = require("telescope.sorters").get_generic_fuzzy_sorter(),
   }, {})
 
   picker:find()
@@ -307,37 +307,37 @@ function M.show_cheatsheet()
   local buf = vim.api.nvim_create_buf(false, true)
 
   -- Set buffer options
-  vim.api.nvim_set_option_value('buftype', 'nofile', { buf = buf })
-  vim.api.nvim_set_option_value('filetype', 'markdown', { buf = buf })
-  vim.api.nvim_set_option_value('bufhidden', 'wipe', { buf = buf })
-  vim.api.nvim_set_option_value('swapfile', false, { buf = buf })
+  vim.api.nvim_set_option_value("buftype", "nofile", { buf = buf })
+  vim.api.nvim_set_option_value("filetype", "markdown", { buf = buf })
+  vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
+  vim.api.nvim_set_option_value("swapfile", false, { buf = buf })
 
   -- Split content into lines
-  local lines = vim.split(M.cheatsheet_content, '\n')
+  local lines = vim.split(M.cheatsheet_content, "\n")
 
   -- Set buffer content
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 
   -- Set buffer name
-  vim.api.nvim_buf_set_name(buf, 'Cheatsheet')
-  vim.api.nvim_set_option_value('modifiable', false, { buf = buf })
+  vim.api.nvim_buf_set_name(buf, "Cheatsheet")
+  vim.api.nvim_set_option_value("modifiable", false, { buf = buf })
 
   -- Open in vertical split
-  vim.cmd('vnew')
+  vim.cmd("vnew")
   local win = vim.api.nvim_get_current_win()
   vim.api.nvim_win_set_buf(win, buf)
 
   -- Set window options
-  vim.api.nvim_set_option_value('wrap', false, { win = win })
+  vim.api.nvim_set_option_value("wrap", false, { win = win })
 
   -- Set buffer-local keymaps to close
   local opts = { noremap = true, silent = true, buffer = buf }
-  vim.keymap.set('n', 'q', ':close<CR>', opts)
-  vim.keymap.set('n', '<Esc>', ':close<CR>', opts)
+  vim.keymap.set("n", "q", ":close<CR>", opts)
+  vim.keymap.set("n", "<Esc>", ":close<CR>", opts)
 end
 
 -- Create commands
-vim.api.nvim_create_user_command('Cheatsheet', M.show_cheatsheet, {})
-vim.api.nvim_create_user_command('CheatsheetSearch', M.telescope_cheatsheet, {})
+vim.api.nvim_create_user_command("Cheatsheet", M.show_cheatsheet, {})
+vim.api.nvim_create_user_command("CheatsheetSearch", M.telescope_cheatsheet, {})
 
 return M

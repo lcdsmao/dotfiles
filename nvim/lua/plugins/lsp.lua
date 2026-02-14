@@ -20,13 +20,13 @@ return {
         -- Auto-install these servers
         ensure_installed = {
           "rust_analyzer", -- Rust
-          "jsonls",        -- JSON
-          "lemminx",       -- XML
-          "emmet_ls",      -- Emmet
-          "bashls",        -- Bash/Shell
-          "lua_ls",        -- Lua
-          "ts_ls",         -- TypeScript/JavaScript
-          "pyright",       -- Python
+          "jsonls", -- JSON
+          "lemminx", -- XML
+          "emmet_ls", -- Emmet
+          "bashls", -- Bash/Shell
+          "lua_ls", -- Lua
+          "ts_ls", -- TypeScript/JavaScript
+          "pyright", -- Python
           "copilot",
         },
         -- Automatically enable installed servers (new API)
@@ -80,7 +80,7 @@ return {
             [vim.diagnostic.severity.WARN] = "WarningMsg",
             [vim.diagnostic.severity.INFO] = "InfoMsg",
             [vim.diagnostic.severity.HINT] = "HintMsg",
-          }
+          },
         },
       })
 
@@ -115,9 +115,12 @@ return {
           -- Diagnostics
           map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Previous diagnostic")
           map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", "Next diagnostic")
-          map("n", ",d",
+          map(
+            "n",
+            ",d",
             "<cmd>lua require('telescope.builtin').diagnostics({wrap_results=true, line_width='full', bufnr=0})<cr>",
-            "List diagnostics")
+            "List diagnostics"
+          )
 
           -- Code actions
           map("n", ",rr", "<cmd>Lspsaga rename<cr>", "Rename symbol")
@@ -126,7 +129,7 @@ return {
       })
 
       -- Default config for all servers
-      vim.lsp.config('*', {
+      vim.lsp.config("*", {
         capabilities = capabilities,
       })
 
@@ -187,8 +190,8 @@ return {
         settings = {
           python = {
             pythonPath = venv_python_path(),
-          }
-        }
+          },
+        },
       }
       vim.lsp.enable("pyright")
 
@@ -227,7 +230,7 @@ return {
     opts = {
       -- Custom keymap: Use Enter to accept completion
       keymap = {
-        ['<CR>'] = { 'accept', 'fallback' },
+        ["<CR>"] = { "accept", "fallback" },
         ["<Tab>"] = { "select_next", "fallback" },
         ["<S-Tab>"] = { "select_prev", "fallback" },
       },
@@ -271,7 +274,7 @@ return {
       -- Cmdline completion
       cmdline = {
         keymap = {
-          ['<CR>'] = { 'accept', 'fallback' },
+          ["<CR>"] = { "accept", "fallback" },
         },
       },
     },
@@ -305,11 +308,11 @@ return {
     "folke/lazydev.nvim",
     ft = "lua",
     dependencies = {
-      'DrKJeff16/wezterm-types',
+      "DrKJeff16/wezterm-types",
     },
     opts = {
       library = {
-        { path = 'wezterm-types', mods = { 'wezterm' } },
+        { path = "wezterm-types", mods = { "wezterm" } },
       },
     },
   },

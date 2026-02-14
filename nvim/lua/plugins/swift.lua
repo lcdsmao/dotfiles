@@ -50,7 +50,7 @@ return {
               })
             end
           end,
-        }
+        },
       })
 
       local dap = require("xcodebuild.integrations.dap")
@@ -62,8 +62,12 @@ return {
         group = augroup,
         pattern = { "swift", "objc", "objcpp" },
         callback = function(event)
-          vim.keymap.set("n", ",c", "<cmd>XcodebuildPicker<cr>",
-            { desc = "Xcodebuild actions", silent = true, buffer = event.buf })
+          vim.keymap.set(
+            "n",
+            ",c",
+            "<cmd>XcodebuildPicker<cr>",
+            { desc = "Xcodebuild actions", silent = true, buffer = event.buf }
+          )
         end,
       })
     end,

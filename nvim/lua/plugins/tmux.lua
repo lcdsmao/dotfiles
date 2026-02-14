@@ -23,7 +23,7 @@ return {
       {
         "<leader>vs",
         function()
-          require("vimux_slime").send(vim.fn.getline('.'))
+          require("vimux_slime").send(vim.fn.getline("."))
         end,
         mode = "n",
         desc = "Send line to tmux",
@@ -31,13 +31,12 @@ return {
     },
     config = function()
       local function is_ai_cli()
-        if vim.fn.exists('g:VimuxRunnerIndex') == 0 then
+        if vim.fn.exists("g:VimuxRunnerIndex") == 0 then
           return false
         end
 
-        local pane_type = vim.fn.system(
-          'tmux show-options -pv -t "' .. vim.g.VimuxRunnerIndex .. '" @pane-type 2>/dev/null'
-        )
+        local pane_type =
+          vim.fn.system('tmux show-options -pv -t "' .. vim.g.VimuxRunnerIndex .. '" @pane-type 2>/dev/null')
         if vim.v.shell_error == 0 then
           pane_type = vim.fn.trim(pane_type)
           return pane_type == "ai-cli"
@@ -49,19 +48,19 @@ return {
         send = function(text)
           local cmd = vim.fn.trim(text)
 
-          if vim.fn.exists('g:VimuxRunnerIndex') == 0 then
+          if vim.fn.exists("g:VimuxRunnerIndex") == 0 then
             vim.fn.VimuxOpenRunner()
           end
 
           if is_ai_cli() then
-            vim.fn.VimuxSendText('!' .. cmd)
+            vim.fn.VimuxSendText("!" .. cmd)
             vim.defer_fn(function()
-              vim.fn.VimuxSendKeys('Enter')
+              vim.fn.VimuxSendKeys("Enter")
             end, 200)
           else
             vim.fn.VimuxRunCommand(cmd)
           end
-        end
+        end,
       }
     end,
   },

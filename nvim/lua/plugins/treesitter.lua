@@ -5,7 +5,7 @@ return {
     build = ":TSUpdate",
     config = function()
       -- Install parsers
-      require('nvim-treesitter').install({
+      require("nvim-treesitter").install({
         "markdown",
         "markdown_inline",
         "lua",
@@ -29,8 +29,8 @@ return {
       })
 
       -- Enable treesitter features for all installed parsers
-      vim.api.nvim_create_autocmd('FileType', {
-        pattern = '*',
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "*",
         callback = function()
           local ok, _ = pcall(vim.treesitter.start)
           if ok then
@@ -49,7 +49,7 @@ return {
     },
     config = function(_, opts)
       vim.cmd([[hi TreesitterContext ctermfg=103 ctermbg=238 guifg=#8085a6 guibg=#32364c]])
-      require('treesitter-context').setup(opts)
+      require("treesitter-context").setup(opts)
     end,
   },
   {

@@ -3,18 +3,42 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = 'make' },
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       "nvim-telescope/telescope-frecency.nvim",
     },
     keys = {
-      { "<leader>ft", "<cmd>Telescope<cr>",                                                        desc = "Telescope" },
-      { "<leader>ff", "<cmd>Telescope find_files<cr>",                                             desc = "Find files" },
-      { "<leader>fg", "<cmd>Telescope git_files<cr>",                                              desc = "Find git files" },
-      { "<leader>fa", "<cmd>Telescope find_files hidden=true no_ignore=true<cr>",                  desc = "Find all files" },
-      { "<leader>fr", "<cmd>Telescope live_grep<cr>",                                              desc = "Live grep" },
-      { "<leader>fb", "<cmd>Telescope buffers<cr>",                                                desc = "Find buffers" },
-      { "<leader>fp", "<cmd>Telescope resume<cr>",                                                 desc = "Resume last search" },
-      { "<leader>fe", "<cmd>Telescope frecency workspace=CWD path_display={'filename_first'}<cr>", desc = "Frecency workspaces" },
+      { "<leader>ft", "<cmd>Telescope<cr>", desc = "Telescope" },
+      {
+        "<leader>ff",
+        "<cmd>Telescope find_files<cr>",
+        desc = "Find files",
+      },
+      {
+        "<leader>fg",
+        "<cmd>Telescope git_files<cr>",
+        desc = "Find git files",
+      },
+      {
+        "<leader>fa",
+        "<cmd>Telescope find_files hidden=true no_ignore=true<cr>",
+        desc = "Find all files",
+      },
+      { "<leader>fr", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
+      {
+        "<leader>fb",
+        "<cmd>Telescope buffers<cr>",
+        desc = "Find buffers",
+      },
+      {
+        "<leader>fp",
+        "<cmd>Telescope resume<cr>",
+        desc = "Resume last search",
+      },
+      {
+        "<leader>fe",
+        "<cmd>Telescope frecency workspace=CWD path_display={'filename_first'}<cr>",
+        desc = "Frecency workspaces",
+      },
     },
     opts = {
       defaults = {
@@ -33,12 +57,12 @@ return {
         },
         mappings = {
           i = {
-            ["<C-q>"] = require('telescope.actions').smart_send_to_qflist + require('telescope.actions').open_qflist,
-            ["<C-n>"] = require('telescope.actions').cycle_history_next,
-            ["<C-p>"] = require('telescope.actions').cycle_history_prev,
+            ["<C-q>"] = require("telescope.actions").smart_send_to_qflist + require("telescope.actions").open_qflist,
+            ["<C-n>"] = require("telescope.actions").cycle_history_next,
+            ["<C-p>"] = require("telescope.actions").cycle_history_prev,
           },
         },
-        path_display = { "filename_first" }
+        path_display = { "filename_first" },
       },
       pickers = {
         find_files = {
@@ -49,14 +73,14 @@ return {
           mappings = {
             i = {
               ["<C-f>"] = function(prompt_bufnr)
-                local current_text = require('telescope.actions.state').get_current_line()
+                local current_text = require("telescope.actions.state").get_current_line()
 
                 vim.ui.input({ prompt = "Enter rg parameters (e.g., -t lua, --glob *.rs): " }, function(input)
                   if input == nil then
                     return
                   end
 
-                  local builtin = require('telescope.builtin')
+                  local builtin = require("telescope.builtin")
                   local opts = {
                     default_text = current_text,
                     additional_args = function()
@@ -73,7 +97,7 @@ return {
                   }
 
                   -- Close current picker and reopen with new args
-                  require('telescope.actions').close(prompt_bufnr)
+                  require("telescope.actions").close(prompt_bufnr)
                   builtin.live_grep(opts)
                 end)
               end,
@@ -89,10 +113,10 @@ return {
       },
     },
     config = function(_, opts)
-      require('telescope').setup(opts)
-      pcall(require('telescope').load_extension, 'coc')
-      require('telescope').load_extension('fzf')
-      require('telescope').load_extension('frecency')
+      require("telescope").setup(opts)
+      pcall(require("telescope").load_extension, "coc")
+      require("telescope").load_extension("fzf")
+      require("telescope").load_extension("frecency")
     end,
   },
 }
