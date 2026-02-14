@@ -136,9 +136,9 @@ config.hyperlink_rules = wezterm.default_hyperlink_rules()
 -- Popup launcher configuration
 local POPUP_CONFIG = {
   -- Size ratios
-  width_ratio = 0.6,            -- 60% of terminal width
-  height_ratio = 0.9,           -- 90% of terminal height (bottom-half mode)
-  fullscreen_fixed_height = 40, -- Fixed rows in fullscreen mode
+  width_ratio = 0.6,             -- 60% of terminal width
+  height_ratio = 0.9,            -- 90% of terminal height (bottom-half mode)
+  fullscreen_height_ratio = 0.8, -- 80% of terminal height (fullscreen mode)
 
   -- Positioning
   fullscreen_threshold = 0.6, -- >60% screen height = fullscreen
@@ -219,7 +219,7 @@ local function popup_launch(window, pane, value)
   -- Calculate window size
   local window_cols = math.floor(main_cols * POPUP_CONFIG.width_ratio)
   local window_rows = is_fullscreen
-      and POPUP_CONFIG.fullscreen_fixed_height
+      and math.floor(screen_height / char_height * POPUP_CONFIG.fullscreen_height_ratio)
       or math.floor((screen_height / char_height - main_rows) * POPUP_CONFIG.height_ratio)
 
   -- Calculate pixel dimensions
