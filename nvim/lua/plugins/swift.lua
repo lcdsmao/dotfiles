@@ -6,6 +6,7 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
       "mfussenegger/nvim-dap",
+      "MunifTanjim/nui.nvim",
     },
     config = function()
       local progress_handle
