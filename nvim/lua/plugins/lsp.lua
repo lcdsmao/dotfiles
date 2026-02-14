@@ -243,7 +243,21 @@ return {
             auto_insert = false,
           },
         },
-        documentation = { auto_show = true, auto_show_delay_ms = 500 },
+        menu = {
+          border = "rounded",
+        },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 500,
+          window = {
+            border = "rounded",
+          },
+        },
+      },
+      signature = {
+        window = {
+          border = "rounded",
+        },
       },
 
       -- Sources
@@ -279,22 +293,6 @@ return {
       },
     },
     opts_extend = { "sources.default" },
-    config = function(_, opts)
-      require("blink.cmp").setup(opts)
-
-      -- Custom highlight for completion menu using dogrun colors
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        pattern = "*",
-        callback = function()
-          vim.api.nvim_set_hl(0, "BlinkCmpMenu", { fg = "#9ea3c0", bg = "#32364c" })
-          vim.api.nvim_set_hl(0, "BlinkCmpDoc", { fg = "#9ea3c0", bg = "#32364c" })
-          vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { fg = "#8085a6", bg = "#32364c" })
-        end,
-      })
-
-      -- Trigger immediately for current colorscheme
-      vim.cmd("doautocmd ColorScheme")
-    end,
   },
 
   -- JSON schemas for jsonls
