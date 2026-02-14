@@ -96,8 +96,6 @@ return {
   {
     "rmagatti/auto-session",
     lazy = false,
-    ---enables autocomplete for opts
-    ---@module "auto-session"
     ---@type AutoSession.Config
     opts = {
       suppressed_dirs = { "~/", "~/Downloads", "/" },
@@ -105,4 +103,23 @@ return {
       git_auto_restore_on_branch_change = true,
     },
   },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    ---@class wk.Opts
+    opts = {
+      delay = function(ctx)
+        return ctx.plugin and 0 or 400
+      end,
+    },
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
+  }
 }
