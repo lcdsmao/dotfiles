@@ -52,12 +52,16 @@ return {
       -- Setup lspsaga first (minimal config)
       require("lspsaga").setup({
         ui = {
+          title = false,
           border = "rounded",
         },
         symbol_in_winbar = { enable = false },
         lightbulb = { enable = false },
         diagnostic = {
           diagnostic_only_current = true,
+        },
+        rename = {
+          in_select = false,
         },
       })
 
@@ -123,7 +127,7 @@ return {
           )
 
           -- Code actions
-          map("n", ",rr", "<cmd>Lspsaga rename<cr>", "Rename symbol")
+          map("n", ",rr", "<cmd>Lspsaga rename ++project<cr>", "Rename symbol")
           map({ "n", "x" }, ",a", "<cmd>Lspsaga code_action<cr>", "Code action")
         end,
       })

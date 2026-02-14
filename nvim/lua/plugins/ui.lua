@@ -28,6 +28,17 @@ return {
         return deviceIcon .. " " .. vim.g.xcodebuild_device_name
       end
 
+      local function lspsaga_bar()
+        local success, saga = pcall(require, "lspsaga.symbol.winbar")
+        if success then
+          local bar = saga.get_bar()
+          if bar and bar ~= "" then
+            return " 󰽘  " .. bar
+          end
+        end
+        return ""
+      end
+
       return {
         options = {
           icons_enabled = true,
@@ -75,6 +86,9 @@ return {
               colored = true,
               update_in_insert = false,
               always_visible = false,
+            },
+            {
+              lspsaga_bar,
             },
           },
           lualine_x = {
@@ -146,19 +160,21 @@ return {
       vim.opt.termguicolors = true
       vim.cmd([[colorscheme dogrun]])
 
-      local function apply_transparency()
+      local function colorscheme_patch()
         vim.api.nvim_set_hl(0, "Normal", { ctermbg = "NONE", bg = "NONE" })
         vim.api.nvim_set_hl(0, "NonText", { ctermbg = "NONE", bg = "NONE" })
         vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "NONE", bg = "NONE" })
         vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg = "NONE", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "WinBar", { link = "StatusLine" })
+        vim.api.nvim_set_hl(0, "WinBarNC", { link = "StatusLine" })
       end
 
       vim.api.nvim_create_autocmd("ColorScheme", {
         pattern = "*",
-        callback = apply_transparency,
+        callback = colorscheme_patch,
       })
 
-      apply_transparency()
+      colorscheme_patch()
     end,
   },
 }
