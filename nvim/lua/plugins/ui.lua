@@ -146,9 +146,19 @@ return {
       vim.opt.termguicolors = true
       vim.cmd([[colorscheme dogrun]])
 
-      -- Apply transparency immediately
-      vim.api.nvim_set_hl(0, "Normal", { ctermbg = "NONE", bg = "NONE" })
-      vim.api.nvim_set_hl(0, "NonText", { ctermbg = "NONE", bg = "NONE" })
+      local function apply_transparency()
+        vim.api.nvim_set_hl(0, "Normal", { ctermbg = "NONE", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "NonText", { ctermbg = "NONE", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "NormalFloat", { ctermbg = "NONE", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg = "NONE", bg = "NONE" })
+      end
+
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "*",
+        callback = apply_transparency,
+      })
+
+      apply_transparency()
     end,
   },
 }
