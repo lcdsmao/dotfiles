@@ -65,7 +65,7 @@ opt.splitright = true
 opt.showtabline = 2
 
 -- Persistent undo
-local undodir = vim.fn.stdpath("config") .. "/temp_dirs/undodir"
+local undodir = vim.fn.stdpath("state") .. "/undo"
 vim.fn.mkdir(undodir, "p")
 opt.undodir = undodir
 opt.undofile = true
