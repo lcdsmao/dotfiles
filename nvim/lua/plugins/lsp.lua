@@ -283,7 +283,9 @@ return {
       },
 
       -- Use Rust fuzzy matcher for better performance
-      fuzzy = { implementation = "prefer_rust_with_warning" },
+      fuzzy = {
+        implementation = "prefer_rust_with_warning",
+      },
 
       -- Integrate with vim-snippets (honza/vim-snippets)
       snippets = {
@@ -293,7 +295,19 @@ return {
       -- Cmdline completion
       cmdline = {
         keymap = {
+          preset = "cmdline",
+          ["<Esc>"] = {
+            "cancel",
+            function()
+              if vim.fn.getcmdtype() ~= "" then
+                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-c>", true, true, true), "n", true)
+                return
+              end
+            end,
+          },
           ["<CR>"] = { "accept", "fallback" },
+          ["<Up>"] = { "select_prev", "fallback" },
+          ["<Down>"] = { "select_next", "fallback" },
         },
       },
     },
