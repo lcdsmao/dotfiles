@@ -11,6 +11,8 @@ return {
           return "coc-explorer"
         elseif filetype == "floaterm" then
           return "term"
+        elseif filetype == "TelescopePrompt" then
+          return "Telescope"
         end
         return name
       end
@@ -49,13 +51,6 @@ return {
             statusline = {
               "coc-explorer",
               "gitsigns-blame",
-              "dap-repl",
-              "dapui_breakpoints",
-              "dapui_console",
-              "dapui_repl",
-              "dapui_scopes",
-              "dapui_stacks",
-              "dapui_watches",
             },
             winbar = {},
           },
@@ -70,7 +65,7 @@ return {
         },
         sections = {
           lualine_a = { "mode" },
-          lualine_b = { "filename", "diff" },
+          lualine_b = { "diff" },
           lualine_c = {
             {
               "diagnostics",
@@ -108,19 +103,20 @@ return {
           lualine_z = { "location" },
         },
         tabline = {
-          lualine_c = {
+          lualine_a = {
             "branch",
+          },
+          lualine_b = {
             {
               "filename",
               path = 1,
               shorting_target = 0,
               symbols = {
-                modified = "[+]",
-                readonly = "[-]",
-                unnamed = "[No Name]",
-                newfile = "[New]",
+                modified = "󱇨 ",
+                readonly = "󱀰 ",
+                unnamed = "󱀶 ",
+                newfile = " ",
               },
-              color = "StatusLine",
               fmt = filetype_fmt,
             },
           },
@@ -132,7 +128,7 @@ return {
         },
         winbar = {},
         inactive_winbar = {},
-        extensions = { "neo-tree", "quickfix" },
+        extensions = { "neo-tree", "quickfix", "nvim-dap-ui", "mason" },
       }
     end,
   },
