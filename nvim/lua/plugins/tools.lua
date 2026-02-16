@@ -100,11 +100,25 @@ return {
   {
     "rmagatti/auto-session",
     lazy = false,
+    keys = {
+      {
+        "<leader>fw",
+        "<cmd>AutoSession search<cr>",
+        desc = "Search sessions (auto-session)",
+      },
+    },
     ---@type AutoSession.Config
     opts = {
       suppressed_dirs = { "~/", "~/Downloads", "/" },
       git_use_branch_name = true,
       git_auto_restore_on_branch_change = true,
+      session_lens = {
+        picker_opts = {
+          layout_config = {
+            width = 0.6,
+          },
+        },
+      },
     },
   },
   {
