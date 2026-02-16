@@ -61,10 +61,20 @@ function avdr() {
 }
 
 function adbshot() {
-    DATE=$(date '+%y%m%d%H%M%S')
-    FILE_NAME=screenshot-${DATE}.png
-    DIR_PATH=~/Desktop
-    adb shell screencap -p > "${DIR_PATH}/${FILE_NAME}"
+    local date file_name dir_path file_path
+    date=$(date '+%y%m%d%H%M%S')
+    file_name="screenshot-${date}.png"
+    dir_path="$HOME/Desktop"
+    file_path="${dir_path}/${file_name}"
+
+    adb exec-out screencap -p > "$file_path" || return $?
+
+    if command -v osascript > /dev/null 2>&1 \
+        && osascript -e "set the clipboard to (read (POSIX file \"$file_path\") as «class PNGf» )" > /dev/null 2>&1; then
+        printf "Saved to %s and copied to clipboard.\n" "$file_path"
+    else
+        printf "Saved to %s.\n" "$file_path"
+    fi
 }
 
 function adbrecord() {
