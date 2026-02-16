@@ -1,3 +1,80 @@
+local function split_input_args(input)
+  local args = {}
+  for arg in input:gmatch("[^ ]+") do
+    table.insert(args, arg)
+  end
+  return args
+end
+
+local function filter_completion_items(items, arg_lead)
+  if arg_lead == "" then
+    return items
+  end
+
+  local matches = {}
+  for _, item in ipairs(items) do
+    if item:find(arg_lead, 1, true) == 1 then
+      table.insert(matches, item)
+    end
+  end
+  return matches
+end
+
+local fd_completion_items = {
+  "--hidden",
+  "--no-ignore",
+  "--follow",
+  "--exclude",
+  "-E",
+  "--type",
+  "-t",
+  "--extension",
+  "-e",
+  "--max-depth",
+  "--search-path",
+}
+
+local rg_completion_items = {
+  "--hidden",
+  "--no-ignore",
+  "--glob",
+  "-g",
+  "--iglob",
+  "--type",
+  "-t",
+  "--type-not",
+  "-T",
+  "--max-depth",
+  "--smart-case",
+  "--ignore-case",
+  "--fixed-strings",
+  "-F",
+}
+
+_G.telescope_prompt_completion = _G.telescope_prompt_completion or {}
+_G.telescope_prompt_completion.fd = function(arg_lead)
+  return filter_completion_items(fd_completion_items, arg_lead)
+end
+_G.telescope_prompt_completion.rg = function(arg_lead)
+  return filter_completion_items(rg_completion_items, arg_lead)
+end
+
+local function remap_picker_with_prompt(prompt_text, completion, apply_input)
+  return function(prompt_bufnr)
+    local current_text = require("telescope.actions.state").get_current_line()
+
+    vim.ui.input({ prompt = prompt_text, completion = completion }, function(input)
+      if input == nil then
+        return
+      end
+
+      local args = split_input_args(input)
+      require("telescope.actions").close(prompt_bufnr)
+      apply_input(current_text, args)
+    end)
+  end
+end
+
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -15,11 +92,6 @@ return {
         "<leader>ff",
         "<cmd>Telescope find_files<cr>",
         desc = "Find files",
-      },
-      {
-        "<leader>fa",
-        "<cmd>Telescope find_files hidden=true no_ignore=true<cr>",
-        desc = "Find all files",
       },
       {
         "<leader>fg",
@@ -83,41 +155,44 @@ return {
       },
       pickers = {
         find_files = {
-          follow = true,
-        },
-        live_grep = {
-          additional_args = { "--follow" },
           mappings = {
             i = {
-              ["<C-f>"] = function(prompt_bufnr)
-                local current_text = require("telescope.actions.state").get_current_line()
-
-                vim.ui.input({ prompt = "Enter rg parameters (e.g., -t lua, --glob *.rs): " }, function(input)
-                  if input == nil then
-                    return
-                  end
-
-                  local builtin = require("telescope.builtin")
+              ["<C-f>"] = remap_picker_with_prompt(
+                "Enter fd parameters (e.g., --hidden -E .git): ",
+                "customlist,v:lua.telescope_prompt_completion.fd",
+                function(current_text, args)
                   local opts = {
                     default_text = current_text,
-                    additional_args = function()
-                      if input == "" then
-                        return {}
-                      end
-                      -- Parse the input string into a table
-                      local args = {}
-                      for arg in input:gmatch("[^ ]+") do
-                        table.insert(args, arg)
-                      end
-                      return args
-                    end,
                   }
 
-                  -- Close current picker and reopen with new args
-                  require("telescope.actions").close(prompt_bufnr)
-                  builtin.live_grep(opts)
-                end)
-              end,
+                  if #args > 0 then
+                    opts.find_command = { "fd", "--type", "f" }
+                    for _, arg in ipairs(args) do
+                      table.insert(opts.find_command, arg)
+                    end
+                  end
+
+                  require("telescope.builtin").find_files(opts)
+                end
+              ),
+            },
+          },
+        },
+        live_grep = {
+          mappings = {
+            i = {
+              ["<C-f>"] = remap_picker_with_prompt(
+                "Enter rg parameters (e.g., -t lua, --glob *.rs): ",
+                "customlist,v:lua.telescope_prompt_completion.rg",
+                function(current_text, args)
+                  require("telescope.builtin").live_grep({
+                    default_text = current_text,
+                    additional_args = function()
+                      return args
+                    end,
+                  })
+                end
+              ),
             },
           },
         },
