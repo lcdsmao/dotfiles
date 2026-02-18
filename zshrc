@@ -24,6 +24,8 @@ zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
 # Configure fzf-tab
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
+zstyle ':fzf-tab:*' fzf-min-height 0
+zstyle ':fzf-tab:*' fzf-flags '--height=~40%'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Set language environment
