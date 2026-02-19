@@ -75,6 +75,62 @@ local function remap_picker_with_prompt(prompt_text, completion, apply_input)
   end
 end
 
+local function git_merge_base_files()
+  local pickers = require("telescope.pickers")
+  local finders = require("telescope.finders")
+  local conf = require("telescope.config").values
+  local make_entry = require("telescope.make_entry")
+  local previewers = require("telescope.previewers")
+  local putils = require("telescope.previewers.utils")
+
+  -- Detect main/master branch
+  vim.fn.system("git rev-parse --verify --quiet main")
+  local branch = vim.v.shell_error == 0 and "main" or nil
+  if not branch then
+    vim.fn.system("git rev-parse --verify --quiet master")
+    branch = vim.v.shell_error == 0 and "master" or nil
+  end
+  if not branch then
+    vim.notify("No main or master branch found", vim.log.levels.ERROR)
+    return
+  end
+
+  -- Get merge-base between current HEAD and main/master
+  local merge_base = vim.trim(vim.fn.system({ "git", "merge-base", "HEAD", branch }))
+  if vim.v.shell_error ~= 0 or merge_base == "" then
+    vim.notify("Could not determine merge-base with " .. branch, vim.log.levels.ERROR)
+    return
+  end
+
+  local opts = {}
+  opts.entry_maker = make_entry.gen_from_file(opts)
+
+  pickers
+    .new(opts, {
+      prompt_title = "Changed files (vs " .. branch .. " merge-base)",
+      finder = finders.new_oneshot_job({ "git", "--no-pager", "diff", "--name-only", "--relative", merge_base }, opts),
+      sorter = conf.file_sorter(opts),
+      previewer = previewers.new_buffer_previewer({
+        title = "Diff vs " .. branch .. " merge-base",
+        get_buffer_by_name = function(_, entry)
+          return entry.value
+        end,
+        define_preview = function(self, entry)
+          putils.job_maker({ "git", "--no-pager", "diff", merge_base, "--", entry.value }, self.state.bufnr, {
+            value = entry.value,
+            bufname = self.state.bufname,
+            callback = function(bufnr)
+              if vim.api.nvim_buf_is_valid(bufnr) then
+                putils.regex_highlighter(bufnr, "diff")
+              end
+            end,
+          })
+        end,
+      }),
+    })
+    :find()
+end
+
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -97,6 +153,11 @@ return {
         "<leader>fg",
         "<cmd>Telescope git_status<cr>",
         desc = "Show git status",
+      },
+      {
+        "<leader>fG",
+        git_merge_base_files,
+        desc = "Changed files vs main merge-base",
       },
       {
         "<leader>fr",
