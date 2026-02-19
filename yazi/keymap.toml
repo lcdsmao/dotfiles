@@ -12,7 +12,15 @@
 [[mgr.prepend_keymap]]
 on = "<C-p>"
 run = "shell -- qlmanage -p %s"
+desc = "Preview file with Quick Look"
 
 [[mgr.prepend_keymap]]
 on = [ "g", "r" ]
 run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"'
+desc = "Change directory to git root"
+
+[[mgr.prepend_keymap]]
+# Require https://github.com/gallardo994/clippy.yazi
+on = [ "c", "y" ]
+run = [ "yank", "plugin clippy" ]
+desc = "Copy file to system clipboard"
