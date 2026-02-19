@@ -197,7 +197,7 @@ return {
         layout_config = {
           horizontal = {
             width = 0.9,
-            preview_width = 0.45,
+            preview_width = 0.6,
           },
           vertical = {
             preview_height = 0.5,
@@ -212,7 +212,13 @@ return {
             ["<C-p>"] = require("telescope.actions").cycle_history_prev,
           },
         },
-        path_display = { "filename_first" },
+        path_display = {
+          "filename_first",
+          shorten = {
+            len = 1,
+            exclude = { -3, -2, -1, 1 },
+          },
+        },
       },
       pickers = {
         find_files = {
@@ -269,6 +275,16 @@ return {
       require("telescope").setup(opts)
       pcall(require("telescope").load_extension, "coc")
       require("telescope").load_extension("fzf")
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "TelescopePreviewerLoaded",
+        callback = function(args)
+          -- Enable line numbers
+          vim.wo.number = true
+          -- Enable line wrapping
+          vim.wo.wrap = true
+        end,
+      })
     end,
   },
 }
