@@ -149,6 +149,29 @@ return {
     end,
   },
   {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    ---@module "ibl"
+    ---@type ibl.config
+      opts = {
+        indent = {
+          highlight = {
+            "Whitespace",
+            "IblColumn",
+          },
+          char = "",
+        },
+        whitespace = {
+          highlight = {
+            "Whitespace",
+            "IblColumn",
+          },
+          remove_blankline_trail = false,
+        },
+        scope = { enabled = false },
+    },
+  },
+  {
     "wadackel/vim-dogrun",
     lazy = false,
     priority = 1000,
@@ -163,6 +186,7 @@ return {
         vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg = "NONE", bg = "NONE" })
         vim.api.nvim_set_hl(0, "WinBar", { link = "StatusLine" })
         vim.api.nvim_set_hl(0, "WinBarNC", { link = "StatusLine" })
+        vim.api.nvim_set_hl(0, "IblColumn", { ctermbg = 236, bg = "#252838" })
       end
 
       vim.api.nvim_create_autocmd("ColorScheme", {
