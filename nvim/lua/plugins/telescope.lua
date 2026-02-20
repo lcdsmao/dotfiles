@@ -269,16 +269,10 @@ return {
           },
         },
       },
-      extensions = {
-        coc = {
-          prefer_locations = true,
-          push_cursor_on_edit = true,
-        },
-      },
+      extensions = {},
     },
     config = function(_, opts)
       require("telescope").setup(opts)
-      pcall(require("telescope").load_extension, "coc")
       require("telescope").load_extension("fzf")
 
       vim.api.nvim_create_autocmd("User", {

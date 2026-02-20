@@ -76,7 +76,7 @@ return {
         },
       })
 
-      -- Text object selections (matches coc: if/af/ic/ac)
+      -- Text object selections
       vim.keymap.set({ "x", "o" }, "if", function()
         select.select_textobject("@function.inner", "textobjects")
       end, { desc = "Select inner function" })

@@ -7,8 +7,6 @@ return {
         local filetype = vim.o.filetype
         if filetype == "fzf" then
           return "fzf"
-        elseif filetype == "coc-explorer" then
-          return "coc-explorer"
         elseif filetype == "floaterm" then
           return "term"
         elseif filetype == "TelescopePrompt" then
@@ -49,7 +47,6 @@ return {
           section_separators = { left = "", right = "" },
           disabled_filetypes = {
             statusline = {
-              "coc-explorer",
               "gitsigns-blame",
             },
             winbar = {},
@@ -69,7 +66,7 @@ return {
           lualine_c = {
             {
               "diagnostics",
-              sources = { "nvim_diagnostic", "coc" },
+              sources = { "nvim_diagnostic" },
               sections = { "error", "warn", "info", "hint" },
               diagnostics_color = {
                 error = "DiagnosticError",
