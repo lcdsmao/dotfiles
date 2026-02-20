@@ -153,22 +153,17 @@ return {
     main = "ibl",
     ---@module "ibl"
     ---@type ibl.config
-      opts = {
-        indent = {
-          highlight = {
-            "Whitespace",
-            "IblColumn",
-          },
-          char = "",
+    opts = {
+      indent = {
+        highlight = {
+          "IblIndentGuide",
         },
-        whitespace = {
-          highlight = {
-            "Whitespace",
-            "IblColumn",
-          },
-          remove_blankline_trail = false,
-        },
-        scope = { enabled = false },
+        char = "│",
+      },
+      whitespace = {
+        remove_blankline_trail = false,
+      },
+      scope = { enabled = false },
     },
   },
   {
@@ -186,7 +181,7 @@ return {
         vim.api.nvim_set_hl(0, "FloatBorder", { ctermbg = "NONE", bg = "NONE" })
         vim.api.nvim_set_hl(0, "WinBar", { link = "StatusLine" })
         vim.api.nvim_set_hl(0, "WinBarNC", { link = "StatusLine" })
-        vim.api.nvim_set_hl(0, "IblColumn", { ctermbg = 236, bg = "#252838" })
+        vim.api.nvim_set_hl(0, "IblIndentGuide", { ctermfg = 240, fg = "#3a3f5a" })
       end
 
       vim.api.nvim_create_autocmd("ColorScheme", {
