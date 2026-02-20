@@ -83,22 +83,24 @@ local function git_merge_base_files()
   local previewers = require("telescope.previewers")
   local putils = require("telescope.previewers.utils")
 
-  -- Detect main/master branch
-  vim.fn.system("git rev-parse --verify --quiet main")
-  local branch = vim.v.shell_error == 0 and "main" or nil
-  if not branch then
-    vim.fn.system("git rev-parse --verify --quiet master")
-    branch = vim.v.shell_error == 0 and "master" or nil
+  -- Detect main branch
+  local main_branch = nil
+  for _, branch in ipairs({ "main", "master", "trunk", "default" }) do
+    vim.fn.system("git rev-parse --verify --quiet " .. branch)
+    if vim.v.shell_error == 0 then
+      main_branch = branch
+      break
+    end
   end
-  if not branch then
-    vim.notify("No main or master branch found", vim.log.levels.ERROR)
+  if not main_branch then
+    vim.notify("No main branch found", vim.log.levels.ERROR)
     return
   end
 
-  -- Get merge-base between current HEAD and main/master
-  local merge_base = vim.trim(vim.fn.system({ "git", "merge-base", "HEAD", branch }))
+  -- Get merge-base between current HEAD and main
+  local merge_base = vim.trim(vim.fn.system({ "git", "merge-base", "HEAD", main_branch }))
   if vim.v.shell_error ~= 0 or merge_base == "" then
-    vim.notify("Could not determine merge-base with " .. branch, vim.log.levels.ERROR)
+    vim.notify("Could not determine merge-base with " .. main_branch, vim.log.levels.ERROR)
     return
   end
 
@@ -107,11 +109,11 @@ local function git_merge_base_files()
 
   pickers
     .new(opts, {
-      prompt_title = "Changed files (vs " .. branch .. " merge-base)",
+      prompt_title = "Changed files (vs " .. main_branch .. " merge-base)",
       finder = finders.new_oneshot_job({ "git", "--no-pager", "diff", "--name-only", "--relative", merge_base }, opts),
       sorter = conf.file_sorter(opts),
       previewer = previewers.new_buffer_previewer({
-        title = "Diff vs " .. branch .. " merge-base",
+        title = "Diff vs " .. main_branch .. " merge-base",
         get_buffer_by_name = function(_, entry)
           return entry.value
         end,
