@@ -167,6 +167,10 @@ return {
     },
   },
   {
+    "norcalli/nvim-colorizer.lua",
+    opts = { "*" },
+  },
+  {
     "wadackel/vim-dogrun",
     lazy = false,
     priority = 1000,
