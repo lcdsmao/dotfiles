@@ -195,14 +195,17 @@ return {
     opts = {
       defaults = {
         wrap_results = true,
-        layout_strategy = "horizontal",
+        layout_strategy = "flex",
         layout_config = {
+          flex = {
+            flip_columns = 240,
+          },
           horizontal = {
             width = 0.9,
             preview_width = 0.6,
           },
           vertical = {
-            preview_height = 0.5,
+            preview_height = 0.6,
             preview_cutoff = 0,
             mirror = false,
           },
