@@ -185,3 +185,7 @@ on-mode-changed = []
 [[on-window-detected]]
     if.app-id = 'com.github.wez.wezterm'
     run = ['layout floating']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.finder'
+    run = 'layout floating'
