@@ -63,6 +63,9 @@
       glob: true
       force: true
       path: hammerspoon/*
+    ~/.aerospace.toml:
+      path: aerospace.toml
+      force: true
 
 - shell:
     - command: 'git submodule update --init --recursive'
