@@ -111,10 +111,10 @@ on-mode-changed = []
     ctrl-alt-slash = 'layout h_tiles h_accordion'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-    ctrl-alt-h = 'focus left'
-    ctrl-alt-j = 'focus left'
-    ctrl-alt-k = 'focus right'
-    ctrl-alt-l = 'focus right'
+    ctrl-alt-h = 'focus dfs-prev'
+    ctrl-alt-j = 'focus dfs-prev'
+    ctrl-alt-k = 'focus dfs-next'
+    ctrl-alt-l = 'focus dfs-next'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#resize
     shift-alt-comma = 'resize smart -100'
@@ -172,7 +172,7 @@ on-mode-changed = []
     esc = ['reload-config', 'mode main']
     r = ['flatten-workspace-tree', 'mode main'] # reset layout
     f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
-    backspace = ['close-all-windows-but-current', 'mode main']
+    shift-backspace = ['close-all-windows-but-current', 'mode main']
 
     # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
     #s = ['layout sticky tiling', 'mode main']
