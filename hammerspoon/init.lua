@@ -51,14 +51,17 @@ local function focused_workspace()
 end
 
 local function window_info_for_bundle(bundle_id)
-  local output =
-    run_aerospace("list-windows --monitor all --app-bundle-id " .. bundle_id .. " --format '%{window-id} %{workspace}'")
+  local output = run_aerospace(
+    "list-windows --monitor all --app-bundle-id "
+      .. bundle_id
+      .. " --format '%{window-id} %{workspace} %{window-layout}'"
+  )
   local line = first_line(output)
   if not line then
     return nil
   end
 
-  local window_id, workspace = line:match("^(%S+)%s+(%S+)$")
+  local window_id, workspace, layout = line:match("^(%S+)%s+(%S+)%s+(%S+)$")
   if not window_id or window_id == "" then
     return nil
   end
@@ -66,6 +69,7 @@ local function window_info_for_bundle(bundle_id)
   return {
     window_id = window_id,
     workspace = workspace,
+    layout = layout,
   }
 end
 
@@ -87,7 +91,7 @@ local function sync_wezterm_workspace(app, workspace)
       run_aerospace("move-node-to-workspace --focus-follows-window --window-id " .. info.window_id .. " " .. workspace)
       run_aerospace("workspace " .. workspace)
     end, 0.05)
-  elseif app:isFrontmost() then
+  elseif app:isFrontmost() and info.layout == "floating" then
     app:hide()
   else
     launch_wezterm()
