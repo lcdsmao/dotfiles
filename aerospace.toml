@@ -188,4 +188,12 @@ on-mode-changed = []
 
 [[on-window-detected]]
     if.app-id = 'com.apple.finder'
-    run = 'layout floating'
+    run = ['layout floating']
+
+[[on-window-detected]]
+    if.app-id = 'com.google.android.studio'
+    run = ['move-node-to-workspace D', 'workspace D']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.dt.Xcode'
+    run = ['move-node-to-workspace X', 'workspace X']
