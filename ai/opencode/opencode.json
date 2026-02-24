@@ -1,5 +1,18 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "bash": {
+      "curl *": "deny",
+      "wget *": "deny",
+      "*base64 -D*": "deny",
+      "*base64 --decode*": "deny",
+      "*base64 -d*": "deny",
+      "* | bash": "deny",
+      "* | zsh": "deny",
+      "* | sh": "deny",
+      "eval *": "deny"
+    }
+  },
   "plugin": [
     "@mohak34/opencode-notifier@latest"
   ],
