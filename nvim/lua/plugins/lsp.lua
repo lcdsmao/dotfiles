@@ -127,7 +127,7 @@ return {
           )
 
           -- Code actions
-          map("n", ",rr", "<cmd>Lspsaga rename ++project<cr>", "Rename symbol")
+          map("n", ",rr", "<cmd>Lspsaga rename<cr>", "Rename symbol")
           map({ "n", "x" }, ",a", "<cmd>Lspsaga code_action<cr>", "Code action")
         end,
       })
