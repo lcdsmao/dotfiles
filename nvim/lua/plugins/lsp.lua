@@ -27,6 +27,8 @@ return {
           "lua_ls", -- Lua
           "ts_ls", -- TypeScript/JavaScript
           "pyright", -- Python
+          "astro", -- Astro
+          "svelte", -- Svelte
           "copilot",
         },
         -- Automatically enable installed servers (new API)
@@ -157,7 +159,19 @@ return {
           "javascriptreact",
           "typescriptreact",
           "vue",
+          "astro",
+          "svelte",
         },
+      }
+
+      -- Astro config
+      vim.lsp.config.astro = {
+        capabilities = capabilities,
+      }
+
+      -- Svelte config
+      vim.lsp.config.svelte = {
+        capabilities = capabilities,
       }
 
       -- SourceKit (Swift/iOS)
