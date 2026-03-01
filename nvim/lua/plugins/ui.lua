@@ -165,7 +165,12 @@ return {
   },
   {
     "norcalli/nvim-colorizer.lua",
-    opts = { "*" },
+    config = function()
+      require("colorizer").setup({
+        "*",
+        css = { RRGGBBAA = true, rgb_fn = true },
+      })
+    end,
   },
   {
     "wadackel/vim-dogrun",
