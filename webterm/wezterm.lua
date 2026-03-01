@@ -6,6 +6,8 @@ local config = wezterm.config_builder()
 
 -- Font configuration
 config.font = wezterm.font_with_fallback({
+  { family = "JetBrainsMono Nerd Font", weight = "Regular" },
+  { family = "JetBrains Mono Nerd Font", weight = "Regular" },
   { family = "JetBrains Mono", weight = "Regular" },
   { family = "Apple Color Emoji" },
 })
