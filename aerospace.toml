@@ -111,10 +111,10 @@ on-mode-changed = []
     ctrl-alt-slash = 'layout h_tiles h_accordion'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-    ctrl-alt-h = 'focus dfs-prev'
-    ctrl-alt-j = 'focus dfs-prev'
-    ctrl-alt-k = 'focus dfs-next'
-    ctrl-alt-l = 'focus dfs-next'
+    ctrl-alt-h = 'focus dfs-prev --ignore-floating'
+    ctrl-alt-j = 'focus dfs-prev --ignore-floating'
+    ctrl-alt-k = 'focus dfs-next --ignore-floating'
+    ctrl-alt-l = 'focus dfs-next --ignore-floating'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#resize
     shift-alt-comma = 'resize smart -100'
