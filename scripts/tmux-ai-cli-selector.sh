@@ -48,8 +48,29 @@ AI_CLI=$(printf "%s\n" "${SORTED_CLIS[@]}" | fzf --prompt="Select AI CLI: " --he
 if [ -n "$AI_CLI" ]; then
 	# Save the selected CLI for next time (ensure cache directory exists)
 	mkdir -p "$CACHE_DIR"
-	echo "$AI_CLI" >"$LAST_CLI_FILE"
-	exec "$AI_CLI"
+	printf "%s\n" "$AI_CLI" >"$LAST_CLI_FILE"
+
+	# Start each CLI with flags that allow tools in the current directory.
+	case "$AI_CLI" in
+	opencode)
+		exec "$AI_CLI" "$PWD"
+		;;
+	copilot)
+		exec "$AI_CLI" --add-dir "$PWD" --allow-tool write
+		;;
+	claude)
+		exec "$AI_CLI" --add-dir "$PWD" --permission-mode acceptEdits
+		;;
+	codex)
+		exec "$AI_CLI" --cd "$PWD" --sandbox workspace-write
+		;;
+	gemini)
+		exec "$AI_CLI" --include-directories "$PWD" --approval-mode auto_edit
+		;;
+	*)
+		exec "$AI_CLI"
+		;;
+	esac
 else
 	exit 0
 fi
