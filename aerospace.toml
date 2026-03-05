@@ -195,5 +195,9 @@ on-mode-changed = []
     run = ['move-node-to-workspace D', 'workspace D']
 
 [[on-window-detected]]
+    if.app-id = 'com.jetbrains.intellij'
+    run = ['move-node-to-workspace E', 'workspace E']
+
+[[on-window-detected]]
     if.app-id = 'com.apple.dt.Xcode'
     run = ['move-node-to-workspace X', 'workspace X']
