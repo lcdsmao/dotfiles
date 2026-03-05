@@ -3,6 +3,12 @@
 # Get the current pane path
 CURRENT_PATH="$1"
 
+# Do nothing if the current pane is already an AI CLI pane
+PANE_TYPE=$(tmux display-message -p '#{@pane-type}')
+if [ "$PANE_TYPE" = "ai-cli" ]; then
+  exit 0
+fi
+
 # Kill all other panes in the current window
 tmux kill-pane -a
 
