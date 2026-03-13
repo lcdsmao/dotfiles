@@ -11,7 +11,7 @@ config.font = wezterm.font_with_fallback({
   { family = "JetBrains Mono", weight = "Regular" },
   { family = "Apple Color Emoji" },
 })
-config.font_size = 12.0
+config.font_size = 13.0
 
 -- Color scheme
 config.color_scheme = "dogrun"
