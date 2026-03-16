@@ -16,9 +16,6 @@
   "plugin": [
     "@mohak34/opencode-notifier@latest"
   ],
-  "keybinds": {
-    "app_exit": "<leader>q"
-  },
   "mcp": {
     "context7": {
       "type": "remote",
