@@ -112,6 +112,8 @@ return {
       suppressed_dirs = { "~/", "~/Downloads", "/" },
       git_use_branch_name = true,
       git_auto_restore_on_branch_change = true,
+      auto_delete_empty_sessions = true,
+      purge_after_minutes = 14400,
       session_lens = {
         picker_opts = {
           layout_config = {
