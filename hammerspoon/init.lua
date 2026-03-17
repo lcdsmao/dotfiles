@@ -84,13 +84,19 @@ local function sync_wezterm_workspace(app, workspace)
   end
 
   if info.workspace ~= workspace then
-    launch_wezterm()
-    hs.timer.waitUntil(function()
-      return app_ready(app)
-    end, function()
+    if app:isHidden() then
+      launch_wezterm()
+      hs.timer.waitUntil(function()
+        return app_ready(app)
+      end, function()
+        run_aerospace(
+          "move-node-to-workspace --focus-follows-window --window-id " .. info.window_id .. " " .. workspace
+        )
+        run_aerospace("workspace " .. workspace)
+      end, 0.05)
+    else
       run_aerospace("move-node-to-workspace --focus-follows-window --window-id " .. info.window_id .. " " .. workspace)
-      run_aerospace("workspace " .. workspace)
-    end, 0.05)
+    end
   elseif app:isFrontmost() and info.layout == "floating" then
     app:hide()
   else
