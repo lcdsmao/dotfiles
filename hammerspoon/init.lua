@@ -1,14 +1,29 @@
 local WEZTERM_BUNDLE_ID = "com.github.wez.wezterm"
+local WEZTERM_SYNC_INTERVAL = 0.05
+local WEZTERM_SYNC_MAX_ATTEMPTS = 40
+
+local wezterm_sync_timer = nil
 
 local function launch_wezterm()
   hs.application.launchOrFocusByBundleID(WEZTERM_BUNDLE_ID)
 end
 
 local function app_ready(app)
+  if not app then
+    return false
+  end
+
   if app:isHidden() then
     return false
   end
   return app:mainWindow() ~= nil
+end
+
+local function stop_wezterm_sync_timer()
+  if wezterm_sync_timer then
+    wezterm_sync_timer:stop()
+    wezterm_sync_timer = nil
+  end
 end
 
 local function run_aerospace(command)
@@ -73,6 +88,29 @@ local function window_info_for_bundle(bundle_id)
   }
 end
 
+local function schedule_wezterm_workspace_sync(window_id, workspace)
+  local attempts = 0
+
+  stop_wezterm_sync_timer()
+  wezterm_sync_timer = hs.timer.doEvery(WEZTERM_SYNC_INTERVAL, function()
+    attempts = attempts + 1
+
+    local app = hs.application.get(WEZTERM_BUNDLE_ID)
+    if app_ready(app) then
+      stop_wezterm_sync_timer()
+      run_aerospace(
+        "move-node-to-workspace --focus-follows-window --window-id " .. window_id .. " " .. workspace
+      )
+      run_aerospace("workspace " .. workspace)
+      return
+    end
+
+    if attempts >= WEZTERM_SYNC_MAX_ATTEMPTS then
+      stop_wezterm_sync_timer()
+    end
+  end)
+end
+
 local function sync_wezterm_workspace(app, workspace)
   if not app or not workspace then
     return
@@ -86,14 +124,7 @@ local function sync_wezterm_workspace(app, workspace)
   if info.workspace ~= workspace then
     if app:isHidden() then
       launch_wezterm()
-      hs.timer.waitUntil(function()
-        return app_ready(app)
-      end, function()
-        run_aerospace(
-          "move-node-to-workspace --focus-follows-window --window-id " .. info.window_id .. " " .. workspace
-        )
-        run_aerospace("workspace " .. workspace)
-      end, 0.05)
+      schedule_wezterm_workspace_sync(info.window_id, workspace)
     else
       run_aerospace("move-node-to-workspace --focus-follows-window --window-id " .. info.window_id .. " " .. workspace)
     end
