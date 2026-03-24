@@ -10,67 +10,67 @@ LAST_CLI_FILE="$CACHE_DIR/tmux-ai-cli-last"
 # Filter to only installed CLIs
 INSTALLED_CLIS=()
 for cli in "${ALL_CLIS[@]}"; do
-	if command -v "$cli" >/dev/null 2>&1; then
-		INSTALLED_CLIS+=("$cli")
-	fi
+  if command -v "$cli" > /dev/null 2>&1; then
+    INSTALLED_CLIS+=("$cli")
+  fi
 done
 
 if [ ${#INSTALLED_CLIS[@]} -eq 0 ]; then
-	echo "No AI CLI tools found. Please install one of: ${ALL_CLIS[*]}"
-	echo ""
-	exec "$SHELL"
+  echo "No AI CLI tools found. Please install one of: ${ALL_CLIS[*]}"
+  echo ""
+  exec "$SHELL"
 fi
 
 # Sort installed CLIs with the last used one first
 SORTED_CLIS=()
 if [ -f "$LAST_CLI_FILE" ]; then
-	LAST_CLI=$(cat "$LAST_CLI_FILE")
-	# Add last used CLI first if it's still installed
-	for cli in "${INSTALLED_CLIS[@]}"; do
-		if [ "$cli" = "$LAST_CLI" ]; then
-			SORTED_CLIS+=("$cli")
-			break
-		fi
-	done
-	# Add remaining CLIs
-	for cli in "${INSTALLED_CLIS[@]}"; do
-		if [ "$cli" != "$LAST_CLI" ]; then
-			SORTED_CLIS+=("$cli")
-		fi
-	done
+  LAST_CLI=$(cat "$LAST_CLI_FILE")
+  # Add last used CLI first if it's still installed
+  for cli in "${INSTALLED_CLIS[@]}"; do
+    if [ "$cli" = "$LAST_CLI" ]; then
+      SORTED_CLIS+=("$cli")
+      break
+    fi
+  done
+  # Add remaining CLIs
+  for cli in "${INSTALLED_CLIS[@]}"; do
+    if [ "$cli" != "$LAST_CLI" ]; then
+      SORTED_CLIS+=("$cli")
+    fi
+  done
 else
-	SORTED_CLIS=("${INSTALLED_CLIS[@]}")
+  SORTED_CLIS=("${INSTALLED_CLIS[@]}")
 fi
 
 # Show only installed CLIs in fzf (sorted with last used first)
 AI_CLI=$(printf "%s\n" "${SORTED_CLIS[@]}" | fzf --prompt="Select AI CLI: " --height=~50% --reverse --border)
 
 if [ -n "$AI_CLI" ]; then
-	# Save the selected CLI for next time (ensure cache directory exists)
-	mkdir -p "$CACHE_DIR"
-	printf "%s\n" "$AI_CLI" >"$LAST_CLI_FILE"
+  # Save the selected CLI for next time (ensure cache directory exists)
+  mkdir -p "$CACHE_DIR"
+  printf "%s\n" "$AI_CLI" > "$LAST_CLI_FILE"
 
-	# Start each CLI with flags that allow tools in the current directory.
-	case "$AI_CLI" in
-	opencode)
-		exec "$AI_CLI" "$PWD"
-		;;
-	copilot)
-		exec "$AI_CLI" --add-dir "$PWD" --allow-tool write
-		;;
-	claude)
-		exec "$AI_CLI" --add-dir "$PWD" --permission-mode acceptEdits
-		;;
-	codex)
-		exec "$AI_CLI" --cd "$PWD" --sandbox workspace-write
-		;;
-	gemini)
-		exec "$AI_CLI" --include-directories "$PWD" --approval-mode auto_edit
-		;;
-	*)
-		exec "$AI_CLI"
-		;;
-	esac
+  # Start each CLI with flags that allow tools in the current directory.
+  case "$AI_CLI" in
+    opencode)
+      exec "$AI_CLI"
+      ;;
+    copilot)
+      exec "$AI_CLI" --allow-all-tools --allow-all-urls
+      ;;
+    claude)
+      exec "$AI_CLI" --permission-mode auto
+      ;;
+    codex)
+      exec "$AI_CLI" --full-auto
+      ;;
+    gemini)
+      exec "$AI_CLI" --approval-mode auto_edit
+      ;;
+    *)
+      exec "$AI_CLI"
+      ;;
+  esac
 else
-	exit 0
+  exit 0
 fi
