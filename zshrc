@@ -4,6 +4,9 @@ if [[ -n $ZSH_PROFILE ]]; then
     zmodload zsh/zprof
 fi
 
+# Homebrew
+[[ -f /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Disable oh-my-zsh auto-update checks
 zstyle ':omz:update' mode disabled
 
@@ -48,9 +51,6 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.docker/bin:$PATH"
 export PATH="$PATH:$HOME/.zshconfig/plugins/bin"
-
-# Homebrew
-[[ -f /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # ignore ctrl + d
 setopt ignoreeof
