@@ -22,7 +22,7 @@ Aloxaf/fzf-tab
 $HOME/.zshconfig/plugins/android.zsh
 $HOME/.zshconfig/plugins/ffmpeg.zsh
 $HOME/.zshconfig/plugins/flutter.zsh
-$HOME/.zshconfig/plugins/fnm.zsh
+$HOME/.zshconfig/plugins/vp.zsh
 $HOME/.zshconfig/plugins/fzf.zsh
 $HOME/.zshconfig/plugins/ios.zsh
 $HOME/.zshconfig/plugins/java.zsh
