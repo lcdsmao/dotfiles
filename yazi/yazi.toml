@@ -1,9 +1,9 @@
 # Configuration file for Yazi
 # See https://yazi-rs.github.io/docs/configuration/yazi for full documentation
 
-[manager]
+[mgr]
 # Show hidden files
-show_hidden = false
+show_hidden = true
 # Sort by
 sort_by = "natural"
 # Sort directories first
