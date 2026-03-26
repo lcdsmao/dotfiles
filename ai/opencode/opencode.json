@@ -11,6 +11,12 @@
       "* | zsh": "deny",
       "* | sh": "deny",
       "eval *": "deny"
+    },
+    "read": {
+      "~/.config/opencode/get-shit-done/*": "allow"
+    },
+    "external_directory": {
+      "~/.config/opencode/get-shit-done/*": "allow"
     }
   },
   "plugin": [
