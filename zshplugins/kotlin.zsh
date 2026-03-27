@@ -1,4 +1,5 @@
 ktd() {
+  local lint_scope=""
   local main_branch=""
   local target=""
   local response=""
@@ -17,8 +18,10 @@ ktd() {
   tmp_file="$(mktemp)"
 
   if [ -n "$target" ]; then
+    lint_scope="Ktlint on Kotlin files changed since $target"
     git diff "$target...HEAD" --name-only -z --relative -- '*.kt' '*.kts' > "$tmp_file"
   elif git rev-parse --verify HEAD >/dev/null 2>&1; then
+    lint_scope="Ktlint on uncommitted Kotlin files"
     {
       git diff HEAD --name-only -z --relative -- '*.kt' '*.kts'
       git ls-files --others --exclude-standard -z -- '*.kt' '*.kts'
@@ -28,11 +31,15 @@ ktd() {
       for main_branch in "${main_branch_candidates[@]}"; do
         if git rev-parse --verify "$main_branch" >/dev/null 2>&1; then
           git diff "$main_branch...HEAD" --name-only -z --relative -- '*.kt' '*.kts' > "$tmp_file"
-          [ -s "$tmp_file" ] && break
+          if [ -s "$tmp_file" ]; then
+            lint_scope="Ktlint on Kotlin files changed from merge-base with $main_branch"
+            break
+          fi
         fi
       done
     fi
   else
+    lint_scope="Ktlint on uncommitted Kotlin files"
     git ls-files --others --exclude-standard -z -- '*.kt' '*.kts' > "$tmp_file"
   fi
 
@@ -41,6 +48,8 @@ ktd() {
     echo "No Kotlin files to lint"
     return 0
   fi
+
+  echo "$lint_scope"
 
   if ktlint --relative "${ktlint_args[@]}" --patterns-from-stdin='' < "$tmp_file"; then
     rm -f "$tmp_file"
