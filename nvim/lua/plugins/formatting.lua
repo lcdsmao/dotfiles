@@ -7,15 +7,16 @@ return {
 
       conform.setup({
         formatters_by_ft = {
-          javascript = { "prettier" },
-          typescript = { "prettier" },
-          javascriptreact = { "prettier" },
-          typescriptreact = { "prettier" },
-          css = { "prettier" },
-          html = { "prettier" },
-          json = { "prettier" },
-          yaml = { "prettier" },
-          markdown = { "prettier" },
+          javascript = { "oxfmt" },
+          javascriptreact = { "oxfmt" },
+          typescript = { "oxfmt" },
+          typescriptreact = { "oxfmt" },
+          json = { "oxfmt" },
+          vue = { "oxfmt" },
+          html = { "oxfmt" },
+          css = { "oxfmt" },
+          yaml = { "oxfmt" },
+          markdown = { "oxfmt" },
           lua = { "stylua" },
           swift = { "swiftformat" },
           sh = { "shfmt" },
@@ -45,7 +46,7 @@ return {
         conform.format({
           lsp_fallback = true,
           async = false,
-          timeout_ms = 1000,
+          timeout_ms = 2000,
         }, function(err, did_set)
           -- Notify if error occurs
           if err then
