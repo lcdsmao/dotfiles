@@ -19,14 +19,20 @@
       "~/.config/opencode/get-shit-done/*": "allow"
     }
   },
-  "plugin": [
-    "@mohak34/opencode-notifier@latest"
-  ],
+  "plugin": ["@mohak34/opencode-notifier@latest"],
   "mcp": {
     "context7": {
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",
       "enabled": true
+    }
+  },
+  "agent": {
+    "build": {
+      "color": "primary"
+    },
+    "plan": {
+      "color": "secondary"
     }
   }
 }
