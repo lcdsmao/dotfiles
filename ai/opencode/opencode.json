@@ -29,10 +29,10 @@
   },
   "agent": {
     "build": {
-      "color": "primary"
+      "color": "secondary"
     },
     "plan": {
-      "color": "secondary"
+      "color": "accent"
     }
   }
 }
