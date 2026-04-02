@@ -75,7 +75,45 @@ local function remap_picker_with_prompt(prompt_text, completion, apply_input)
   end
 end
 
-local function git_merge_base_files()
+local function resolve_default_diff_branch()
+  for _, branch in ipairs({ "main", "master", "trunk", "default" }) do
+    vim.fn.system("git rev-parse --verify --quiet " .. branch)
+    if vim.v.shell_error == 0 then
+      return branch
+    end
+  end
+
+  return nil
+end
+
+local function normalize_git_branch_selection(selection)
+  if not selection then
+    return nil
+  end
+
+  local candidates = {
+    selection.value,
+    selection.name,
+    selection.refname,
+    selection.ordinal,
+    selection[1],
+  }
+
+  for _, candidate in ipairs(candidates) do
+    if type(candidate) == "string" and candidate ~= "" then
+      local branch = vim.trim(candidate)
+      branch = branch:gsub("^%*%s+", "")
+      branch = branch:gsub("^remotes/", "")
+      if branch ~= "" then
+        return branch
+      end
+    end
+  end
+
+  return nil
+end
+
+local function git_changed_files_from_merge_base(target_branch)
   local pickers = require("telescope.pickers")
   local finders = require("telescope.finders")
   local conf = require("telescope.config").values
@@ -83,24 +121,14 @@ local function git_merge_base_files()
   local previewers = require("telescope.previewers")
   local putils = require("telescope.previewers.utils")
 
-  -- Detect main branch
-  local main_branch = nil
-  for _, branch in ipairs({ "main", "master", "trunk", "default" }) do
-    vim.fn.system("git rev-parse --verify --quiet " .. branch)
-    if vim.v.shell_error == 0 then
-      main_branch = branch
-      break
-    end
-  end
-  if not main_branch then
-    vim.notify("No main branch found", vim.log.levels.ERROR)
+  if not target_branch then
+    vim.notify("No target branch found", vim.log.levels.ERROR)
     return
   end
 
-  -- Get merge-base between current HEAD and main
-  local merge_base = vim.trim(vim.fn.system({ "git", "merge-base", "HEAD", main_branch }))
+  local merge_base = vim.trim(vim.fn.system({ "git", "merge-base", "HEAD", target_branch }))
   if vim.v.shell_error ~= 0 or merge_base == "" then
-    vim.notify("Could not determine merge-base with " .. main_branch, vim.log.levels.ERROR)
+    vim.notify("Could not determine merge-base with " .. target_branch, vim.log.levels.ERROR)
     return
   end
 
@@ -109,11 +137,11 @@ local function git_merge_base_files()
 
   pickers
     .new(opts, {
-      prompt_title = "Changed files (vs " .. main_branch .. " merge-base)",
+      prompt_title = "Changed files (vs " .. target_branch .. " merge-base)",
       finder = finders.new_oneshot_job({ "git", "--no-pager", "diff", "--name-only", "--relative", merge_base }, opts),
       sorter = conf.file_sorter(opts),
       previewer = previewers.new_buffer_previewer({
-        title = "Diff vs " .. main_branch .. " merge-base",
+        title = "Diff vs " .. target_branch .. " merge-base",
         get_buffer_by_name = function(_, entry)
           return entry.value
         end,
@@ -131,6 +159,40 @@ local function git_merge_base_files()
       }),
     })
     :find()
+end
+
+local function git_merge_base_files()
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+  local builtin = require("telescope.builtin")
+
+  local default_branch = resolve_default_diff_branch()
+  if not default_branch then
+    vim.notify("No main branch found", vim.log.levels.ERROR)
+    return
+  end
+
+  builtin.git_branches({
+    prompt_title = "Select branch to diff from merge-base",
+    default_text = default_branch,
+    attach_mappings = function(prompt_bufnr, map)
+      local function open_branch_diff()
+        local selection = action_state.get_selected_entry()
+        local target_branch = normalize_git_branch_selection(selection)
+        if not target_branch then
+          vim.notify("Could not determine selected branch", vim.log.levels.ERROR)
+          return
+        end
+
+        actions.close(prompt_bufnr)
+        git_changed_files_from_merge_base(target_branch)
+      end
+
+      map("i", "<CR>", open_branch_diff)
+      map("n", "<CR>", open_branch_diff)
+      return true
+    end,
+  })
 end
 
 return {
