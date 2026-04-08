@@ -49,9 +49,12 @@ ktd() {
     return 0
   fi
 
+  local ktlint_bin="${KTLINT:-ktlint}"
+
+  echo "$("$ktlint_bin" --version)"
   echo "$lint_scope"
 
-  if ktlint --relative "${ktlint_args[@]}" --patterns-from-stdin='' < "$tmp_file"; then
+  if "$ktlint_bin" --relative "${ktlint_args[@]}" --patterns-from-stdin='' < "$tmp_file"; then
     rm -f "$tmp_file"
     return 0
   fi
@@ -59,7 +62,7 @@ ktd() {
   read "?Apply ktlint format? [y/N] " response
   case "$response" in
     [yY]|[yY][eE][sS])
-      ktlint --relative -F "${ktlint_args[@]}" --patterns-from-stdin='' < "$tmp_file"
+      "$ktlint_bin" --relative -F "${ktlint_args[@]}" --patterns-from-stdin='' < "$tmp_file"
       ;;
   esac
 
