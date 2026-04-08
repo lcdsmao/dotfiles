@@ -1,4 +1,4 @@
-ktd() {
+ktcheck() {
   local lint_scope=""
   local main_branch=""
   local target=""
