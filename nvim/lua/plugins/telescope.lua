@@ -256,7 +256,6 @@ return {
     },
     opts = {
       defaults = {
-        wrap_results = true,
         layout_strategy = "flex",
         layout_config = {
           flex = {
@@ -280,11 +279,8 @@ return {
           },
         },
         path_display = {
+          truncate = 2,
           "filename_first",
-          shorten = {
-            len = 1,
-            exclude = { -3, -2, -1, 1 },
-          },
         },
       },
       pickers = {
@@ -329,6 +325,18 @@ return {
               ),
             },
           },
+        },
+        lsp_references = {
+          trim_text = true,
+        },
+        lsp_implementations = {
+          trim_text = true,
+        },
+        lsp_type_definitions = {
+          trim_text = true,
+        },
+        lsp_definitions = {
+          trim_text = true,
         },
       },
       extensions = {},
