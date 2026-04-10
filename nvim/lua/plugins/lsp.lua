@@ -11,32 +11,6 @@ return {
     end,
   },
 
-  -- Mason-lspconfig: Bridge between mason and lspconfig
-  {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim" },
-    config = function()
-      require("mason-lspconfig").setup({
-        -- Auto-install these servers
-        ensure_installed = {
-          "rust_analyzer", -- Rust
-          "jsonls", -- JSON
-          "lemminx", -- XML
-          "emmet_ls", -- Emmet
-          "bashls", -- Bash/Shell
-          "lua_ls", -- Lua
-          "ts_ls", -- TypeScript/JavaScript
-          "pyright", -- Python
-          "astro", -- Astro
-          "svelte", -- Svelte
-          "copilot",
-        },
-        -- Automatically enable installed servers (new API)
-        automatic_enable = true,
-      })
-    end,
-  },
-
   -- LSPconfig: Configure LSP servers
   {
     "neovim/nvim-lspconfig",
@@ -139,101 +113,32 @@ return {
         capabilities = capabilities,
       })
 
-      -- JSON-specific config
-      vim.lsp.config.jsonls = {
-        capabilities = capabilities,
-        settings = {
-          json = {
-            schemas = require("schemastore").json.schemas(),
-            validate = { enable = true },
-          },
+      vim.lsp.config("jsonls", require("lsp.jsonls"))
+      vim.lsp.config("emmet_ls", require("lsp.emmet_ls"))
+      vim.lsp.config("sourcekit", require("lsp.sourcekit"))
+      vim.lsp.config("pyright", require("lsp.pyright"))
+      vim.lsp.config("lua_ls", require("lsp.lua_ls"))
+
+      require("mason-lspconfig").setup({
+        -- Auto-install these servers
+        ensure_installed = {
+          "rust_analyzer", -- Rust
+          "jsonls", -- JSON
+          "lemminx", -- XML
+          "emmet_ls", -- Emmet
+          "bashls", -- Bash/Shell
+          "lua_ls", -- Lua
+          "ts_ls", -- TypeScript/JavaScript
+          "pyright", -- Python
+          "astro", -- Astro
+          "svelte", -- Svelte
+          "copilot",
         },
-      }
+        automatic_enable = true,
+      })
 
-      -- Emmet-specific config
-      vim.lsp.config.emmet_ls = {
-        capabilities = capabilities,
-        filetypes = {
-          "html",
-          "css",
-          "javascriptreact",
-          "typescriptreact",
-          "vue",
-          "astro",
-          "svelte",
-        },
-      }
-
-      -- Astro config
-      vim.lsp.config.astro = {
-        capabilities = capabilities,
-      }
-
-      -- Svelte config
-      vim.lsp.config.svelte = {
-        capabilities = capabilities,
-      }
-
-      -- SourceKit (Swift/iOS)
-      vim.lsp.config.sourcekit = {
-        capabilities = capabilities,
-        -- Prefer BSP (xcode-build-server) when available.
-        -- This helps SourceKit-LSP keep an up-to-date index without requiring
-        -- manual builds in Xcode/Xcodebuild.
-        cmd = { "sourcekit-lsp", "--default-workspace-type", "buildServer" },
-        -- Passed as `initializationOptions` to sourcekit-lsp.
-        init_options = {
-          -- Keep the index fresh by preparing targets in the background.
-          backgroundIndexing = true,
-          -- Avoid full builds when possible while still preparing for indexing.
-          -- See: sourcekit-lsp Configuration File docs.
-          backgroundPreparationMode = "enabled",
-        },
-      }
+      -- SourceKit is not managed by Mason, so enable it explicitly.
       vim.lsp.enable("sourcekit")
-
-      -- Pyright (Python) config
-      local function venv_python_path()
-        local venv = vim.fs.find(".venv", { upward = true, type = "directory" })[1]
-        if venv then
-          local python = venv .. "/bin/python"
-          if vim.uv.fs_stat(python) then
-            return python
-          end
-        end
-      end
-
-      vim.lsp.config.pyright = {
-        capabilities = capabilities,
-        settings = {
-          python = {
-            pythonPath = venv_python_path(),
-          },
-        },
-      }
-      vim.lsp.enable("pyright")
-
-      -- Lua config
-      vim.lsp.config.lua_ls = {
-        capabilities = capabilities,
-        settings = {
-          Lua = {
-            runtime = {
-              version = "LuaJIT",
-            },
-            diagnostics = {
-              globals = { "vim" },
-            },
-            workspace = {
-              library = vim.api.nvim_get_runtime_file("", true),
-              checkThirdParty = false,
-            },
-            telemetry = {
-              enable = false,
-            },
-          },
-        },
-      }
     end,
   },
 
