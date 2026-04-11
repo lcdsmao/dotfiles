@@ -1,7 +1,6 @@
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
-    enabled = false,
     branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -10,8 +9,7 @@ return {
     },
     lazy = false, -- neo-tree will lazily load itself
     keys = {
-      { "<leader>nn", "<cmd>Neotree float reveal<cr>", desc = "Open NeoTree File" },
-      { "<leader>ng", "<cmd>Neotree float git_status<cr>", desc = "Open NeoTree Git" },
+      { "<leader>nt", "<cmd>Neotree float reveal<cr>", desc = "Open NeoTree File" },
     },
     opts = {
       window = {
