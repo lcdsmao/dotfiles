@@ -1020,10 +1020,58 @@
                     "to": [{ "consumer_key_code": "fastforward" }]
                 }
             ],
-            "name": "Mine",
+            "name": "normal",
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
         },
         {
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "Meh(Ctrl+Shift+Option)+C/J/E: Switch input source to Chinese/Japanese/English",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": {
+                                        "mandatory": ["control", "shift", "option"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "select_input_source": {
+                                            "input_mode_id": "^com\\.apple\\.inputmethod\\.SCIM\\.ITABC$"
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": {
+                                        "mandatory": ["control", "shift", "option"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [{ "select_input_source": { "language": "^ja$" } }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "e",
+                                    "modifiers": {
+                                        "mandatory": ["control", "shift", "option"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [{ "select_input_source": { "language": "^en$" } }],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
             "devices": [
                 {
                     "disable_built_in_keyboard_if_exists": true,
@@ -1034,7 +1082,7 @@
                     }
                 }
             ],
-            "name": "None",
+            "name": "cornix",
             "selected": true,
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
         }
