@@ -188,6 +188,7 @@ return {
         vim.api.nvim_set_hl(0, "WinBar", { link = "StatusLine" })
         vim.api.nvim_set_hl(0, "WinBarNC", { link = "StatusLine" })
         vim.api.nvim_set_hl(0, "IblIndentGuide", { ctermfg = 240, fg = "#3a3f5a" })
+        vim.api.nvim_set_hl(0, "LspInlayHint", { ctermfg = 60, fg = "#545c8c", bg = "NONE", italic = true })
       end
 
       vim.api.nvim_create_autocmd("ColorScheme", {

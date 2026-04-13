@@ -15,7 +15,7 @@ return {
           "settings.gradle",
         },
         inlay_hints = {
-          enabled = false,
+          enabled = true,
         },
       })
     end,
