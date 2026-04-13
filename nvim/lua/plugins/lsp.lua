@@ -130,11 +130,14 @@ return {
           "lua_ls", -- Lua
           "ts_ls", -- TypeScript/JavaScript
           "pyright", -- Python
+          "kotlin_lsp", -- Kotlin
           "astro", -- Astro
           "svelte", -- Svelte
           "copilot",
         },
-        automatic_enable = true,
+        automatic_enable = {
+          exclude = { "kotlin_lsp" }, -- via kotlin.nvim
+        },
       })
 
       -- SourceKit is not managed by Mason, so enable it explicitly.
