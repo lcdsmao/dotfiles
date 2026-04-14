@@ -283,8 +283,7 @@ return {
           "filename_first",
         },
         cache_picker = {
-          num_pickers = 5,
-          ignore_empty_prompt = true,
+          num_pickers = 8,
         },
       },
       pickers = {
