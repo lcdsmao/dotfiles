@@ -326,6 +326,10 @@ return {
             },
           },
         },
+        buffers = {
+          sort_mru = true,
+          sort_lastused = true,
+        },
         lsp_references = {
           trim_text = true,
         },
