@@ -240,8 +240,8 @@ return {
       },
       {
         "<leader>fp",
-        "<cmd>Telescope resume<cr>",
-        desc = "Resume last search",
+        "<cmd>Telescope pickers<cr>",
+        desc = "Show cached pickers",
       },
       {
         "<leader>fo",
@@ -281,6 +281,10 @@ return {
         path_display = {
           truncate = 2,
           "filename_first",
+        },
+        cache_picker = {
+          num_pickers = 5,
+          ignore_empty_prompt = true,
         },
       },
       pickers = {
