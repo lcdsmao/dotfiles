@@ -30,6 +30,8 @@ return {
         ui = {
           title = false,
           border = "rounded",
+          expand = "▸",
+          collapse = "▾",
         },
         symbol_in_winbar = { enable = false },
         lightbulb = { enable = false },
@@ -39,6 +41,9 @@ return {
         rename = {
           in_select = false,
         },
+        outline = {
+          win_width = 40,
+        }
       })
 
       -- Diagnostic configuration
@@ -86,7 +91,7 @@ return {
           map("n", "gr", "<cmd>Telescope lsp_references<cr>", "Find references")
 
           -- Symbols
-          map("n", ",o", "<cmd>Telescope lsp_document_symbols<cr>", "Document symbols")
+          map("n", ",o", "<cmd>Lspsaga outline<cr>", "Document outline")
           map("n", ",s", "<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace symbols")
 
           -- Documentation
