@@ -1054,7 +1054,7 @@
                                         "optional": ["caps_lock"]
                                     }
                                 },
-                                "to": [{ "select_input_source": { "language": "^ja$" } }],
+                                "to": [{ "key_code": "japanese_kana" }],
                                 "type": "basic"
                             },
                             {
@@ -1065,7 +1065,7 @@
                                         "optional": ["caps_lock"]
                                     }
                                 },
-                                "to": [{ "select_input_source": { "language": "^en$" } }],
+                                "to": [{ "key_code": "japanese_eisuu" }],
                                 "type": "basic"
                             }
                         ]
