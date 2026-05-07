@@ -1037,13 +1037,7 @@
                                         "optional": ["caps_lock"]
                                     }
                                 },
-                                "to": [
-                                    {
-                                        "select_input_source": {
-                                            "input_mode_id": "^com\\.apple\\.inputmethod\\.SCIM\\.ITABC$"
-                                        }
-                                    }
-                                ],
+                                "to": [{ "select_input_source": { "input_mode_id": "com.apple.inputmethod.SCIM.ITABC" } }],
                                 "type": "basic"
                             },
                             {
