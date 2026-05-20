@@ -62,7 +62,7 @@ if [ -n "$AI_CLI" ]; then
       exec "$AI_CLI" --permission-mode auto
       ;;
     codex)
-      exec "$AI_CLI" --full-auto
+      exec "$AI_CLI" --sandbox workspace-write
       ;;
     gemini)
       exec "$AI_CLI" --approval-mode auto_edit
