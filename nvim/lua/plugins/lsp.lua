@@ -162,33 +162,7 @@ return {
     opts = {
       -- Custom keymap: Use Enter to accept completion
       keymap = {
-        ["<CR>"] = {
-          function(cmp)
-            local item = cmp.get_selected_item()
-            return cmp.accept({
-              callback = function()
-                -- Kolin lsp workaround. Issue: https://github.com/Kotlin/kotlin-lsp/issues/105
-                if vim.bo.filetype ~= "kotlin" then
-                  return
-                end
-
-                local command = item and item.command and item.command.command
-                if command ~= "jetbrains.kotlin.completion.apply" then
-                  return
-                end
-
-                vim.schedule(function()
-                  if not vim.api.nvim_get_mode().mode:match("i") then
-                    return
-                  end
-
-                  vim.api.nvim_feedkeys(vim.keycode("<Right>"), "n", false)
-                end)
-              end,
-            })
-          end,
-          "fallback",
-        },
+        ["<CR>"] = { "accept", "fallback" },
         ["<Tab>"] = { "select_next", "fallback" },
         ["<S-Tab>"] = { "select_prev", "fallback" },
       },
