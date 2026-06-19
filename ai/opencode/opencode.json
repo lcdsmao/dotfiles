@@ -12,11 +12,9 @@
       "* | sh": "deny",
       "eval *": "deny"
     },
-    "read": {
-      "~/.config/opencode/get-shit-done/*": "allow"
-    },
     "external_directory": {
-      "~/.config/opencode/get-shit-done/*": "allow"
+      "~/.config/opencode/get-shit-done/*": "allow",
+      "~/Library/Application Support/rtk/*": "allow"
     }
   },
   "plugin": ["@mohak34/opencode-notifier@0.2.5"],
