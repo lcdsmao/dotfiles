@@ -4,6 +4,19 @@ return {
     dependencies = {}, -- tree-sitter CLI must be installed system-wide
     opts = {
       auto_install = true,
+      ensure_installed = {
+        "bash",
+        "zsh",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "query",
+        "vim",
+        "vimdoc",
+        "diff",
+        "gitcommit",
+        "json",
+      },
     },
   },
   {
