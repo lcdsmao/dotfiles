@@ -16,6 +16,8 @@ return {
         "diff",
         "gitcommit",
         "json",
+        "yaml",
+        "toml",
       },
     },
   },
