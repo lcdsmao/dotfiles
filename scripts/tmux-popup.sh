@@ -5,11 +5,17 @@ POPUP_SESSION="popup"
 
 configure_popup_session() {
 	tmux set-option -t "$POPUP_SESSION" status-right '' >/dev/null
-	tmux set-option -t "$POPUP_SESSION" pane-border-lines single >/dev/null
-	tmux set-option -t "$POPUP_SESSION" pane-border-indicators colour >/dev/null
-	tmux set-option -t "$POPUP_SESSION" pane-border-status off >/dev/null
-	tmux set-option -t "$POPUP_SESSION" pane-border-format "" >/dev/null
+	tmux set-hook -t "$POPUP_SESSION" after-new-window "run-shell '~/.config/scripts/tmux-popup.sh --configure-window #{window_id}'" >/dev/null
+}
 
+configure_popup_window() {
+	local window_id="$1"
+
+	tmux set-window-option -t "$window_id" pane-border-lines single >/dev/null
+	tmux set-window-option -t "$window_id" pane-border-indicators colour >/dev/null
+	tmux set-window-option -t "$window_id" pane-border-status off >/dev/null
+	tmux set-window-option -t "$window_id" pane-border-format "" >/dev/null
+	tmux set-option -t "$window_id" @sidebar_auto_create off >/dev/null
 }
 
 session_pane_records() {
@@ -76,6 +82,11 @@ find_window_for_path() {
 current_path=${1:-$(tmux display-message -p '#{pane_current_path}')}
 invoke_session=$(tmux display-message -p '#{session_name}')
 
+if [ "${1:-}" = "--configure-window" ]; then
+	configure_popup_window "$2"
+	exit 0
+fi
+
 if tmux has-session -t "$POPUP_SESSION" 2>/dev/null; then
 	purge_stale_popup_panes "$invoke_session"
 fi
@@ -84,12 +95,14 @@ if ! tmux has-session -t "$POPUP_SESSION" 2>/dev/null; then
 	window_id=$(tmux new-session -d -P -F '#{window_id}' -s "$POPUP_SESSION" -c "$current_path" "exec \"${SHELL:-/bin/sh}\"")
 	tmux set-window-option -t "$window_id" @popup_path "$current_path" >/dev/null
 	configure_popup_session
+	configure_popup_window "$window_id"
 else
 	configure_popup_session
 	if ! window_id=$(find_window_for_path "$current_path"); then
 		window_id=$(tmux new-window -d -P -F '#{window_id}' -t "$POPUP_SESSION:" -c "$current_path" "exec \"${SHELL:-/bin/sh}\"")
 		tmux set-window-option -t "$window_id" @popup_path "$current_path" >/dev/null
 	fi
+	configure_popup_window "$window_id"
 fi
 
 tmux select-window -t "$window_id"
