@@ -94,12 +94,15 @@ pane_width=${3:-$(tmux display-message -p '#{pane_width}')}
 window_width=${4:-$(tmux display-message -p '#{window_width}')}
 
 pane_center=$((pane_left + pane_width / 2))
-window_center=$((window_width / 2))
+# Position popup to the right-half unless the pane center is in the
+# rightmost quarter of the window. Use strict less-than against
+# three-quarters of the window width.
+threshold=$((window_width * 3 / 4))
 
-if [ "$pane_center" -le "$window_center" ]; then
-	popup_x=$((window_width / 2 + 8))
+if [ "$pane_center" -lt "$threshold" ]; then
+    popup_x=$((window_width / 2 + 8))
 else
-	popup_x="8"
+    popup_x="8"
 fi
 
 tmux display-popup -d "$current_path" -E -w 45% -h 80% -x "$popup_x" -y C \
