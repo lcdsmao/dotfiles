@@ -5,6 +5,11 @@ POPUP_SESSION="popup"
 
 configure_popup_session() {
 	tmux set-option -t "$POPUP_SESSION" status-right '' >/dev/null
+	tmux set-option -t "$POPUP_SESSION" pane-border-lines single >/dev/null
+	tmux set-option -t "$POPUP_SESSION" pane-border-indicators colour >/dev/null
+	tmux set-option -t "$POPUP_SESSION" pane-border-status off >/dev/null
+	tmux set-option -t "$POPUP_SESSION" pane-border-format "" >/dev/null
+
 }
 
 session_pane_records() {
