@@ -66,7 +66,7 @@ prefix = "ctrl+s"
 detach = "prefix+q"
 reload_config = "prefix+r"
 workspace_picker = "prefix+w"
-# new_workspace = "prefix+shift+n"
+new_workspace = "prefix+n"
 # new_worktree = "prefix+shift+g"
 # open_worktree = ""    # optional, unset by default
 # remove_worktree = ""  # optional, unset by default; opens confirmation
@@ -82,8 +82,9 @@ new_tab = "prefix+t"
 # rename_tab = "prefix+shift+t"
 previous_tab = "prefix+["
 next_tab = "prefix+]"
-switch_tab = "prefix+1..9"
-# switch_workspace = ""   # optional indexed binding, e.g. "prefix+shift+1..9"
+# switch_tab = "prefix+1..9"
+switch_workspace = "prefix+1..9"
+goto = "prefix+e"
 close_tab = "prefix+shift+x"
 # rename_pane = "prefix+shift+p"
 copy_mode = "prefix+i"
@@ -101,6 +102,7 @@ close_pane = "prefix+x"
 zoom = "prefix+o"       # legacy alias: fullscreen
 resize_mode = "prefix+m"
 toggle_sidebar = "prefix+b"
+settings = "prefix+c"
 
 # Navigate-mode movement. These local shortcuts win while navigate mode is open.
 # They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
@@ -292,3 +294,4 @@ pane_history = false
 # Maximum scrollback buffer size in bytes retained per pane terminal.
 # Matches Ghostty's default scrollback-limit behavior.
 # scrollback_limit_bytes = 10000000
+
