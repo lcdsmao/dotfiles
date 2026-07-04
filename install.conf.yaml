@@ -66,6 +66,9 @@
     ~/.aerospace.toml:
       path: aerospace.toml
       force: true
+    ~/.config/herdr/:
+      glob: true
+      path: herdr/*
 
 - shell:
     - command: 'git submodule update --init --recursive'
@@ -76,4 +79,7 @@
       stdout: true
     - command: '[ ! -e ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || true'
       description: Installing tmp
+      stdout: true
+    - command: 'bash scripts/herdr-setup.sh'
+      description: Linking Herdr plugins
       stdout: true
