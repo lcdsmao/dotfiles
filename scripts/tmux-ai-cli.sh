@@ -51,3 +51,6 @@ fi
 if [ -n "$AI_PANE" ]; then
   tmux select-pane -t "$AI_PANE"
 fi
+
+# Open sidebar
+tmux run-shell "\"#{@agent_sidebar_bin}\" toggle --create-only \"#{window_id}\" \"#{pane_current_path}\""
