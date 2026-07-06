@@ -51,6 +51,9 @@
     ~/.config/wezterm/:
       glob: true
       path: webterm/*
+    ~/.config/ghostty/config:
+      path: ghostty/config
+      force: true
     ~/.config/yazi/:
       glob: true
       path: yazi/*
