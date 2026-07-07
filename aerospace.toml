@@ -194,3 +194,7 @@ on-mode-changed = []
 [[on-window-detected]]
     if.app-id = 'com.apple.dt.Xcode'
     run = ['move-node-to-workspace X', 'workspace X']
+
+[[on-window-detected]]
+    if.app-id = 'com.mitchellh.ghostty'
+    run = ['move-node-to-workspace G', 'workspace G']

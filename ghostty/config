@@ -48,8 +48,10 @@ adjust-cell-height = 0
 scrollback-limit = 1000
 
 # Quick terminal
-quick-terminal-position=bottom
-quick-terminal-size=50%
+quick-terminal-position = bottom
+quick-terminal-size = 60%
+quick-terminal-animation-duration = 0
+quick-terminal-autohide = false
 
 # Bell
 # Ghostty keeps BEL features disabled by default, which matches the WezTerm setup.
