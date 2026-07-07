@@ -58,6 +58,3 @@ quick-terminal-autohide = false
 
 # Keybindings
 keybind = global:cmd+alt+ctrl+shift+f=toggle_quick_terminal
-
-# Command
-command = /bin/zsh -li -c "herdr"
