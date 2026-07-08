@@ -65,6 +65,11 @@ alias vi=nvim
 alias o='open .'
 alias c='tput clear'
 
+# Ghostty shell integration
+if [[ -n $GHOSTTY_RESOURCES_DIR && (-n $TMUX || -n $HERDR_ENV) ]]; then
+  source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
+fi
+
 # Profile end
 if [[ -n $ZSH_PROFILE ]]; then
     zprof
