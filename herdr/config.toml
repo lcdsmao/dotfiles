@@ -225,6 +225,7 @@ description = "set up main tab AI layout"
 
 # Background notification popup delivery
 [ui.toast]
+delivery = "terminal"
 # off = disable pop-up notifications
 # herdr = show in-app toasts
 # terminal = ask the outer terminal to show a desktop notification
