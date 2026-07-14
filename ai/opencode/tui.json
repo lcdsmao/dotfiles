@@ -3,5 +3,8 @@
   "theme": "system",
   "keybinds": {
     "app_exit": "<leader>q"
-  }
+  },
+  "plugin": [
+    "oh-my-opencode-slim",
+  ]
 }

@@ -16,6 +16,9 @@
       "~/Library/Application Support/rtk/*": "allow"
     }
   },
+  "plugin": [
+    "oh-my-opencode-slim"
+  ],
   "mcp": {
     "context7": {
       "type": "remote",
@@ -32,6 +35,12 @@
     },
     "plan": {
       "color": "accent"
+    },
+    "general": {
+      "disable": true
+    },
+    "explore": {
+      "disable": true
     }
   }
 }
