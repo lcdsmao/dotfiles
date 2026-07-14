@@ -13,7 +13,6 @@
       "eval *": "deny"
     },
     "external_directory": {
-      "~/.config/opencode/get-shit-done/*": "allow",
       "~/Library/Application Support/rtk/*": "allow"
     }
   },
