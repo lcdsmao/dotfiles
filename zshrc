@@ -70,6 +70,9 @@ if [[ -n $GHOSTTY_RESOURCES_DIR && (-n $TMUX || -n $HERDR_ENV) ]]; then
   source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
 fi
 
+# removing duplicate directory entries
+typeset -U PATH
+
 # Profile end
 if [[ -n $ZSH_PROFILE ]]; then
     zprof
