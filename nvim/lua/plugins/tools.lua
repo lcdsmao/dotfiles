@@ -11,6 +11,7 @@ return {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {
+      enabled = false,
       file_types = { "markdown", "vimwiki" },
       preset = "lazy",
       anti_conceal = {
