@@ -2,6 +2,7 @@ return {
   {
     "wojciech-kulik/xcodebuild.nvim",
     build = "make install",
+    ft = { "swift", "objectivec", "objectivecpp" },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
