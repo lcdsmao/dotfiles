@@ -56,8 +56,14 @@ if [ -z "$AI_PANE_ID" ]; then
 	$HERDR_BIN pane run "$AI_PANE_ID" "bash ~/.config/scripts/tmux-ai-cli-selector.sh" >/dev/null
 else
 	$HERDR_BIN tab focus "$MAIN_TAB_ID" >/dev/null
+	AI_PANE_PROCESS_NAME="$($HERDR_BIN pane process-info --pane "$AI_PANE_ID" | jq -r '.result.process_info.foreground_processes[0].name // empty')"
 	LEFT_NEIGHBOR_ID="$($HERDR_BIN pane neighbor --direction left --pane "$AI_PANE_ID" | jq -r '.result.neighbor.neighbor_pane_id // empty')"
-	if [ -n "$LEFT_NEIGHBOR_ID" ]; then
+	if [ "$AI_PANE_PROCESS_NAME" = "zsh" ]; then
+		if [ -n "$LEFT_NEIGHBOR_ID" ]; then
+			$HERDR_BIN pane focus --direction right --pane "$LEFT_NEIGHBOR_ID" >/dev/null
+		fi
+		$HERDR_BIN pane run "$AI_PANE_ID" "bash ~/.config/scripts/tmux-ai-cli-selector.sh" >/dev/null
+	elif [ -n "$LEFT_NEIGHBOR_ID" ]; then
 		$HERDR_BIN pane focus --direction right --pane "$LEFT_NEIGHBOR_ID" >/dev/null
 	fi
 fi
