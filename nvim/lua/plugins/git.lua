@@ -77,5 +77,13 @@ return {
   {
     "esmuellert/codediff.nvim",
     cmd = "CodeDiff",
+    config = {
+      keymaps = {
+        view = {
+          next_hunk = "]h",
+          prev_hunk = "[h",
+        },
+      },
+    },
   },
 }
