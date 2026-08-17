@@ -192,7 +192,8 @@ done < "$dsFileName"
 #        #0: ReportFragment{63a64dc #0 androidx.lifecycle.LifecycleDispatcher.report_fragment_tag}
 #      mCreated=true mResumed=true mStopped=false    Active Fragments:    OverrideFragment{78233f7} (65ce9eee-8930-4681-9b32-5ba0abb9b89a) f0}
 
-declare -A activityMap
+# Use indexed arrays for compatibility with macOS Bash 3.2 and newer Bash.
+declare -a activityMap
 levelOneConstant=10
 levelIterator=6
 activityCounter=0
@@ -243,7 +244,7 @@ while IFS= read -r line; do
   fi
 done < "$simpleFile"
 
-declare -A barMap
+declare -a barMap
 totalLineCount=$(cat "$simpleFile" | wc -l | sed 's/[[:space:]]//g')
 finalLineIterator=0
 currentActivtyNum=0
@@ -259,7 +260,7 @@ while IFS= read -r line; do
     #printf "TASK: ${taskcolor}---> $part2 <---${reset}\n"
     printf "${taskcolorDim}--->${taskcolor} $part2 ${taskcolorDim}<---${reset}\n"
   elif [[ "$part1" == "A" ]]; then
-    unset barMap
+    barMap=()
     currentActivtyNum=$((currentActivtyNum + 1))
     activeStatus=""
     if [[ "$part3" == "Active" ]]; then
