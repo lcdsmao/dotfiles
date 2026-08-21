@@ -56,5 +56,8 @@ quick-terminal-autohide = false
 # Bell
 # Ghostty keeps BEL features disabled by default, which matches the WezTerm setup.
 
+# Copy
+copy-on-select = clipboard
+
 # Keybindings
 keybind = global:cmd+alt+ctrl+shift+f=toggle_quick_terminal
