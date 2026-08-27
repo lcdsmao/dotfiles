@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # List of all possible AI CLIs
-ALL_CLIS=("opencode" "copilot" "claude" "codex" "gemini")
+ALL_CLIS=("opencode" "opencode2" "copilot" "claude" "codex" "gemini")
 
 # File to store the last selected CLI in system cache
 CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}"
