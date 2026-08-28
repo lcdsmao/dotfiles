@@ -1024,56 +1024,6 @@
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
         },
         {
-            "complex_modifications": {
-                "rules": [
-                    {
-                        "description": "Meh(Ctrl+Shift+Option)+C/J/E: Switch input source to Chinese/Japanese/English",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "c",
-                                    "modifiers": {
-                                        "mandatory": ["control", "shift", "option"],
-                                        "optional": ["caps_lock"]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "select_input_source": {
-                                            "input_mode_id": "com.apple.inputmethod.SCIM.ITABC",
-                                            "input_source_id": "com.apple.inputmethod.SCIM.ITABC",
-                                            "language": "zh-Hans"
-                                        }
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "j",
-                                    "modifiers": {
-                                        "mandatory": ["control", "shift", "option"],
-                                        "optional": ["caps_lock"]
-                                    }
-                                },
-                                "to": [{ "key_code": "japanese_kana" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "e",
-                                    "modifiers": {
-                                        "mandatory": ["control", "shift", "option"],
-                                        "optional": ["caps_lock"]
-                                    }
-                                },
-                                "to": [{ "key_code": "japanese_eisuu" }],
-                                "type": "basic"
-                            }
-                        ]
-                    }
-                ]
-            },
             "devices": [
                 {
                     "disable_built_in_keyboard_if_exists": true,
