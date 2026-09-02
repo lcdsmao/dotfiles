@@ -103,6 +103,8 @@ zoom = "prefix+o"       # legacy alias: fullscreen
 resize_mode = "prefix+m"
 toggle_sidebar = "prefix+b"
 settings = "prefix+c"
+resize_pane_left = "prefix+<"
+resize_pane_right = "prefix+>"
 
 # Navigate-mode movement. These local shortcuts win while navigate mode is open.
 # They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
