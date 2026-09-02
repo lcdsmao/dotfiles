@@ -16,7 +16,7 @@ opt.hlsearch = true
 opt.incsearch = true
 
 -- Performance
-opt.lazyredraw = true
+-- opt.lazyredraw = true
 
 -- Regex
 opt.magic = true
@@ -55,6 +55,8 @@ opt.autoindent = true
 opt.smartindent = true
 opt.wrap = true
 opt.linebreak = true
+opt.showbreak = "↪"
+opt.breakindent = true
 opt.textwidth = 500
 
 -- Splits
