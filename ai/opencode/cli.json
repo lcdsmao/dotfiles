@@ -7,6 +7,10 @@
   "keybinds": {
     "app.exit": "<leader>q"
   },
+  "plugins": [
+    "./herdr-tui-session.js",
+    "./herdr-opencode"
+  ],
   "diffs": {
     "wrap": "word",
     "tree": true
