@@ -43,6 +43,7 @@ window-height = 60
 
 # Layout
 adjust-cell-height = 0
+macos-option-as-alt = true
 
 # Scrollback
 scrollback-limit = 1000

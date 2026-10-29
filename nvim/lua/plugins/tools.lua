@@ -1,6 +1,7 @@
 return {
   {
     "voldikss/vim-floaterm",
+    enabled = false,
     lazy = false,
     init = function()
       -- These need to be set BEFORE the plugin loads

@@ -163,6 +163,12 @@ type = "shell"
 command = "bash ~/.config/scripts/herdr-main-layout.sh"
 description = "set up main tab AI layout"
 
+[[keys.command]]
+key = "prefix+space"
+type = "plugin_action"
+command = "herdr-float.toggle"
+description = "toggle floating shell"
+
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
 # [keys.indexed]

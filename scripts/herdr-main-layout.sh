@@ -14,18 +14,13 @@ fi
 
 CURRENT_PANE_JSON=""
 WORKSPACE_ID="${HERDR_ACTIVE_WORKSPACE_ID:-}"
-CURRENT_CWD="${HERDR_ACTIVE_PANE_CWD:-}"
 
-if [ -z "$WORKSPACE_ID" ] || [ -z "$CURRENT_CWD" ]; then
+if [ -z "$WORKSPACE_ID" ]; then
 	CURRENT_PANE_JSON="$($HERDR_BIN pane current)"
 fi
 
 if [ -z "$WORKSPACE_ID" ]; then
 	WORKSPACE_ID="$(printf '%s\n' "$CURRENT_PANE_JSON" | jq -r '.result.pane.workspace_id')"
-fi
-
-if [ -z "$CURRENT_CWD" ]; then
-	CURRENT_CWD="$(printf '%s\n' "$CURRENT_PANE_JSON" | jq -r '.result.pane.foreground_cwd // .result.pane.cwd // env.HOME')"
 fi
 
 TABS_JSON="$($HERDR_BIN tab list --workspace "$WORKSPACE_ID")"
@@ -37,9 +32,11 @@ fi
 
 $HERDR_BIN tab rename "$MAIN_TAB_ID" main >/dev/null
 
-TERMINAL_TAB_ID="$(printf '%s\n' "$TABS_JSON" | jq -r '.result.tabs[] | select(.label == "terminal") | .tab_id' | head -n 1)"
-if [ -z "$TERMINAL_TAB_ID" ]; then
-	$HERDR_BIN tab create --workspace "$WORKSPACE_ID" --cwd "$CURRENT_CWD" --label terminal --no-focus >/dev/null
+TERMINAL_TAB_IDS="$(printf '%s\n' "$TABS_JSON" | jq -r '.result.tabs[] | select(.label == "terminal") | .tab_id')"
+if [ -n "$TERMINAL_TAB_IDS" ]; then
+	while IFS= read -r TERMINAL_TAB_ID; do
+		$HERDR_BIN tab close "$TERMINAL_TAB_ID" >/dev/null
+	done <<<"$TERMINAL_TAB_IDS"
 fi
 
 PANES_JSON="$($HERDR_BIN pane list --workspace "$WORKSPACE_ID")"
