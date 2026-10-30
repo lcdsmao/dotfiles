@@ -3,13 +3,13 @@
   "permissions": [
     { "action": "shell", "resource": "curl *", "effect": "ask" },
     { "action": "shell", "resource": "wget *", "effect": "ask" },
-    { "action": "shell", "resource": "*base64 -D*", "effect": "deny" },
-    { "action": "shell", "resource": "*base64 --decode*", "effect": "deny" },
-    { "action": "shell", "resource": "*base64 -d*", "effect": "deny" },
-    { "action": "shell", "resource": "* | bash", "effect": "deny" },
-    { "action": "shell", "resource": "* | zsh", "effect": "deny" },
-    { "action": "shell", "resource": "* | sh", "effect": "deny" },
-    { "action": "shell", "resource": "eval *", "effect": "deny" }
+    { "action": "shell", "resource": "* | bash", "effect": "ask" },
+    { "action": "shell", "resource": "* | zsh", "effect": "ask" },
+    { "action": "shell", "resource": "* | sh", "effect": "ask" },
+    { "action": "shell", "resource": "eval *", "effect": "deny" },
+    { "action": "shell", "resource": "*base64 -D*", "effect": "allow" },
+    { "action": "shell", "resource": "*base64 --decode*", "effect": "allow" },
+    { "action": "shell", "resource": "*base64 -d*", "effect": "allow" },
   ],
   "mcp": {
     "servers": {
