@@ -124,6 +124,7 @@ return {
       vim.lsp.config("pyright", require("lsp.pyright"))
       vim.lsp.config("lua_ls", require("lsp.lua_ls"))
       vim.lsp.config("ts_ls", require("lsp.ts_ls"))
+      vim.lsp.config("ruby_lsp", require("lsp.ruby_lsp"))
 
       require("mason-lspconfig").setup({
         -- Auto-install these servers
