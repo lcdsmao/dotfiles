@@ -15,8 +15,8 @@ return {
     end,
   },
   {
-    "selimacerbas/markdown-preview.nvim",
-    dependencies = { "selimacerbas/live-server.nvim" },
+    "selimacerbas/mdkite.nvim",
+    dependencies = { "selimacerbas/kitehost.nvim" },
     opts = {
       custom_css = vim.fn.stdpath("config") .. "/markdown-preview.css",
     },
